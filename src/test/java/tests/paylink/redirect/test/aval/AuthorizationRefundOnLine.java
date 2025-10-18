@@ -1,6 +1,6 @@
 package tests.paylink.redirect.test.aval;
 
-import jdbc.JDBCMethods;
+import com.ecom.db.JDBCMethods;
 import methods.RedirectRequest;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -8,11 +8,11 @@ import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import tests.BaseRedirect;
 
-import static jdbc.JDBCMethods.*;
+import static com.ecom.db.JDBCMethods.*;
 import static methods.DocumentTools.verifiedDataFromDB;
 import static methods.PaylinkRequests.paylinkCloseDay;
 import static org.testng.Assert.assertFalse;
-import static type.Attributes.*;
+import static com.ecom.type.Attributes.*;
 
 public class AuthorizationRefundOnLine extends BaseRedirect {
     private static String orderRedirect;

@@ -1,6 +1,6 @@
-package model;
+package com.ecom.model;
 
-import type.Tags;
+import com.ecom.type.Tags;
 
 import java.io.Serializable;
 

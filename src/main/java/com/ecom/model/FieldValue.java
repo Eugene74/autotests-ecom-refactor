@@ -1,6 +1,6 @@
-package model;
+package com.ecom.model;
 
-import type.FieldsNFile;
+import com.ecom.type.FieldsNFile;
 
 import java.io.Serializable;
 

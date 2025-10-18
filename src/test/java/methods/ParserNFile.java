@@ -2,7 +2,7 @@ package methods;
 
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Assert;
-import type.FieldsNFile;
+import com.ecom.type.FieldsNFile;
 
 import java.io.BufferedWriter;
 import java.io.FileInputStream;
@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.stream.Stream;
 
-import static type.FieldsNFile.*;
+import static com.ecom.type.FieldsNFile.*;
 
 public class ParserNFile {
     private static final int startPoint = 112;

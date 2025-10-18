@@ -6,9 +6,9 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import tests.BaseRedirect;
 
-import static jdbc.JDBCMethods.setMerchantAtt;
-import static jdbc.JDBCMethods.setPropertyURLs;
-import static type.Attributes.MERCHANT_INVOICING_URL;
+import static com.ecom.db.JDBCMethods.setMerchantAtt;
+import static com.ecom.db.JDBCMethods.setPropertyURLs;
+import static com.ecom.type.Attributes.MERCHANT_INVOICING_URL;
 
 public class LoginSuccess extends BaseRedirect {
 

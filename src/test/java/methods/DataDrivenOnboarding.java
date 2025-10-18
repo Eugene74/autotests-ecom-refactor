@@ -4,7 +4,7 @@
  */
 package methods;
 
-import DataDriven.ConfigOnboarding;
+import com.ecom.core.config.ConfigOnboarding;
 import org.testng.annotations.DataProvider;
 
 import static tests.paylink.api.onboarding.CreateMerchant.requestID;

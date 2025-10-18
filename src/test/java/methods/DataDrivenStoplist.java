@@ -4,7 +4,7 @@
  */
 package methods;
 
-import DataDriven.ConfigStoplist;
+import com.ecom.core.config.ConfigStoplist;
 import org.testng.annotations.DataProvider;
 
 import static tests.paylink.api.stoplist.CreateItem.stopListId;

@@ -1,4 +1,4 @@
-package type;
+package com.ecom.type;
 
 public enum Mtid {
     Mtid00(00),

@@ -1,6 +1,6 @@
-package jdbc;
+package com.ecom.db;
 
-import type.Attributes;
+import com.ecom.type.Attributes;
 
 import java.io.BufferedReader;
 import java.io.IOException;

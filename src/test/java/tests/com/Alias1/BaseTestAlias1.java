@@ -1,6 +1,6 @@
 package tests.com.Alias1;
 
-import jdbc.JDBCConnection;
+import com.ecom.db.JDBCConnection;
 import tests.com.Endpoint.BasePropertiesTest;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpPost;

@@ -1,4 +1,4 @@
-package type;
+package com.ecom.type;
 
 public enum Attributes {
     ALLOW_AIRLINE_ADDENDUM_DATA,

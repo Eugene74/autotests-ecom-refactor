@@ -16,14 +16,14 @@ import java.util.Base64;
 import java.util.Date;
 
 import static io.restassured.RestAssured.given;
-import static jdbc.JDBCMethods.*;
-import static jdbc.JDBCMethods.setMerchantAtt;
+import static com.ecom.db.JDBCMethods.*;
+import static com.ecom.db.JDBCMethods.setMerchantAtt;
 import static methods.DocumentTools.*;
 import static methods.DocumentTools.verifiedDataFromDB;
 import static methods.PaylinkRequests.payment;
 import static methods.RequestSender.sendRequest;
 import static org.testng.Assert.assertEquals;
-import static type.Attributes.ALLOW_SUPPORT_TOKEN;
+import static com.ecom.type.Attributes.ALLOW_SUPPORT_TOKEN;
 
 public class TokenJson extends BaseTest {
     private String tokenId;

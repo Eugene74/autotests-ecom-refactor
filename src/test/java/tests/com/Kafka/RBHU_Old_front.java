@@ -1,6 +1,6 @@
 package tests.com.Kafka;
 
-import jdbc.JDBCMethods;
+import com.ecom.db.JDBCMethods;
 import methods.WebDriverHolder;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.By;
@@ -13,7 +13,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.*;
-import type.Attributes;
+import com.ecom.type.Attributes;
 import java.time.Duration;
 
 

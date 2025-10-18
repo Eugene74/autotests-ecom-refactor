@@ -7,11 +7,11 @@ import org.testng.annotations.Test;
 import org.w3c.dom.Document;
 import tests.BaseTest;
 
-import static jdbc.JDBCMethods.*;
+import static com.ecom.db.JDBCMethods.*;
 import static methods.DocumentTools.*;
 import static methods.PaylinkRequests.paymentMasterpass;
 import static org.testng.Assert.assertEquals;
-import static type.Attributes.ALLOW_MASTERPASS;
+import static com.ecom.type.Attributes.ALLOW_MASTERPASS;
 
 public class Masterpass extends BaseTest {
 

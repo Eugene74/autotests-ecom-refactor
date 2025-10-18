@@ -1,6 +1,6 @@
 package tests.com.Service01;
 
-import jdbc.JDBCConnection;
+import com.ecom.db.JDBCConnection;
 import methods.WebDriverHolder;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;

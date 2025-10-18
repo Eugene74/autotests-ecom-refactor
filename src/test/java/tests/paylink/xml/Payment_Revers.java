@@ -3,19 +3,19 @@ package tests.paylink.xml;
 import org.testng.annotations.Test;
 import org.w3c.dom.Document;
 import tests.BaseTest;
-import type.FieldsNFile;
+import com.ecom.type.FieldsNFile;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import static jdbc.JDBCMethods.getTranIdByOrder;
-import static jdbc.JDBCMethods.getValueFromTRAN;
+import static com.ecom.db.JDBCMethods.getTranIdByOrder;
+import static com.ecom.db.JDBCMethods.getValueFromTRAN;
 import static methods.DocumentTools.*;
 import static methods.PaylinkRequests.payment;
 import static methods.PaylinkRequests.reversal;
 import static methods.RequestSender.sendRequest;
 import static org.testng.Assert.assertEquals;
-import static type.FieldsNFile.*;
+import static com.ecom.type.FieldsNFile.*;
 
 public class Payment_Revers extends BaseTest {
     private static Document requestDoc;

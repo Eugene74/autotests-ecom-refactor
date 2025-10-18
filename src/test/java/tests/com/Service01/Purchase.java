@@ -17,7 +17,7 @@ import java.sql.ResultSet;
 import java.util.HashMap;
 import java.util.Map;
 
-import static jdbc.JDBCMethods.verifyOrders;
+import static com.ecom.db.JDBCMethods.verifyOrders;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNotNull;
 

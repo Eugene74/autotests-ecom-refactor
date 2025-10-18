@@ -1,7 +1,7 @@
 package tests.com.Capture;
 
-import jdbc.JDBCConnection;
-import jdbc.JDBCMethods;
+import com.ecom.db.JDBCConnection;
+import com.ecom.db.JDBCMethods;
 import methods.WebDriverHolder;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -10,7 +10,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.*;
-import type.Attributes;
+import com.ecom.type.Attributes;
 
 import java.net.URLEncoder;
 import java.time.Duration;

@@ -12,19 +12,19 @@ import org.testng.annotations.Test;
 import org.w3c.dom.Document;
 import tests.BaseRedirect;
 
-import static jdbc.JDBCMethods.getTranIdByOrder;
-import static jdbc.JDBCMethods.getValueFromMTTranFR;
-import static jdbc.JDBCMethods.getTranIdByOrderFR;
-import static jdbc.JDBCMethods.setMerchantAtt;
+import static com.ecom.db.JDBCMethods.getTranIdByOrder;
+import static com.ecom.db.JDBCMethods.getValueFromMTTranFR;
+import static com.ecom.db.JDBCMethods.getTranIdByOrderFR;
+import static com.ecom.db.JDBCMethods.setMerchantAtt;
 import static methods.DocumentTools.*;
 import static methods.DocumentTools.getElementFromDocument;
 import static methods.DocumentTools.verifiedDataFromResponse;
 import static methods.PaylinkRequests.payment;
 import static methods.RequestSender.sendRequest;
 import static org.testng.Assert.assertEquals;
-import static type.Attributes.ALLOW_PAYMENT_WITHOUT_3DS;
-import static type.Attributes.ALLOW_FAST_REFUND;
-import static type.Attributes.ALLOW_PARTIAL_REVERSAL;
+import static com.ecom.type.Attributes.ALLOW_PAYMENT_WITHOUT_3DS;
+import static com.ecom.type.Attributes.ALLOW_FAST_REFUND;
+import static com.ecom.type.Attributes.ALLOW_PARTIAL_REVERSAL;
 
     public class FastRefund extends BaseRedirect {
     public static String orderId;

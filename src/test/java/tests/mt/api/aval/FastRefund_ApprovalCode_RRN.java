@@ -6,13 +6,13 @@ import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import org.w3c.dom.Document;
 import tests.mt.BaseTestMoneyTransfer;
-import static jdbc.JDBCMethods.*;
+import static com.ecom.db.JDBCMethods.*;
 import static methods.DocumentTools.*;
 import static methods.MoneyTransferRequests.*;
 import static methods.PaylinkRequests.payment;
 import static methods.RequestSender.sendRequest;
 import static org.testng.Assert.assertEquals;
-import static type.Attributes.*;
+import static com.ecom.type.Attributes.*;
 
 public class FastRefund_ApprovalCode_RRN extends BaseTestMoneyTransfer {
     protected Document requestDoc;

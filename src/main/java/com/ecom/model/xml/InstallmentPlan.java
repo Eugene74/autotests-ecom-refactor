@@ -1,4 +1,4 @@
-package model.xml;
+package com.ecom.model.xml;
 
 public class InstallmentPlan {
     private String instPlanParamId;
