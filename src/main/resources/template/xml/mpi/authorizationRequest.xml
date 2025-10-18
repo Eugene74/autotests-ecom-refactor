@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ECommerceConnect xmlns:xenc="http://www.w3.org/2001/04/xmlenc#" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://secure.upc.ua/go/pub/schema/xmlpay-1.9.xsd">
+    <Message id="7418361" version="1.0">
+        <XMLMPIRequest>
+            <MerchantID>${merchId}</MerchantID>
+            <TerminalID>${termId}</TerminalID>
+            <MPIRequest>
+                <MPIAuthRequest>
+                    <PaRes></PaRes>
+                </MPIAuthRequest>
+            </MPIRequest>
+        </XMLMPIRequest>
+    </Message>
+</ECommerceConnect>
+

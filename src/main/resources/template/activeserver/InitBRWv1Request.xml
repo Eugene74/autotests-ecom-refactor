@@ -1,0 +1,36 @@
+<ECommerceConnect xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:noNamespaceSchemaLocation="https://secure.upc.ua/go/pub/schema/xmlpay-1.9.xsd">
+    <EMV3DSRequest id="1">
+        <MerchantID>123456789012345</MerchantID>
+        <TerminalID>E7882727</TerminalID>
+        <InitBRWRequest>
+            <InitAuthData>
+                <CardNum>${card_num}</CardNum>
+                <ExpYear>2025</ExpYear>
+                <ExpMonth>08</ExpMonth>
+                <TotalAmount>1100</TotalAmount>
+                <Currency>840</Currency>
+                <authenticationIndicator>01</authenticationIndicator>
+                <provisionAttemptsDay>3</provisionAttemptsDay>
+                <shipAddressUsageDate>20160714</shipAddressUsageDate>
+                <shipAddressUsageIndicator>04</shipAddressUsageIndicator>
+                <shipNameIndicator>02</shipNameIndicator>
+                <suspiciousAccActivity>01</suspiciousAccActivity>
+                <Transaction>
+                    <activityDay>1</activityDay>
+                    <activityYear>21</activityYear>
+                </Transaction>
+                <AuthenticationInfo>
+                    <emv3DSAuthData>validlogin at UL TS BV</emv3DSAuthData>
+                    <emv3DSAuthMethod>02</emv3DSAuthMethod>
+                    <emv3DSAuthTimestamp>202001301307</emv3DSAuthTimestamp>
+                </AuthenticationInfo>
+                <challengeInd>01</challengeInd>
+                <purchaseDate>20200109103546</purchaseDate>
+                <purchaseInstalData>024</purchaseInstalData>
+                <transType>03</transType>
+            </InitAuthData>
+            <eventCallbackUrl>https://ecg.ipt.upc.ua:8447/go/service/testCallback</eventCallbackUrl>
+        </InitBRWRequest>
+    </EMV3DSRequest>
+</ECommerceConnect>

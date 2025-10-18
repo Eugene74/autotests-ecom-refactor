@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ECommerceConnect
+        xmlns:ds="http://www.w3.org/2000/09/xmldsig#"
+        xmlns:noNamespaceSchemaLocation="https://secure.upc.ua/go/pub/schema/xmlpay-1.41.xsd"
+        xmlns:xenc="http://www.w3.org/2001/04/xmlenc#"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="https://secure.upc.ua/go/pub/schema/xmlpay-1.41.xsd">
+    <Message id="${__counter(FALSE)}" version="1.0">
+        <XMLDeleteTokenRequest>
+            <MerchantID>${merchantId}</MerchantID>
+            <TerminalID>${terminalId}</TerminalID>
+            <trackingId>${trackingId}</trackingId>
+            <UpdateTokenRequest>
+                <UPCToken>
+                    <tokenId>${tokenId}</tokenId>
+                </UPCToken>
+                <reasonCode>SUSPECTED_FRAUD</reasonCode>
+                <reason>Lost/stolen device</reason>
+            </UpdateTokenRequest>
+        </XMLDeleteTokenRequest>
+    </Message>
+</ECommerceConnect>

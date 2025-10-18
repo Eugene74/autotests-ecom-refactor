@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite verbose="0" name="Functional" parallel="false">
+    <test name="Login">
+        <classes>
+            <class name="tests.dashboard.functional.tests.Login.LoginSuccess" />
+            <class name="tests.dashboard.functional.tests.Login.LoginUnsuccess" />
+        </classes>
+    </test>
+    <test name="Tools">
+        <classes>
+            <class name="tests.dashboard.functional.tests.Tools.Invoicing" />
+            <class name="tests.dashboard.functional.tests.Tools.Multipay_Invoices" />
+        </classes>
+    </test>
+    <test name="Merchants">
+        <classes>
+            <class name="tests.dashboard.functional.tests.Merchants.SearchMerchant" />
+        </classes>
+    </test>
+    <test name="MoneyTransfer">
+        <classes>
+            <class name="tests.dashboard.functional.tests.MoneyTransfer.DomesticTransfer" />
+            <!--<class name="tests.dashboard.functional.tests.MoneyTransfer.ExchangeRate" />-->
+        </classes>
+    </test>
+    <test name="Payments">
+        <classes>
+            <class name="tests.dashboard.functional.tests.Payments.Transaction" />
+        </classes>
+    </test>
+
+    <test name="FastRefund">
+        <classes>
+            <class name="tests.dashboard.functional.tests.FastRefund.FastRefund" />
+            <class name="tests.dashboard.functional.tests.FastRefund.FastRefund_Partial" />
+            <class name="tests.dashboard.functional.tests.FastRefund.FastRefund_Reversal_PartialFastRefund" />
+        </classes>
+    </test>
+            <test name="Settings">
+        <classes>
+            <class name="tests.dashboard.functional.tests.Settings.StopList">
+                <!-- <methods>
+                    <exclude name="deleteCardFromStopList" />
+                <</methods>-->
+                </class>
+            </classes>
+        </test>
+    </suite>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite verbose="0" name="p2p" parallel="false">
+    <test name="funding mc">
+        <classes>
+              <class name="tests.mt.p2p.tests.aval.fundingMC.P2P_FundingMCPaymenVisa" />
+        </classes>
+    </test>
+</suite>

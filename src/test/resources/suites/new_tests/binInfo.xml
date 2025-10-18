@@ -1,0 +1,10 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="BinInfo">
+    <test name="BinInfo">
+        <classes>
+            <class name="tests.com.Bin.GetBinInfoTestVISA"/>
+            <class name="tests.com.Bin.GetBinInfoTestMC"/>
+            <class name="tests.com.Bin.GetBinInfoTestMAES"/>
+        </classes>
+    </test>
+</suite>

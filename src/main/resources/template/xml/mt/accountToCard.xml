@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TransactionRequest>
+    <MerchantId>1111127</MerchantId>
+    <TerminalId>E1111127</TerminalId>
+    <TrackingId>{track_id}</TrackingId>
+    <Amount>
+        <Value>${amount}</Value>
+        <CurrencyCode>980</CurrencyCode>
+        <Surcharge>10</Surcharge>
+    </Amount>
+    <Payment>
+        <RecipientCardNumber>${r_card_num}</RecipientCardNumber>
+        <PaymentInfo>
+            <Name>Recipient Name Name</Name>
+            <Address>
+                <Zip>02002</Zip>
+                <Country>PER</Country>
+                <City>Lima</City>
+                <Street>Route</Street>
+            </Address>
+        </PaymentInfo>
+        <DateOfBirth>20061982</DateOfBirth>
+        <Message>test payment</Message>
+        <SenderPhoneNumber>050560</SenderPhoneNumber>
+        <SenderAccountNumber>26385001214422</SenderAccountNumber>
+    </Payment>
+</TransactionRequest>

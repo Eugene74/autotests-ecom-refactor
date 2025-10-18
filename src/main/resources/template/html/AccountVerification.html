@@ -1,0 +1,32 @@
+<html>
+ <head></head> 
+ <body> 
+  <form action="https://release-release-25-41-tomee.release.ecommerce.upc.intranet/go/pay" method="POST"> 
+   <input name="Version" value="1" type="HIDDEN"> 
+   <input name="MerchantID" value="1111127" type="HIDDEN"> 
+   <input name="TerminalID" value="E1111127" type="HIDDEN"> 
+   <input name="TotalAmount" value="1" type="HIDDEN"> 
+   <input name="Currency" value="980" type="HIDDEN"> 
+   <input name="locale" value="UK" type="HIDDEN"> 
+   <input name="SD" value="121221212" type="HIDDEN"> 
+   <input name="OrderID" type="hidden" value=""> 
+   <input name="PurchaseTime" value="180212154302" type="HIDDEN"> 
+   <input name="PurchaseDesc" value="verif" type="HIDDEN"> 
+   <input name="Signature" value="" type="HIDDEN"> 
+   <input class="submit" name="submit" value="submit" type="submit" onclick="generate()"> 
+  </form> 
+  <script>
+	function getRandomInt(min, max)
+	{
+	  return Math.floor(Math.random() * (max - min + 1)) + min;
+	}
+
+	function generate()
+	{
+	var randNumber = getRandomInt(1000000000, 9999999999);
+	 document.getElementsByName('OrderID')[0].value = randNumber;
+	}
+
+	</script>  
+ </body>
+</html>

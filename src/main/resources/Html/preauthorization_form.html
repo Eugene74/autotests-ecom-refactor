@@ -1,0 +1,32 @@
+<html>
+<head></head>
+<body>
+<form action="${base.url}/go/enter" method="POST">
+    <input name="Version" type="hidden" value="1" />
+    <input name="MerchantID" type="hidden" value="${MerchantID}" />
+    <input name="TerminalID" type="hidden" value="${TerminalID}" />
+    <input name="TotalAmount" type="hidden" value="777" />
+    <input name="Currency" type="hidden" value="980" />
+    <input name="locale" type="hidden" value="en" />
+    <input name="delay" type="hidden" value="1" />
+    <INPUT TYPE="HIDDEN" NAME="PurchaseTime" VALUE="241111142323-0700"/>
+    <input name="PurchaseDesc" type="hidden" value="capture" />
+    <input name="Signature" type="hidden" value=""/>
+    <input name="Delay" type="hidden" value="1" />
+    <input name="submit" type="submit" id="submit" onclick="generate()">
+
+    <input id="order" name="OrderID" type="hidden" value=""/>
+
+</form>
+</body>
+</html>
+
+<script type="text/javascript">
+    document.getElementById('order').value = Math.floor(Math.random() * 10000);
+	function submit()
+    {
+	document.getElementById("submit").click(); // Simulates button click
+    //document.submitForm.submit(); // Submits the form without the button
+    }
+
+</script>

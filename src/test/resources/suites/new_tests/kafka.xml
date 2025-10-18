@@ -1,0 +1,14 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="email">
+<test name="Kafka">
+    <classes>
+        <class name="tests.com.Kafka.TestFactory"/>
+        <class name="tests.com.Kafka.RBHU_Old_front"/>
+        <class name="tests.com.Kafka.RBHU_New_front"/>
+        <class name="tests.com.Kafka.DashboardLogin"/>
+        <class name="tests.com.Kafka.Maildev"/>
+        <class name="tests.com.Kafka.KafdropEmail"/>
+        <class name="tests.com.Kafka.KafdropReceipt"/>
+    </classes>
+</test>
+</suite>

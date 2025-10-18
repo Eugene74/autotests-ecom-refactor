@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite verbose="0" name="redirect" parallel="false">
+    <test name="go">
+        <classes>
+            <class name="tests.paylink.redirect.test.aval.AccountVerification" />
+            <class name="tests.paylink.redirect.test.aval.Authorization" />
+            <class name="tests.paylink.redirect.test.aval.AuthorizationRevers" />
+            <class name="tests.paylink.redirect.test.aval.AuthorizationRefund" />
+            <class name="tests.paylink.redirect.test.aval.AuthorizationRefundOnLine" />
+            <class name="tests.paylink.redirect.test.aval.FacilitatorAuth" />
+            <class name="tests.paylink.redirect.test.aval.FacilitatorAuthRevers" />
+            <class name="tests.paylink.redirect.test.aval.FacilitatorAuthRefund" />
+            <class name="tests.paylink.redirect.test.aval.MCInstallment" />
+            <class name="tests.paylink.redirect.test.aval.MCInstallmentRevers" />
+            <class name="tests.paylink.redirect.test.aval.PreAuthorizationPost" />
+            <class name="tests.paylink.redirect.test.aval.PreAuthorizationPostRevers" />
+            <class name="tests.paylink.redirect.test.aval.PreAuthorizationPostLessAmount" />
+            <class name="tests.paylink.redirect.test.aval.PreAuthorizationPostRefund" />
+            <class name="tests.paylink.redirect.test.aval.Invoicing" />
+            <class name="tests.paylink.redirect.test.aval.InvoicingRevers" />
+        </classes>
+    </test>
+</suite>

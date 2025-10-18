@@ -1,0 +1,6 @@
+{
+  "MerchantID": "${merchantId}",
+  "TerminalID": "${terminalId}",
+  "trackingId": "${trackingId}",
+  "UPCToken": "${tokenId}"
+}

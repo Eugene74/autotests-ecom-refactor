@@ -1,0 +1,13 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Alias1">
+    <test name="Alias1">
+        <classes>
+            <class name="tests.com.Alias1.CreateAlias1"/>
+            <class name="tests.com.Alias1.UpdateAlias1"/>
+            <class name="tests.com.Alias1.GetAlias1"/>
+            <class name="tests.com.Alias1.ResolveAlias1"/>
+            <class name="tests.com.Alias1.InquiryAlias1"/>
+            <class name="tests.com.Alias1.DeleteAlias1"/>
+        </classes>
+    </test>
+</suite>

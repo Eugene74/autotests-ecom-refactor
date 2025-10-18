@@ -1,0 +1,10 @@
+<VisaAliasRequest xmlns:xd="http://www.w3.org/2000/09/xmldsig#">
+    <MerchantId>${MerchantID}</MerchantId>
+    <TerminalId>${TerminalID}</TerminalId>
+    <Trackingid>${RequestID}</Trackingid>
+    <deleteAlias>
+        <guid>${GUID}</guid>
+        <alias>${alias1Id}</alias>
+    </deleteAlias>
+    <Signature></Signature>
+</VisaAliasRequest>

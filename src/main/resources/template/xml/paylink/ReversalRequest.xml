@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ECommerceConnect xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:noNamespaceSchemaLocation="https://secure.upc.ua/go/pub/schema/xmlpay-1.32.xsd">
+    <Message id="${__counter(FALSE)}" version="1.0">
+        <XMLPayRequest>
+            <RequestData>
+                <MerchantID>1800008</MerchantID>
+                <TerminalID>E1800000</TerminalID>
+                <Transactions>
+                    <Transaction>
+                        <Refund>
+                            <RefundData>
+                                <Invoice>
+                                    <OrderID>ferb${order_id}</OrderID>
+                                    <Date>${date}</Date>
+                                    <TotalAmount>${amount}</TotalAmount>
+                                    <Currency>980</Currency>
+                                    <Description>Revers/Refund</Description>
+                                    <Fee>400</Fee>
+                                </Invoice>
+                                <AuthorizationRef>
+                                    <ApprovalCode>${approval_code}</ApprovalCode>
+                                    <Rrn>${rrn}</Rrn>
+                                </AuthorizationRef>
+                                <RefundAmount></RefundAmount>
+                            </RefundData>
+                        </Refund>
+                    </Transaction>
+                </Transactions>
+            </RequestData>
+        </XMLPayRequest>
+    </Message>
+</ECommerceConnect>

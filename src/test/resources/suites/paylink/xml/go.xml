@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite verbose="0" name="xml" parallel="false">
+    <test name="aval">
+        <classes>
+            <class name="tests.paylink.xml.Facilitator" />
+            <class name="tests.paylink.xml.Facilitator_Revers" />
+            <class name="tests.paylink.xml.Facilitator_Refund" />
+            <class name="tests.paylink.xml.LookUp" />
+            <class name="tests.paylink.xml.Masterpass" />
+            <class name="tests.paylink.xml.Masterpass_Refund" />
+            <class name="tests.paylink.xml.Masterpass_Revers" />
+            <class name="tests.paylink.xml.Moto" />
+            <class name="tests.paylink.xml.Moto_Refund" />
+            <class name="tests.paylink.xml.Moto_Refund_Part" />
+            <class name="tests.paylink.xml.Moto_Revers" />
+            <class name="tests.paylink.xml.Payment" />
+            <class name="tests.paylink.xml.Payment_Refund" />
+            <class name="tests.paylink.xml.Payment_Refund_Part" />
+            <class name="tests.paylink.xml.PaymentRefundPartDiffDay" />
+            <class name="tests.paylink.xml.Payment_RefundOnLine" />
+            <class name="tests.paylink.xml.Payment_Revers" />
+            <class name="tests.paylink.xml.PreAuthorization" />
+            <class name="tests.paylink.xml.PreAuthorizationPost" />
+            <class name="tests.paylink.xml.PreAuthorizationPost_Refund" />
+            <class name="tests.paylink.xml.PreAuthorizationPost_Revers" />
+            <class name="tests.paylink.xml.PreAuthorizationPostAttempt" />
+            <class name="tests.paylink.xml.PreAuthPostMoreAmountRefund" />
+            <class name="tests.paylink.xml.PreAuthPostMoreAmountRevers" />
+            <class name="tests.paylink.xml.RecurrentInitial" />
+            <class name="tests.paylink.xml.RecurrentInitial_Refund" />
+            <class name="tests.paylink.xml.RecurrentInitial_Revers" />
+            <class name="tests.paylink.xml.RecurrentSubsequent" />
+            <class name="tests.paylink.xml.RecurrentSubsequent_Refund" />
+            <class name="tests.paylink.xml.RecurrentSubsequent_Revers" />
+            <class name="tests.paylink.xml.SettlementRefund_Aval" />
+            <class name="tests.paylink.xml.Facilitator" />
+        </classes>
+    </test>
+</suite>

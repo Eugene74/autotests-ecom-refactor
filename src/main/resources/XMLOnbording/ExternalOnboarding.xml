@@ -1,0 +1,38 @@
+<ECommerceConnect xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:noNamespaceSchemaLocation="https://secure.upc.ua/go/pub/schema/xmlpay-2.5.xsd" xmlns:xenc="http://www.w3.org/2001/04/xmlenc#" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://secure.upc.ua/go/pub/schema/xmlpay-2.5.xsd">
+    <Message id="${__counter(FALSE)}" version="1.0">
+        <XMLOnboardMerchantRequest xmlns:xd="http://www.w3.org/2000/09/xmldsig#">
+            <MerchantID>${MerchantID}</MerchantID>
+            <OnboardMerchantRequest>
+                <Name>${Name}</Name>
+                <Address>
+                    <Country>UA</Country>
+                    <City>NY</City>
+                </Address>
+                <siteUrl>${siteUrl}</siteUrl>
+                <Email>${Email}</Email>
+                <TaxNumber>${TaxNumber}</TaxNumber>
+                <DebitCreditIndicator>DEBIT</DebitCreditIndicator>
+                <onboardMdes>Y</onboardMdes>
+                <onboardVTS>Y</onboardVTS>
+            </OnboardMerchantRequest>
+        </XMLOnboardMerchantRequest>
+    </Message>
+    <Signature xmlns="http://www.w3.org/2000/09/xmldsig#">
+        <SignedInfo>
+            <CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"/>
+            <SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"/>
+            <Reference URI="">
+                <Transforms>
+                    <Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/>
+                </Transforms>
+                <DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/>
+                <DigestValue>FHDgfGeAwPNGQKXYmAr7icB5YLo=</DigestValue>
+            </Reference>
+        </SignedInfo>
+        <SignatureValue>qvXEygaJWRtxlG7v14Ll14UkeqnHF/oJ9x7OjrzkTvObKFWnu2IzuWXDlQTjeGLRGKWJmXDi3PTn
+            4/u5J+YB3sUww1gAW76EcChXrQbKjsRCf2XCMBmdXOGsjLnZZT4jbb2WIVtyW7CFrdILK6GwVmNu
+            +0h7OgFrDhNQkKAu5zaQjd2t5DaUI59jh9cFD3Af117NxUl8AquS3Ik3qoLV6QH2wzIknsN0ZaYs
+            Ny8HhS9/GWdIuAOLYqbCXh99u6c1wCZrNitlViJfAZe0Vz8La1knBnUbIcYBlIKdJNGXx7HQelhB
+            oU4RuEgTDWLYZjaE7fyFtMqWcwHMG3zjF4jb+g==</SignatureValue>
+    </Signature>
+</ECommerceConnect>

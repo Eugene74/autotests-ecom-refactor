@@ -1,0 +1,10 @@
+{
+  "MerchantID": "${merchantId}",
+  "TerminalID": "${terminalId}",
+  "TrackingId": "${trackingId}",
+  "card": {
+    "CardNum": "${cardNumber}",
+    "expMonth": "12",
+    "expYear": "2026"
+  }
+}

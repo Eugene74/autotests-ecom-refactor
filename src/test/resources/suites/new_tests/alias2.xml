@@ -1,0 +1,20 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Alias2">
+    <test name="Alias2">
+        <classes>
+            <class name="tests.com.Alias2.CreateAlias2"/>
+            <class name="tests.com.Alias2.GetAlias2"/>
+            <class name="tests.com.Alias2.GetAlias2IdByValue"/>
+            <class name="tests.com.Alias2.GetAlias2ByExternalId"/>
+            <class name="tests.com.Alias2.InquiryAlias2"/>
+            <class name="tests.com.Alias2.ResolveAlias2"/>
+            <class name="tests.com.Alias2.UpdateAlias2"/>
+            <class name="tests.com.Alias2.UpdateAlias2status"/>
+            <class name="tests.com.Alias2.CreatePaymentCredentialAlias2"/>
+            <class name="tests.com.Alias2.GetPaymentCredentialAlias2"/>
+            <class name="tests.com.Alias2.GetAllPaymentCredentialsAlias2"/>
+            <class name="tests.com.Alias2.DeletePaymentCredentialAlias2"/>
+            <class name="tests.com.Alias2.DeleteAlias2"/>
+        </classes>
+    </test>
+</suite>

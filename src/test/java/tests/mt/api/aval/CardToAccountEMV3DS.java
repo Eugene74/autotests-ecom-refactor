@@ -1,0 +1,59 @@
+package tests.mt.api.aval;
+
+
+import methods.RequestSender;
+import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
+import org.w3c.dom.Document;
+import tests.mt.BaseTestMoneyTransfer;
+
+import static jdbc.JDBCMethods.getTranMT3dsData;
+import static jdbc.JDBCMethods.getValueFromMTTran;
+import static methods.DocumentTools.*;
+import static methods.MoneyTransferRequests.transferCardToAccountEmv;
+
+
+public class CardToAccountEMV3DS extends BaseTestMoneyTransfer {
+
+    @Test
+    public void transferFromCardToAccountEMV3DS() {
+        Document requestDoc = transferCardToAccountEmv(cardMCmt, merchant_AVAL, terminal_AVAL);
+        Document responseDoc = RequestSender.sendRequest(URLmt, requestDoc);
+        
+        System.out.println("--TRANSFER--\nRequest:\n" + printRequestMT(requestDoc));
+        System.out.println("Response:\n" + printResponseMT(responseDoc));
+
+        String rrnFunding = getElementFromDocument(responseDoc, "RRN");
+        int tranID = Integer.parseInt(getElementFromDocument(responseDoc, "TrackingId"));
+        
+        SoftAssert softAssertion= new SoftAssert();
+        softAssertion.assertEquals(getElementFromDocument(responseDoc, "Code"), "000", "Code");
+        softAssertion.assertEquals(getElementFromDocument(responseDoc, "Message"), "Approved", "Message");
+        //softAssertion.assertEquals(getElementFromDocument(responseDoc, "CVResult"), "P2", "CVResult");
+        softAssertion.assertEquals(getElementFromDocument(responseDoc, "CVResult"), "M", "CVResult");
+        softAssertion.assertEquals(getElementFromDocument(responseDoc, "ApprovalCode").length(), 6, "ApprovalCode");
+        softAssertion.assertEquals(getElementFromDocument(responseDoc, "AuthCode"), "000", "AuthCode");
+        softAssertion.assertEquals(getElementFromDocument(responseDoc, "MCC"), "6538", "MCC");
+        softAssertion.assertEquals(rrnFunding.length(), 12, "RRN");
+
+        softAssertion.assertEquals(getValueFromMTTran(rrnFunding, "ECI"), "02", "ECI Funding");
+        softAssertion.assertEquals(getValueFromMTTran(rrnFunding, "PAResStatus"), "Y", "PAResStatus");
+        softAssertion.assertEquals(getValueFromMTTran(rrnFunding, "PA_ECI"), "02", "PA_ECI");
+        softAssertion.assertEquals(getValueFromMTTran(rrnFunding, "Version3DS"), "2", "Version3DS");
+        softAssertion.assertTrue(!getTranMT3dsData(rrnFunding).isEmpty(), "DS_TransID");
+        softAssertion.assertAll();
+
+        System.out.println("Verified:");
+        String [] verifiedResponse = {"Code", "Message"};
+        String [] verifiedFunding = {"CVResult", "ApprovalCode", "AuthCode", "MCC", "RRN"};
+        String [] verifiedResponseFromDBFunding = {"ECI", "PAResStatus", "PA_ECI", "Version3DS", "DS_TransID"};
+        try {
+            verifiedDataFromResponse(responseDoc, verifiedResponse);
+            verifiedDataResponseFunding(responseDoc, verifiedFunding);
+            verifiedDataMTFromDBFunding(rrnFunding, verifiedResponseFromDBFunding);
+        }
+        catch (Exception e) {
+            System.out.printf("TEST FAILED");
+        }
+    }
+}

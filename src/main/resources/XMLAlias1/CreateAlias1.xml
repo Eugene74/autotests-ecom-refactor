@@ -1,0 +1,24 @@
+<VisaAliasRequest xmlns:xd="http://www.w3.org/2000/09/xmldsig#">
+    <MerchantId>${MerchantID}</MerchantId>
+    <TerminalId>${TerminalID}</TerminalId>
+    <Trackingid>${RequestID}</Trackingid>
+    <createAlias>
+        <country>KE</country>
+        <recipientLastName>Bakari</recipientLastName>
+        <recipientMiddleName>M</recipientMiddleName>
+        <city>Nairobi</city>
+        <address2>Region 1</address2>
+        <recipientFirstName>Jamie</recipientFirstName>
+        <recipientPrimaryAccountNumber>4895140000066666</recipientPrimaryAccountNumber>
+        <expiryDate>2025-12</expiryDate>
+        <address1>Street 1</address1>
+        <issuerName>Test Bank 1</issuerName>
+        <postalCode>00111</postalCode>
+        <cardType>Visa Classic</cardType>
+        <consentDateTime>2018-03-01 01:02:03</consentDateTime>
+        <guid>574f4b6a4c2b70472f306f300099515a789092348832455975343637a4d41111</guid>
+        <alias>${alias1Id}</alias>
+        <aliasType>01</aliasType>
+    </createAlias>
+    <Signature></Signature>
+</VisaAliasRequest>

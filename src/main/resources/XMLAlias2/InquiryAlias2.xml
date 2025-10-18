@@ -1,0 +1,22 @@
+<VisaAliasRequest>
+    <MerchantId>${Merchant2ID}</MerchantId>
+    <TerminalId>${Terminal2ID}</TerminalId>
+    <TrackingId>${TrackingId}</TrackingId>
+    <InquiryAlias>
+        <transactionDetails>
+            <currencyCode>USD</currencyCode>
+        </transactionDetails>
+        <aliases>
+            <alias>16502123002</alias>
+            <alias>16502000095</alias>
+            <alias>16502000115</alias>
+            <alias>16502000116</alias>
+        </aliases>
+        <filters>
+            <filter>
+                <field>DIRECTORY_NAME</field>
+                <value>STANDARD_VISA</value>
+            </filter>
+        </filters>
+    </InquiryAlias>
+</VisaAliasRequest>

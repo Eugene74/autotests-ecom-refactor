@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<FastRefundRequest>
+    <MerchantId>1077727</MerchantId>
+    <TerminalId>E1077727</TerminalId>
+    <OriginalTranRefund>
+        <AuthorizationRef>
+            <ApprovalCode>301819</ApprovalCode>
+            <RRN>501017815555</RRN>
+        </AuthorizationRef>
+        <Token>
+            <UPCToken>
+                <TokenId>5DD2DD67D2CCABE3029F8D87FB7F335E</TokenId>
+            </UPCToken>
+        </Token>
+        <Amount>
+            <Value>5000</Value>
+            <CurrencyCode>980</CurrencyCode>
+        </Amount>
+    </OriginalTranRefund>
+    <Reason>Test_Fast_refund_token </Reason>
+    <TrackingId>123456</TrackingId>
+</FastRefundRequest>

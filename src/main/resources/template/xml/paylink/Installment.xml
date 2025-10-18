@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ECommerceConnect xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+				  xsi:noNamespaceSchemaLocation="https://secure.upc.ua/go/pub/schema/xmlpay-1.32.xsd">
+	<Message id="1" version="1.0">
+		<XMLPayRequest>
+			<RequestData>
+				<MerchantID>1111127</MerchantID>
+				<TerminalID>E1111127</TerminalID>
+				<Transactions>
+					<Transaction>
+						<InstallmentConfirmation>
+							<InstallmentConfirmationData>
+								<Invoice>
+									<OrderID>${order_id}</OrderID>
+									<Date>${data}</Date>
+									<TotalAmount>${amount}</TotalAmount>
+									<Currency>980</Currency>
+									<Description>installment tran</Description>
+								</Invoice>
+								<AuthorizationRef>
+									<ApprovalCode>${approval_code}</ApprovalCode>
+									<Rrn>${rrn}</Rrn>
+								</AuthorizationRef>
+								<InstallmentData>
+									<InstallmentMasterCard>
+										<supportFlag>Y</supportFlag>
+										<type>20</type>
+										<InstallmentMasterCardOption>
+											<installmentNumber>5</installmentNumber>
+											<interestRate>200</interestRate>
+											<installmentFee>400</installmentFee>
+											<annualPercentageRate>2400</annualPercentageRate>
+											<firstAmount>10000</firstAmount>
+											<subsequentAmount>20000</subsequentAmount>
+											<totalAmountDue>28800</totalAmountDue>
+											<checkData>${check}</checkData>
+										</InstallmentMasterCardOption>
+									</InstallmentMasterCard>
+								</InstallmentData>
+							</InstallmentConfirmationData>
+						</InstallmentConfirmation>
+					</Transaction>
+				</Transactions>
+			</RequestData>
+		</XMLPayRequest>
+	</Message>
+</ECommerceConnect>

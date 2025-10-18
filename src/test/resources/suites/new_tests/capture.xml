@@ -1,0 +1,9 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="capture">
+    <test name="capture">
+        <classes>
+            <class name="tests.com.Capture.Preauthorization"/>
+            <class name="tests.com.Capture.Postauthorization"/>
+        </classes>
+    </test>
+</suite>

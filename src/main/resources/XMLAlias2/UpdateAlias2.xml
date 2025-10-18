@@ -1,0 +1,44 @@
+<VisaAliasRequest xmlns:xd="http://www.w3.org/2000/09/xmldsig#">
+    <MerchantId>${Merchant2ID}</MerchantId>
+    <terminalId>${Terminal2ID}</terminalId>
+    <trackingId>${TrackingId}</trackingId>
+    <UpdateAlias>
+        <aliasId>${aliasId}</aliasId>
+        <identification>
+            <verificationDetails>
+                <verifiedPhone>false</verifiedPhone>
+                <authMethodReference>EXTERNAL, SMS OTP, Email OTP</authMethodReference>
+                <authDateTime>2021-01-01T22:52:46.000Z</authDateTime>
+                <verifiedEmail>true</verifiedEmail>
+                <creationDateTime>2021-01-01T22:52:46.000Z</creationDateTime>
+            </verificationDetails>
+            <type>DL</type>
+            <value>B123456</value>
+        </identification>
+        <profile>
+            <middleNameLocal>Alexander new</middleNameLocal>
+            <lastName>Miller new</lastName>
+            <firstName>Alex new </firstName>
+            <lastNameLocal>Miller</lastNameLocal>
+            <contactInfo>
+                <contact>
+                    <type>PHONE</type>
+                    <value>12312343212</value>
+                </contact>
+            </contactInfo>
+            <middleName>Robert new </middleName>
+            <dateOfBirth>1980-02-01</dateOfBirth>
+            <firstNameLocal>Roberto</firstNameLocal>
+            <preferredName>Miller's Shop</preferredName>
+        </profile>
+        <consent>
+            <presenter>Bank C</presenter>
+            <validFromDateTime>2021-12-01T10:00:00.000Z</validFromDateTime>
+            <intermediaries>
+                <intermediary>Client K</intermediary>
+            </intermediaries>
+            <version>3.0</version>
+            <expiryDateTime>2023-06-20T10:00:00.000Z</expiryDateTime>
+        </consent>
+    </UpdateAlias>
+</VisaAliasRequest>

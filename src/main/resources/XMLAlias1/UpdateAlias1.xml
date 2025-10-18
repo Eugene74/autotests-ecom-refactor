@@ -1,0 +1,10 @@
+<VisaAliasRequest xmlns:xd="http://www.w3.org/2000/09/xmldsig#">
+<MerchantId>${MerchantID}</MerchantId>
+<TerminalId>${TerminalID}</TerminalId>
+<Trackingid>${RequestID}</Trackingid>
+<updateAlias>
+    <country>RU</country>
+    <guid>${GUID}</guid>
+</updateAlias>
+<Signature></Signature>
+</VisaAliasRequest>

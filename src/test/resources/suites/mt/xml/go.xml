@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite verbose="0" name="transfer" parallel="false">
+    <test name="aval">
+        <classes>
+            <class name="tests.mt.api.aval.AccountToCard" />
+            <class name="tests.mt.api.aval.CardToAccount" />
+            <class name="tests.mt.api.aval.CardToAccount_Revers" />
+            <class name="tests.mt.api.aval.CardToAccountAttempt" />
+            <class name="tests.mt.api.aval.CardToAccountAttempt_Revers" />
+            <class name="tests.mt.api.aval.CardToAccountEMV3DS" />
+            <class name="tests.mt.api.aval.CardToAccountEMV3DS_Revers" />
+            <class name="tests.mt.api.aval.CardToAccountFull3DS" />
+            <class name="tests.mt.api.aval.CardToAccountFull3DS_Revers" />
+            <class name="tests.mt.api.aval.CardToCardAttemptMasterVisa" />
+            <class name="tests.mt.api.aval.CardToCardEMV3DSMasterMaster" />
+            <class name="tests.mt.api.aval.CardToCardEMV3DSMasterVisa" />
+            <class name="tests.mt.api.aval.CardToCardEMV3DSMasterVisa_Revers" />
+            <class name="tests.mt.api.aval.CardToCardFull3DSMasterMaster" />
+            <class name="tests.mt.api.aval.CardToCardFull3DSMasterMaster_Revers" />
+            <class name="tests.mt.api.aval.CardToCardFull3DSMasterVisa" />
+            <class name="tests.mt.api.aval.CardToCardMasterMaster" />
+            <class name="tests.mt.api.aval.CardToCardMasterVisa" />
+            <class name="tests.mt.api.aval.CardToCardMasterVisa_Revers" />
+            <class name="tests.mt.api.aval.FastRefund_ApprovalCode_RRN" />
+            <class name="tests.mt.api.aval.FastRefund_Token" />
+            <class name="tests.mt.api.aval.FastRefund_CardNumber" />
+        </classes>
+    </test>
+</suite>

@@ -1,0 +1,9 @@
+<VisaAliasRequest xmlns:xd="http://www.w3.org/2000/09/xmldsig#">
+    <MerchantId>${Merchant2ID}</MerchantId>
+    <terminalId>${Terminal2ID}</terminalId>
+    <trackingId>${TrackingId}</trackingId>
+    <updateAliasStatus>
+        <aliasId>${aliasId}</aliasId>
+        <status>${status}</status>
+    </updateAliasStatus>
+</VisaAliasRequest>

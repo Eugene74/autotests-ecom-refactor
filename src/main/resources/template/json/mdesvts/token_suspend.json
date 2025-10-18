@@ -1,0 +1,8 @@
+{
+  "MerchantID": "${merchantId}",
+  "TerminalID": "${terminalId}",
+  "trackingId": "${trackingId}",
+  "UPCToken": "${tokenId}",
+  "ReasonCode": "SUSPECTED_FRAUD",
+  "Reason": "test"
+}

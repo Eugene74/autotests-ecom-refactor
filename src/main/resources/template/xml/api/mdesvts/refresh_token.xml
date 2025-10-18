@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ECommerceConnect xmlns:ds="http://www.w3.org/2000/09/xmldsig#"
+                  xmlns:noNamespaceSchemaLocation="https://secure.upc.ua/go/pub/schema/xmlpay-2.12.xsd"
+                  xmlns:xenc="http://www.w3.org/2001/04/xmlenc#" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:noNamespaceSchemaLocation="https://secure.upc.ua/go/pub/schema/xmlpay-2.12.xsd">
+    <Message id="${__counter(FALSE)}" version="1.0">
+        <XMLRefreshTokenRequest>
+            <MerchantID>${merchantId}</MerchantID>
+            <TerminalID>${terminalId}</TerminalID>
+            <trackingId>${trackingId}</trackingId>
+            <UPCToken>
+                <tokenId>${tokenId}</tokenId>
+            </UPCToken>
+        </XMLRefreshTokenRequest>
+    </Message>
+</ECommerceConnect>
+
+
+

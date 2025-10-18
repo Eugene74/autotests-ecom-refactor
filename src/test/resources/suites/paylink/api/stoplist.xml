@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<!-- positive tests -->
+<suite verbose="0" name="StopList" parallel="false">
+    <test name="PAN">
+        <classes>
+            <class name="tests.paylink.api.stoplist.CreateItem" />
+            <class name="tests.paylink.api.stoplist.GetItem" />
+            <class name="tests.paylink.api.stoplist.UpdateItem" />
+            <class name="tests.paylink.api.stoplist.FindItem" />
+            <class name="tests.paylink.api.stoplist.DeleteItem" />
+        </classes>
+    </test>
+</suite>

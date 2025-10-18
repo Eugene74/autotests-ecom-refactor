@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<!-- positive tests -->
+<suite verbose="0" name="Merchant Onboarding" parallel="false">
+    <test name="required fields">
+        <classes>
+            <class name="tests.paylink.api.onboarding.CreateMerchant">
+                <methods>
+                    <exclude name="mcPaymentFacilitator" />
+                    <exclude name="visaPaymentFacilitatorCliche" />
+                </methods>
+            </class>
+            <class name="tests.paylink.api.onboarding.GetMerchant" />
+            <class name="tests.paylink.api.onboarding.UpdateMerchant">
+                <methods>
+                    <exclude name="Test02" />
+                </methods>
+            </class>
+            <class name="tests.paylink.api.onboarding.GetMerchant" />
+            <class name="tests.paylink.api.onboarding.GetStatus" />
+            <class name="tests.paylink.api.onboarding.DeleteMerchant" />
+        </classes>
+    </test>
+    <test name="mcPaymentFacilitator">
+        <classes>
+            <class name="tests.paylink.api.onboarding.CreateMerchant">
+                <methods>
+                    <exclude name="createMerchant" />
+                    <exclude name="visaPaymentFacilitatorCliche" />
+                </methods>
+            </class>
+            <class name="tests.paylink.api.onboarding.GetMerchant" />
+            <class name="tests.paylink.api.onboarding.UpdateMerchant">
+                <methods>
+                    <exclude name="Test01" />
+                </methods>
+            </class>
+            <class name="tests.paylink.api.onboarding.GetMerchant" />
+            <class name="tests.paylink.api.onboarding.GetStatus" />
+            <class name="tests.paylink.api.onboarding.DeleteMerchant" />
+        </classes>
+    </test>
+    <test name="visaPaymentFacilitatorCliche">
+        <classes>
+            <class name="tests.paylink.api.onboarding.CreateMerchant">
+                <methods>
+                    <exclude name="createMerchant" />
+                    <exclude name="mcPaymentFacilitator" />
+                </methods>
+            </class>
+            <class name="tests.paylink.api.onboarding.GetMerchant" />
+            <class name="tests.paylink.api.onboarding.UpdateMerchant">
+                <methods>
+                    <exclude name="Test01" />
+                </methods>
+            </class>
+            <class name="tests.paylink.api.onboarding.GetMerchant" />
+            <class name="tests.paylink.api.onboarding.GetStatus" />
+            <class name="tests.paylink.api.onboarding.DeleteMerchant" />
+        </classes>
+    </test>
+</suite>

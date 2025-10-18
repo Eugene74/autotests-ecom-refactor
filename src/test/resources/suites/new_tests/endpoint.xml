@@ -1,0 +1,17 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="Login Tests">
+    <test name="Login Tests">
+        <classes>
+            <class name="tests.com.Endpoint.BaseTest"/>
+            <class name="tests.com.Endpoint.RbhuMerchantTest"/>
+            <class name="tests.com.Endpoint.GoMerchantTest"/>
+            <class name="tests.com.Endpoint.KbcMerchantTest"/>
+            <class name="tests.com.Endpoint.RbalMerchantTest"/>
+            <class name="tests.com.Endpoint.RbaMerchantTest"/>
+            <class name="tests.com.Endpoint.RbbhMerchantTest"/>
+            <class name="tests.com.Endpoint.RbiMerchantTest"/>
+            <class name="tests.com.Endpoint.RbkoMerchantTest"/>
+            <class name="tests.com.Endpoint.RbrsMerchantTest"/>
+        </classes>
+    </test>
+</suite>
