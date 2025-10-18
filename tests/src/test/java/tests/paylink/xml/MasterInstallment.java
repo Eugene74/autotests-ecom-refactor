@@ -14,7 +14,7 @@ import static methods.RequestSender.sendRequest;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 import static org.testng.AssertJUnit.assertFalse;
-import static com.ecom.type.Attributes.ALLOW_MASTERCARD_INSTALLMENT;
+import static com.ecom.api.type.Attributes.ALLOW_MASTERCARD_INSTALLMENT;
 
 public class MasterInstallment extends BaseTest {
     private static Document requestDoc;

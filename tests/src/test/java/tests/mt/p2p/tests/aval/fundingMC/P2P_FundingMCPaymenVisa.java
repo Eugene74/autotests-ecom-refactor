@@ -8,8 +8,8 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import tests.BaseRedirect;
-import tests.mt.p2p.pages.*;
-import tests.paylink.redirect.BasePage;
+import com.ecom.ui.mt.p2p.pages.*;
+import com.ecom.ui.common.BasePage;
 
 import java.util.Properties;
 
@@ -18,8 +18,8 @@ import java.util.List;
 import static com.ecom.db.JDBCMethods.*;
 import static methods.DocumentTools.verifiedDataMTFromDBFunding;
 import static methods.DocumentTools.verifiedDataMTFromDBPayment;
-import static com.ecom.type.Attributes.ALLOW_CROSS_BORDER;
-import static com.ecom.type.Attributes.ALLOW_PAYMENT_WITHOUT_3DS;
+import static com.ecom.api.type.Attributes.ALLOW_CROSS_BORDER;
+import static com.ecom.api.type.Attributes.ALLOW_PAYMENT_WITHOUT_3DS;
 
 public class P2P_FundingMCPaymenVisa extends BaseRedirect {
 

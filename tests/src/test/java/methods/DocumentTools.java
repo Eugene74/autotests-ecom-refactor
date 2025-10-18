@@ -2,7 +2,7 @@ package methods;
 
 import com.ecom.core.util.ResourceUtils;
 import com.ecom.db.JDBCMethods;
-import com.ecom.model.xml.InstallmentPlan;
+import com.ecom.api.model.xml.InstallmentPlan;
 import org.apache.commons.lang3.*;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;

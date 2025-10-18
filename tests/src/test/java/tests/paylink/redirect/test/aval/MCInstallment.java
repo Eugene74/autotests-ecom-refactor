@@ -1,18 +1,18 @@
 package tests.paylink.redirect.test.aval;
 
 import methods.RedirectRequest;
-import methods.Waiters;
+import com.ecom.ui.util.Waiters;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import tests.BaseRedirect;
-import tests.paylink.redirect.pages.InstallmentChoice;
+import com.ecom.ui.paylink.redirect.pages.InstallmentChoice;
 
 import static com.ecom.db.JDBCMethods.*;
 import static methods.DocumentTools.verifiedDataFromDB;
-import static com.ecom.type.Attributes.*;
-import static com.ecom.type.Attributes.ALLOW_INSTALLMENT;
+import static com.ecom.api.type.Attributes.*;
+import static com.ecom.api.type.Attributes.ALLOW_INSTALLMENT;
 
 public class MCInstallment extends BaseRedirect {
     @BeforeClass

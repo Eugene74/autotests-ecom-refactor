@@ -3,7 +3,7 @@ package tests.com.Service01;
 import com.ecom.core.config.PropertiesManager;
 import com.ecom.core.util.ResourceUtils;
 import com.ecom.db.JDBCConnection;
-import methods.WebDriverHolder;
+import com.ecom.core.driver.WebDriverHolder;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;

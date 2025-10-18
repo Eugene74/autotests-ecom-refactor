@@ -1,7 +1,7 @@
 package methods;
 
 import com.ecom.core.util.ResourceUtils;
-import com.ecom.type.FieldsNFile;
+import com.ecom.api.type.FieldsNFile;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Assert;
 
@@ -15,7 +15,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Map;
 
-import static com.ecom.type.FieldsNFile.*;
+import static com.ecom.api.type.FieldsNFile.*;
 
 public class ParserNFile {
     private static final int startPoint = 112;

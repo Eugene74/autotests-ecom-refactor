@@ -11,7 +11,7 @@ import static methods.DocumentTools.*;
 import static methods.PaylinkRequests.*;
 import static methods.RequestSender.sendRequest;
 import static org.testng.Assert.*;
-import static com.ecom.type.Attributes.ALLOW_MASTERCARD_INSTALLMENT;
+import static com.ecom.api.type.Attributes.ALLOW_MASTERCARD_INSTALLMENT;
 
 public class MasterInstallment_Revers extends BaseTest {
     private static Document requestDoc;

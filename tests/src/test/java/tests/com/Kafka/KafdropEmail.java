@@ -1,7 +1,7 @@
 package tests.com.Kafka;
 
 import com.ecom.core.config.PropertiesManager;
-import methods.WebDriverHolder;
+import com.ecom.core.driver.WebDriverHolder;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;

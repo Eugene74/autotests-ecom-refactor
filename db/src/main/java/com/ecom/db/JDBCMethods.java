@@ -1,6 +1,6 @@
 package com.ecom.db;
 
-import com.ecom.type.Attributes;
+import com.ecom.api.type.Attributes;
 
 import java.io.BufferedReader;
 import java.io.IOException;

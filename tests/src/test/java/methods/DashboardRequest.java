@@ -1,9 +1,9 @@
 package methods;
 
 import tests.BaseTest;
-import tests.dashboard.functional.pages.*;
-import tests.paylink.redirect.pages.EnterPaymentCardPage;
-import tests.paylink.redirect.pages.GoPaymentCardPage;
+import com.ecom.ui.dashboard.functional.pages.*;
+import com.ecom.ui.paylink.redirect.pages.EnterPaymentCardPage;
+import com.ecom.ui.paylink.redirect.pages.GoPaymentCardPage;
 
 
 public class DashboardRequest extends BaseTest {

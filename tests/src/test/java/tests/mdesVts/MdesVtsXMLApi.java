@@ -18,7 +18,7 @@ import java.util.Map;
 
 import static com.ecom.db.JDBCMethods.setMerchantAtt;
 import static org.testng.Assert.*;
-import static com.ecom.type.Attributes.*;
+import static com.ecom.api.type.Attributes.*;
 
 public class MdesVtsXMLApi extends BaseAPITest {
 

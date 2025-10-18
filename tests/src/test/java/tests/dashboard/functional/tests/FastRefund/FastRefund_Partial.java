@@ -23,9 +23,9 @@ import static com.ecom.db.JDBCMethods.getTranIdByOrderFR;
 
 import static methods.DocumentTools.getElementFromDocument;
 import static methods.DocumentTools.verifiedDataFromResponse;
-import static com.ecom.type.Attributes.ALLOW_PAYMENT_WITHOUT_3DS;
-import static com.ecom.type.Attributes.ALLOW_FAST_REFUND;
-import static com.ecom.type.Attributes.ALLOW_PARTIAL_REVERSAL;
+import static com.ecom.api.type.Attributes.ALLOW_PAYMENT_WITHOUT_3DS;
+import static com.ecom.api.type.Attributes.ALLOW_FAST_REFUND;
+import static com.ecom.api.type.Attributes.ALLOW_PARTIAL_REVERSAL;
 
 
 

@@ -8,7 +8,7 @@ import tests.BaseRedirect;
 
 import static com.ecom.db.JDBCMethods.setMerchantAtt;
 import static com.ecom.db.JDBCMethods.setPropertyURLs;
-import static com.ecom.type.Attributes.MERCHANT_INVOICING_URL;
+import static com.ecom.api.type.Attributes.MERCHANT_INVOICING_URL;
 
 public class LoginSuccess extends BaseRedirect {
 

@@ -1,10 +1,10 @@
 package tests.paylink.xml;
 
-import com.ecom.model.*;
+import com.ecom.api.model.*;
 import org.testng.annotations.Test;
 import org.w3c.dom.Document;
 import tests.BaseTest;
-import com.ecom.type.FieldsNFile;
+import com.ecom.api.type.FieldsNFile;
 
 import java.util.*;
 
@@ -14,9 +14,9 @@ import static methods.DocumentTools.*;
 import static methods.PaylinkRequests.paymentPares;
 import static methods.RequestSender.sendRequest;
 import static org.testng.Assert.assertEquals;
-import static com.ecom.type.FieldsNFile.*;
-import static com.ecom.type.Mtid.Mtid16;
-import static com.ecom.type.Tags.*;
+import static com.ecom.api.type.FieldsNFile.*;
+import static com.ecom.api.type.Mtid.Mtid16;
+import static com.ecom.api.type.Tags.*;
 
 public class PaymentAttempt extends BaseTest {
 

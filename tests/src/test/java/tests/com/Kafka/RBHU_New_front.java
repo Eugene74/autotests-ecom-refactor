@@ -2,7 +2,7 @@ package tests.com.Kafka;
 
 import com.ecom.core.config.PropertiesManager;
 import com.ecom.db.JDBCMethods;
-import methods.WebDriverHolder;
+import com.ecom.core.driver.WebDriverHolder;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -14,7 +14,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.*;
-import com.ecom.type.Attributes;
+import com.ecom.api.type.Attributes;
 import java.time.Duration;
 
 

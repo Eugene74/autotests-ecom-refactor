@@ -16,7 +16,7 @@
   <dependencies>
     <dependency>
       <groupId>com.ecom</groupId>
-      <artifactId>api</artifactId>
+      <artifactId>data</artifactId>
       <version>${project.version}</version>
     </dependency>
     <dependency>

@@ -1,7 +1,7 @@
 package methods;
 
 import tests.BaseTest;
-import tests.paylink.redirect.pages.*;
+import com.ecom.ui.paylink.redirect.pages.*;
 
 import java.io.File;
 

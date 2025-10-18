@@ -12,8 +12,8 @@ import static methods.PaylinkRequests.paymentAddendum;
 import static methods.RequestSender.sendRequest;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
-import static com.ecom.type.Attributes.ALLOW_AIRLINE_ADDENDUM_DATA;
-import static com.ecom.type.Attributes.ALLOW_REF3;
+import static com.ecom.api.type.Attributes.ALLOW_AIRLINE_ADDENDUM_DATA;
+import static com.ecom.api.type.Attributes.ALLOW_REF3;
 
 public class PaymentFull3DSAddendumRef3 extends BaseTest {
 

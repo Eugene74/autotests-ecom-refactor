@@ -11,7 +11,7 @@ import static com.ecom.db.JDBCMethods.*;
 import static methods.DocumentTools.*;
 import static methods.PaylinkRequests.paymentMasterpass;
 import static org.testng.Assert.assertEquals;
-import static com.ecom.type.Attributes.ALLOW_MASTERPASS;
+import static com.ecom.api.type.Attributes.ALLOW_MASTERPASS;
 
 public class Masterpass extends BaseTest {
 

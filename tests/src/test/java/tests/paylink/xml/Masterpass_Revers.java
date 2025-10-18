@@ -12,7 +12,7 @@ import static methods.PaylinkRequests.paymentMasterpass;
 import static methods.PaylinkRequests.reversal;
 import static methods.RequestSender.sendRequest;
 import static org.testng.Assert.*;
-import static com.ecom.type.Attributes.ALLOW_MASTERPASS;
+import static com.ecom.api.type.Attributes.ALLOW_MASTERPASS;
 
 
 public class Masterpass_Revers extends BaseTest {

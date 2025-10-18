@@ -18,7 +18,7 @@ import static methods.DocumentTools.verifiedDataFromResponse;
 import static methods.PaylinkRequests.payment;
 import static methods.RequestSender.sendRequest;
 import static org.testng.Assert.assertEquals;
-import static com.ecom.type.Attributes.ALLOW_PAYMENT_WITHOUT_3DS;
+import static com.ecom.api.type.Attributes.ALLOW_PAYMENT_WITHOUT_3DS;
 
 public class Transaction extends BaseRedirect {
     public static String orderId;

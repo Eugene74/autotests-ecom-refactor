@@ -1,21 +1,22 @@
 package methods;
 
+import com.codeborne.selenide.WebDriverRunner;
+import com.ecom.ui.paylink.admin.flow.CloseDayPaylinkFlow;
 import org.w3c.dom.Document;
 import tests.BaseTest;
-import tests.paylink.admin.pages.CloseDayPaylink;
 
 import static methods.DocumentTools.*;
 
 public class PaylinkRequests extends BaseTest{
 
+    private static final CloseDayPaylinkFlow CLOSE_DAY_FLOW = new CloseDayPaylinkFlow();
+
     public static void paylinkCloseDay(Integer idMerchant)  {
-        CloseDayPaylink end = new CloseDayPaylink();
-        end.closeDay(idMerchant.toString());
+        CLOSE_DAY_FLOW.closeDay(WebDriverRunner.getWebDriver(), idMerchant.toString());
     }
 
     public static void paylinkCloseDayForApi(Integer idMerchant)  {
-        CloseDayPaylink end = new CloseDayPaylink();
-        end.closeDayForApi(idMerchant.toString());
+        CLOSE_DAY_FLOW.closeDayWithManagedDriver(idMerchant.toString());
     }
 
     public static Document payment(String[] card, String description, String merch, String term){

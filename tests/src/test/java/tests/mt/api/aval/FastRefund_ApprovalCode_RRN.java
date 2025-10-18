@@ -12,7 +12,7 @@ import static methods.MoneyTransferRequests.*;
 import static methods.PaylinkRequests.payment;
 import static methods.RequestSender.sendRequest;
 import static org.testng.Assert.assertEquals;
-import static com.ecom.type.Attributes.*;
+import static com.ecom.api.type.Attributes.*;
 
 public class FastRefund_ApprovalCode_RRN extends BaseTestMoneyTransfer {
     protected Document requestDoc;

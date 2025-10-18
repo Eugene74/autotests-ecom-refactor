@@ -4,7 +4,7 @@ import com.ecom.db.JDBCMethods;
 import org.testng.annotations.Test;
 import org.w3c.dom.Document;
 import tests.BaseTest;
-import com.ecom.type.FieldsNFile;
+import com.ecom.api.type.FieldsNFile;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -16,7 +16,7 @@ import static methods.PaylinkRequests.*;
 import static methods.RequestSender.sendRequest;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertFalse;
-import static com.ecom.type.FieldsNFile.*;
+import static com.ecom.api.type.FieldsNFile.*;
 
 public class Payment_Refund extends BaseTest {
     private Document requestDoc;

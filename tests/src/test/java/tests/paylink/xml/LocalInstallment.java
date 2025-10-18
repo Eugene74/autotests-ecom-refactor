@@ -13,8 +13,8 @@ import static methods.PaylinkRequests.paymentLocalInstallment;
 import static methods.RequestSender.sendRequest;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNotEquals;
-import static com.ecom.type.Attributes.ALLOW_INSTALLMENT;
-import static com.ecom.type.Attributes.ALLOW_PAYMENT_WITHOUT_3DS;
+import static com.ecom.api.type.Attributes.ALLOW_INSTALLMENT;
+import static com.ecom.api.type.Attributes.ALLOW_PAYMENT_WITHOUT_3DS;
 
 public class LocalInstallment extends BaseTest {
     private static Document requestDoc;

@@ -12,8 +12,8 @@ import static com.ecom.db.JDBCMethods.*;
 import static methods.DocumentTools.verifiedDataFromDB;
 import static methods.PaylinkRequests.paylinkCloseDay;
 import static org.testng.Assert.assertFalse;
-import static com.ecom.type.Attributes.ALLOW_PAYMENT_WITHOUT_3DS;
-import static com.ecom.type.Attributes.MERCHANT_INVOICING_URL;
+import static com.ecom.api.type.Attributes.ALLOW_PAYMENT_WITHOUT_3DS;
+import static com.ecom.api.type.Attributes.MERCHANT_INVOICING_URL;
 
 public class FacilitatorAuthRefund extends BaseRedirect {
     private static String orderRedirect;

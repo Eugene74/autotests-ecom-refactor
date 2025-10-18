@@ -4,7 +4,7 @@ import com.ecom.core.config.PropertiesManager;
 import com.ecom.core.util.ResourceUtils;
 import com.ecom.db.JDBCConnection;
 import com.ecom.db.JDBCMethods;
-import methods.WebDriverHolder;
+import com.ecom.core.driver.WebDriverHolder;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -12,7 +12,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.*;
-import com.ecom.type.Attributes;
+import com.ecom.api.type.Attributes;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;

@@ -1,6 +1,6 @@
 package tests.com.Endpoint;
 
-import methods.Waiters;
+import com.ecom.ui.util.Waiters;
 import org.openqa.selenium.*;
         import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;

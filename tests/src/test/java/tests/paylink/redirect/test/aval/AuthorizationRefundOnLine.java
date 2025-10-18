@@ -12,7 +12,7 @@ import static com.ecom.db.JDBCMethods.*;
 import static methods.DocumentTools.verifiedDataFromDB;
 import static methods.PaylinkRequests.paylinkCloseDay;
 import static org.testng.Assert.assertFalse;
-import static com.ecom.type.Attributes.*;
+import static com.ecom.api.type.Attributes.*;
 
 public class AuthorizationRefundOnLine extends BaseRedirect {
     private static String orderRedirect;

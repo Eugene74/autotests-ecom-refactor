@@ -2,8 +2,8 @@ package methods;
 
 import org.openqa.selenium.WebDriver;
 import tests.BaseTest;
-import tests.mt.p2p.pages.ContentPage;
-import tests.mt.p2p.pages.MoneyTransferPage;
+import com.ecom.ui.mt.p2p.pages.ContentPage;
+import com.ecom.ui.mt.p2p.pages.MoneyTransferPage;
 
 
 import java.util.ArrayList;

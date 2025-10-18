@@ -11,7 +11,7 @@ import static methods.PaylinkRequests.payment;
 import static methods.PaylinkRequests.paymentToken;
 import static methods.RequestSender.sendRequest;
 import static org.testng.Assert.assertEquals;
-import static com.ecom.type.Attributes.ALLOW_SUPPORT_TOKEN;
+import static com.ecom.api.type.Attributes.ALLOW_SUPPORT_TOKEN;
 
 public class TokenXml extends BaseTest {
     private String tokenId;

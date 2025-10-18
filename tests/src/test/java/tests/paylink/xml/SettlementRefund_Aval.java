@@ -12,8 +12,8 @@ import static methods.PaylinkRequests.settlementRefund;
 import static methods.RequestSender.sendRequest;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNull;
-import static com.ecom.type.Attributes.ALLOW_REF3;
-import static com.ecom.type.Attributes.ALLOW_SETTLEMENT_REFUND;
+import static com.ecom.api.type.Attributes.ALLOW_REF3;
+import static com.ecom.api.type.Attributes.ALLOW_SETTLEMENT_REFUND;
 
 public class SettlementRefund_Aval extends BaseTest {
 
