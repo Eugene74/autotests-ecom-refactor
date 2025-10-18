@@ -1,4 +1,4 @@
-package jdbc;
+package com.ecom.db;
 
 import java.io.FileInputStream;
 import java.io.IOException;

@@ -17,11 +17,11 @@ import java.util.Properties;
 
 import java.util.List;
 
-import static jdbc.JDBCMethods.*;
+import static com.ecom.db.JDBCMethods.*;
 import static methods.DocumentTools.verifiedDataMTFromDBFunding;
 import static methods.DocumentTools.verifiedDataMTFromDBPayment;
-import static type.Attributes.ALLOW_CROSS_BORDER;
-import static type.Attributes.ALLOW_PAYMENT_WITHOUT_3DS;
+import static com.ecom.type.Attributes.ALLOW_CROSS_BORDER;
+import static com.ecom.type.Attributes.ALLOW_PAYMENT_WITHOUT_3DS;
 
 public class P2P_FundingMCPaymenVisa extends BaseRedirect {
 

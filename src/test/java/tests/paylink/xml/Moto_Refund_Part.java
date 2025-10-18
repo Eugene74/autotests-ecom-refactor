@@ -1,13 +1,13 @@
 package tests.paylink.xml;
 
-import jdbc.JDBCMethods;
+import com.ecom.db.JDBCMethods;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.w3c.dom.Document;
 import tests.BaseTest;
 
-import static jdbc.JDBCMethods.*;
+import static com.ecom.db.JDBCMethods.*;
 import static methods.DocumentTools.*;
 import static methods.PaylinkRequests.*;
 import static methods.RequestSender.sendRequest;

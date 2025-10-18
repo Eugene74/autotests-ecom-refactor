@@ -1,24 +1,24 @@
 package tests.paylink.xml;
 
-import jdbc.JDBCMethods;
+import com.ecom.db.JDBCMethods;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.w3c.dom.Document;
 import tests.BaseTest;
-import type.FieldsNFile;
+import com.ecom.type.FieldsNFile;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import static jdbc.JDBCMethods.*;
+import static com.ecom.db.JDBCMethods.*;
 import static methods.DocumentTools.*;
 import static methods.PaylinkRequests.*;
 import static methods.RequestSender.sendRequest;
 import static org.testng.Assert.assertEquals;
-import static type.Attributes.ALLOW_REFUND_ONLINE;
-import static type.FieldsNFile.*;
+import static com.ecom.type.Attributes.ALLOW_REFUND_ONLINE;
+import static com.ecom.type.FieldsNFile.*;
 
 public class Payment_RefundOnLine extends BaseTest {
     private Document requestDoc;

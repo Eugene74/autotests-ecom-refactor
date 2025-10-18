@@ -9,16 +9,16 @@ import org.testng.asserts.SoftAssert;
 import org.w3c.dom.Document;
 import tests.BaseRedirect;
 
-import static jdbc.JDBCMethods.getTranIdByOrder;
-import static jdbc.JDBCMethods.getValueFromTRAN;
-import static jdbc.JDBCMethods.setMerchantAtt;
+import static com.ecom.db.JDBCMethods.getTranIdByOrder;
+import static com.ecom.db.JDBCMethods.getValueFromTRAN;
+import static com.ecom.db.JDBCMethods.setMerchantAtt;
 import static methods.DocumentTools.*;
 import static methods.DocumentTools.getElementFromDocument;
 import static methods.DocumentTools.verifiedDataFromResponse;
 import static methods.PaylinkRequests.payment;
 import static methods.RequestSender.sendRequest;
 import static org.testng.Assert.assertEquals;
-import static type.Attributes.ALLOW_PAYMENT_WITHOUT_3DS;
+import static com.ecom.type.Attributes.ALLOW_PAYMENT_WITHOUT_3DS;
 
 public class Transaction extends BaseRedirect {
     public static String orderId;

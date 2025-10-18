@@ -7,8 +7,8 @@ import org.testng.asserts.SoftAssert;
 import org.w3c.dom.Document;
 import tests.mt.BaseTestMoneyTransfer;
 
-import static jdbc.JDBCMethods.getTranMT3dsData;
-import static jdbc.JDBCMethods.getValueFromMTTran;
+import static com.ecom.db.JDBCMethods.getTranMT3dsData;
+import static com.ecom.db.JDBCMethods.getValueFromMTTran;
 import static methods.DocumentTools.*;
 import static methods.MoneyTransferRequests.transferCardToAccountEmv;
 

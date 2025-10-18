@@ -2,7 +2,7 @@ package methods;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import jdbc.JDBCMethods;
+import com.ecom.db.JDBCMethods;
 import org.w3c.dom.Document;
 
 import static methods.DocumentTools.convertStringToXmlDocument;

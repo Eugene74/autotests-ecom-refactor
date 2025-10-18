@@ -4,7 +4,7 @@ package tests.nFile;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import tests.BaseTest;
-import type.FieldsNFile;
+import com.ecom.type.FieldsNFile;
 
 import java.io.*;
 import java.util.ArrayList;

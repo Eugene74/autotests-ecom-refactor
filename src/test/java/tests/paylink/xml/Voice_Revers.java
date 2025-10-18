@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 import org.w3c.dom.Document;
 import tests.BaseTest;
 
-import static jdbc.JDBCMethods.*;
+import static com.ecom.db.JDBCMethods.*;
 import static methods.DocumentTools.*;
 import static methods.PaylinkRequests.payment;
 import static methods.PaylinkRequests.reversal;

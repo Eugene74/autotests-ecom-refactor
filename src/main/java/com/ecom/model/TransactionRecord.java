@@ -1,8 +1,8 @@
-package model;
+package com.ecom.model;
 
 import java.util.Set;
 
-import static type.Mtid.Mtid10;
+import static com.ecom.type.Mtid.Mtid10;
 
 public class TransactionRecord extends MessageTransaction {
     

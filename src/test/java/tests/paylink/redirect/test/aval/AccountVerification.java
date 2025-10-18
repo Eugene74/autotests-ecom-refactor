@@ -7,11 +7,11 @@ import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import tests.BaseRedirect;
 
-import static jdbc.JDBCMethods.getTranIdByOrder;
-import static jdbc.JDBCMethods.getValueFromTRAN;
-import static jdbc.JDBCMethods.setMerchantAtt;
-import static type.Attributes.ALLOW_PAYMENT_WITHOUT_3DS;
-import static type.Attributes.MERCHANT_INVOICING_URL;
+import static com.ecom.db.JDBCMethods.getTranIdByOrder;
+import static com.ecom.db.JDBCMethods.getValueFromTRAN;
+import static com.ecom.db.JDBCMethods.setMerchantAtt;
+import static com.ecom.type.Attributes.ALLOW_PAYMENT_WITHOUT_3DS;
+import static com.ecom.type.Attributes.MERCHANT_INVOICING_URL;
 
 public class AccountVerification extends BaseRedirect {
 

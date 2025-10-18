@@ -1,4 +1,4 @@
-package type;
+package com.ecom.type;
 
 /**
  * Tran_type 97 2 Transaction type (Appendix 1):

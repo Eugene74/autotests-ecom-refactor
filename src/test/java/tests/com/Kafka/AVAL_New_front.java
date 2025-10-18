@@ -1,7 +1,7 @@
 package tests.com.Kafka;
 
-import jdbc.JDBCConnection;
-import jdbc.JDBCMethods;
+import com.ecom.db.JDBCConnection;
+import com.ecom.db.JDBCMethods;
 import methods.WebDriverHolder;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -12,7 +12,7 @@ import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import type.Attributes;
+import com.ecom.type.Attributes;
 import java.time.Duration;
 
 

@@ -1,22 +1,22 @@
 package tests.paylink.xml;
 
-import model.*;
+import com.ecom.model.*;
 import org.testng.annotations.Test;
 import org.w3c.dom.Document;
 import tests.BaseTest;
-import type.FieldsNFile;
+import com.ecom.type.FieldsNFile;
 
 import java.util.*;
 
-import static jdbc.JDBCMethods.getTranIdByOrder;
-import static jdbc.JDBCMethods.getValueFromTRAN;
+import static com.ecom.db.JDBCMethods.getTranIdByOrder;
+import static com.ecom.db.JDBCMethods.getValueFromTRAN;
 import static methods.DocumentTools.*;
 import static methods.PaylinkRequests.paymentPares;
 import static methods.RequestSender.sendRequest;
 import static org.testng.Assert.assertEquals;
-import static type.FieldsNFile.*;
-import static type.Mtid.Mtid16;
-import static type.Tags.*;
+import static com.ecom.type.FieldsNFile.*;
+import static com.ecom.type.Mtid.Mtid16;
+import static com.ecom.type.Tags.*;
 
 public class PaymentAttempt extends BaseTest {
 

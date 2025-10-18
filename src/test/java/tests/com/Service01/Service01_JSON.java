@@ -1,6 +1,6 @@
 package tests.com.Service01;
 
-import jdbc.JDBCConnection;
+import com.ecom.db.JDBCConnection;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;

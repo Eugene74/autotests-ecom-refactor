@@ -5,8 +5,8 @@ import org.testng.annotations.Test;
 import org.w3c.dom.Document;
 import tests.BaseTest;
 
-import static jdbc.JDBCMethods.getTranIdByOrder;
-import static jdbc.JDBCMethods.getValueFromTRAN;
+import static com.ecom.db.JDBCMethods.getTranIdByOrder;
+import static com.ecom.db.JDBCMethods.getValueFromTRAN;
 import static methods.DocumentTools.*;
 import static methods.PaylinkRequests.paymentPreAuth;
 import static methods.RequestSender.sendRequest;

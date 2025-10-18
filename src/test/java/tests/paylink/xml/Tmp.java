@@ -1,6 +1,6 @@
 package tests.paylink.xml;
 
-import jdbc.JDBCMethods;
+import com.ecom.db.JDBCMethods;
 
 import java.sql.SQLException;
 

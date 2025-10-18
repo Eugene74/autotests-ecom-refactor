@@ -6,14 +6,14 @@ import org.testng.annotations.Test;
 import org.w3c.dom.Document;
 import tests.BaseTest;
 
-import static jdbc.JDBCMethods.*;
+import static com.ecom.db.JDBCMethods.*;
 import static methods.DocumentTools.*;
 import static methods.PaylinkRequests.settlementRefund;
 import static methods.RequestSender.sendRequest;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNull;
-import static type.Attributes.ALLOW_REF3;
-import static type.Attributes.ALLOW_SETTLEMENT_REFUND;
+import static com.ecom.type.Attributes.ALLOW_REF3;
+import static com.ecom.type.Attributes.ALLOW_SETTLEMENT_REFUND;
 
 public class SettlementRefund_Aval extends BaseTest {
 

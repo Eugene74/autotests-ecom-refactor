@@ -1,6 +1,6 @@
-package model;
+package com.ecom.model;
 
-import type.Mtid;
+import com.ecom.type.Mtid;
 
 import java.io.Serializable;
 

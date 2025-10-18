@@ -9,10 +9,10 @@ import org.testng.asserts.SoftAssert;
 import tests.BaseRedirect;
 import tests.paylink.redirect.pages.InstallmentChoice;
 
-import static jdbc.JDBCMethods.*;
+import static com.ecom.db.JDBCMethods.*;
 import static methods.DocumentTools.verifiedDataFromDB;
-import static type.Attributes.*;
-import static type.Attributes.ALLOW_INSTALLMENT;
+import static com.ecom.type.Attributes.*;
+import static com.ecom.type.Attributes.ALLOW_INSTALLMENT;
 
 
 public class MCInstallmentRevers extends BaseRedirect {

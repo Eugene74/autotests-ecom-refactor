@@ -14,9 +14,9 @@ import tests.BaseTest;
 import java.util.HashMap;
 import java.util.Map;
 
-import static jdbc.JDBCMethods.setMerchantAtt;
+import static com.ecom.db.JDBCMethods.setMerchantAtt;
 import static org.testng.Assert.*;
-import static type.Attributes.*;
+import static com.ecom.type.Attributes.*;
 
 public class MdesVtsJsonApi extends BaseAPITest {
 

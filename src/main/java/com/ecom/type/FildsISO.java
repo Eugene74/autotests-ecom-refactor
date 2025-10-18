@@ -1,4 +1,4 @@
-package type;
+package com.ecom.type;
 
 public enum FildsISO {
     TestName (0,0),

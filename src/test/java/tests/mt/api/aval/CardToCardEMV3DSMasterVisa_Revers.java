@@ -8,7 +8,7 @@ import org.testng.asserts.SoftAssert;
 import org.w3c.dom.Document;
 import tests.mt.BaseTestMoneyTransfer;
 
-import static jdbc.JDBCMethods.*;
+import static com.ecom.db.JDBCMethods.*;
 import static methods.DocumentTools.*;
 import static methods.MoneyTransferRequests.reversalOnFunding;
 

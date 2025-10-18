@@ -11,14 +11,14 @@ import tests.BaseRedirect;
 import org.testng.Assert;
 
 
-import static jdbc.JDBCMethods.getTranIdByOrder;
-import static jdbc.JDBCMethods.setMerchantAtt;
+import static com.ecom.db.JDBCMethods.getTranIdByOrder;
+import static com.ecom.db.JDBCMethods.setMerchantAtt;
 import static methods.DocumentTools.*;
 import static methods.DocumentTools.verifiedDataFromDB;
 import static methods.PaylinkRequests.payment;
 import static methods.RequestSender.sendRequest;
 import static org.testng.Assert.assertEquals;
-import static type.Attributes.ALLOW_PAYMENT_WITHOUT_3DS;
+import static com.ecom.type.Attributes.ALLOW_PAYMENT_WITHOUT_3DS;
 
 public class StopList extends BaseRedirect {
     public static String orderId;

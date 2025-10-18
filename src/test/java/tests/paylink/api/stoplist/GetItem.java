@@ -4,7 +4,7 @@
  */
 package tests.paylink.api.stoplist;
 
-import DataDriven.ConfigStoplist;
+import com.ecom.core.config.ConfigStoplist;
 import methods.DataDrivenStoplist;
 import methods.DocumentTools;
 import methods.RequestsStoplist;

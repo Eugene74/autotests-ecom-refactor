@@ -6,14 +6,14 @@ import org.testng.annotations.Test;
 import org.w3c.dom.Document;
 import tests.BaseTest;
 
-import static jdbc.JDBCMethods.*;
+import static com.ecom.db.JDBCMethods.*;
 import static methods.DocumentTools.*;
 import static methods.PaylinkRequests.paymentAddendum;
 import static methods.RequestSender.sendRequest;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
-import static type.Attributes.ALLOW_AIRLINE_ADDENDUM_DATA;
-import static type.Attributes.ALLOW_REF3;
+import static com.ecom.type.Attributes.ALLOW_AIRLINE_ADDENDUM_DATA;
+import static com.ecom.type.Attributes.ALLOW_REF3;
 
 public class PaymentFull3DSAddendumRef3 extends BaseTest {
 

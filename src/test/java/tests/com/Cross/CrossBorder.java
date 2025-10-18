@@ -1,6 +1,6 @@
 package tests.com.Cross;
 
-import jdbc.JDBCConnection;
+import com.ecom.db.JDBCConnection;
 import methods.WebDriverHolder;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.By;

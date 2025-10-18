@@ -1,6 +1,6 @@
 package tests.dashboard.functional.tests.Tools;
 
-import jdbc.JDBCMethods;
+import com.ecom.db.JDBCMethods;
 import methods.DashboardRequest;
 import methods.Waiters;
 import org.testng.Assert;
@@ -14,11 +14,11 @@ import tests.dashboard.functional.pages.ToolsPage;
 import java.util.Random;
 import java.util.regex.Pattern;
 
-import static jdbc.JDBCMethods.getTranIdByOrder;
-import static jdbc.JDBCMethods.setMerchantAtt;
+import static com.ecom.db.JDBCMethods.getTranIdByOrder;
+import static com.ecom.db.JDBCMethods.setMerchantAtt;
 import static methods.DocumentTools.verifiedDataFromDB;
-import static type.Attributes.ALLOW_PAYMENT_WITHOUT_3DS;
-import static type.Attributes.MERCHANT_INVOICING_URL;
+import static com.ecom.type.Attributes.ALLOW_PAYMENT_WITHOUT_3DS;
+import static com.ecom.type.Attributes.MERCHANT_INVOICING_URL;
 
 public class Invoicing extends BaseRedirect {
     public String url; // Змінено на нестатичну змінну

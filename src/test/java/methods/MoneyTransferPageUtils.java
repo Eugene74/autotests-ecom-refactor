@@ -9,7 +9,7 @@ import tests.mt.p2p.pages.MoneyTransferPage;
 import java.util.ArrayList;
 import java.util.List;
 
-import static jdbc.JDBCMethods.getRequestIdMT;
+import static com.ecom.db.JDBCMethods.getRequestIdMT;
 import static methods.Waiters.handleAlert;
 
 public class MoneyTransferPageUtils extends BaseTest {

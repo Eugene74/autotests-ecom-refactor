@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 import org.w3c.dom.Document;
 import tests.BaseTest;
 
-import static jdbc.JDBCMethods.*;
+import static com.ecom.db.JDBCMethods.*;
 import static methods.DocumentTools.*;
 import static methods.PaylinkRequests.paymentAmount;
 import static methods.PaylinkRequests.paymentInstallChoice;
@@ -14,7 +14,7 @@ import static methods.RequestSender.sendRequest;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 import static org.testng.AssertJUnit.assertFalse;
-import static type.Attributes.ALLOW_MASTERCARD_INSTALLMENT;
+import static com.ecom.type.Attributes.ALLOW_MASTERCARD_INSTALLMENT;
 
 public class MasterInstallment extends BaseTest {
     private static Document requestDoc;

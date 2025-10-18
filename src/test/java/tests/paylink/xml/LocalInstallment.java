@@ -6,15 +6,15 @@ import org.testng.annotations.Test;
 import org.w3c.dom.Document;
 import tests.BaseTest;
 
-import static jdbc.JDBCMethods.*;
+import static com.ecom.db.JDBCMethods.*;
 import static methods.DocumentTools.*;
 import static methods.PaylinkRequests.getInstPlansRequest;
 import static methods.PaylinkRequests.paymentLocalInstallment;
 import static methods.RequestSender.sendRequest;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNotEquals;
-import static type.Attributes.ALLOW_INSTALLMENT;
-import static type.Attributes.ALLOW_PAYMENT_WITHOUT_3DS;
+import static com.ecom.type.Attributes.ALLOW_INSTALLMENT;
+import static com.ecom.type.Attributes.ALLOW_PAYMENT_WITHOUT_3DS;
 
 public class LocalInstallment extends BaseTest {
     private static Document requestDoc;

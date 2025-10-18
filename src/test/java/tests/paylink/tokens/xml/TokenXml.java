@@ -5,13 +5,13 @@ import org.testng.annotations.Test;
 import org.w3c.dom.Document;
 import tests.BaseTest;
 
-import static jdbc.JDBCMethods.*;
+import static com.ecom.db.JDBCMethods.*;
 import static methods.DocumentTools.*;
 import static methods.PaylinkRequests.payment;
 import static methods.PaylinkRequests.paymentToken;
 import static methods.RequestSender.sendRequest;
 import static org.testng.Assert.assertEquals;
-import static type.Attributes.ALLOW_SUPPORT_TOKEN;
+import static com.ecom.type.Attributes.ALLOW_SUPPORT_TOKEN;
 
 public class TokenXml extends BaseTest {
     private String tokenId;

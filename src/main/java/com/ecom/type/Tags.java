@@ -1,4 +1,4 @@
-package type;
+package com.ecom.type;
 
 public enum Tags {
     Mtid15_ARF1("ARF1"),
