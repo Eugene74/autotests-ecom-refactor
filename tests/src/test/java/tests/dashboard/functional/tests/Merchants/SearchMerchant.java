@@ -1,6 +1,6 @@
 package tests.dashboard.functional.tests.Merchants;
 
-import methods.DashboardRequest;
+import com.ecom.tests.support.DashboardRequest;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;

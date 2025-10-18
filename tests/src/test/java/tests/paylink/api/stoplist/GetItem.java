@@ -5,14 +5,14 @@
 package tests.paylink.api.stoplist;
 
 import com.ecom.core.config.ConfigStoplist;
-import methods.DataDrivenStoplist;
-import methods.DocumentTools;
-import methods.RequestsStoplist;
+import com.ecom.tests.support.DataDrivenStoplist;
+import com.ecom.tests.support.DocumentTools;
+import com.ecom.tests.support.RequestsStoplist;
 import org.testng.annotations.Test;
 import org.w3c.dom.Document;
 
 import static io.restassured.RestAssured.given;
-import static methods.DocumentTools.getElementFromDocument;
+import static com.ecom.tests.support.DocumentTools.getElementFromDocument;
 import static org.testng.Assert.assertEquals;
 
 public class GetItem extends BaseTestStoplist{

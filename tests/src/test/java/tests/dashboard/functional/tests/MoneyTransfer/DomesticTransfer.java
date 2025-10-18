@@ -1,14 +1,14 @@
 package tests.dashboard.functional.tests.MoneyTransfer;
 
-import methods.DashboardRequest;
+import com.ecom.tests.support.DashboardRequest;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.w3c.dom.Document;
 import tests.BaseRedirect;
 
-import static methods.DocumentTools.*;
-import static methods.MoneyTransferRequests.transferAccountToCard;
-import static methods.RequestSenderRest.sendRequest;
+import static com.ecom.tests.support.DocumentTools.*;
+import static com.ecom.tests.support.MoneyTransferRequests.transferAccountToCard;
+import static com.ecom.tests.support.RequestSenderRest.sendRequest;
 public class DomesticTransfer extends BaseRedirect {
     private String trackingID;
 

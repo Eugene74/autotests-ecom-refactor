@@ -1,17 +1,17 @@
 package tests.mt.api.aval;
 
 
-import methods.RequestSender;
-import methods.RequestSenderHttpClient;
-import methods.RequestSenderRest;
+import com.ecom.tests.support.RequestSender;
+import com.ecom.tests.support.RequestSenderHttpClient;
+import com.ecom.tests.support.RequestSenderRest;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import org.w3c.dom.Document;
 import tests.mt.BaseTestMoneyTransfer;
 
 import static com.ecom.db.JDBCMethods.getValueFromMTTran;
-import static methods.DocumentTools.*;
-import static methods.MoneyTransferRequests.transferCardToAccount;
+import static com.ecom.tests.support.DocumentTools.*;
+import static com.ecom.tests.support.MoneyTransferRequests.transferCardToAccount;
 
 
 public class CardToAccount extends BaseTestMoneyTransfer {

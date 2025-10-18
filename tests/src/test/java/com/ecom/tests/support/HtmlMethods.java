@@ -1,5 +1,6 @@
-package methods;
+package com.ecom.tests.support;
 
+import com.ecom.ui.util.Waiters;
 import org.apache.commons.io.FileUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;

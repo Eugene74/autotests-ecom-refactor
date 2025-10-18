@@ -1,4 +1,4 @@
-package methods;
+package com.ecom.tests.support;
 
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;

@@ -13,9 +13,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static com.ecom.db.JDBCMethods.*;
-import static methods.DocumentTools.*;
-import static methods.PaylinkRequests.*;
-import static methods.RequestSender.sendRequest;
+import static com.ecom.tests.support.DocumentTools.*;
+import static com.ecom.tests.support.PaylinkRequests.*;
+import static com.ecom.tests.support.RequestSender.sendRequest;
 import static org.testng.Assert.assertEquals;
 import static com.ecom.api.type.Attributes.ALLOW_REFUND_ONLINE;
 import static com.ecom.api.type.FieldsNFile.*;

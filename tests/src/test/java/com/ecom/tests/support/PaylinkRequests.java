@@ -1,11 +1,11 @@
-package methods;
+package com.ecom.tests.support;
 
 import com.codeborne.selenide.WebDriverRunner;
 import com.ecom.ui.paylink.admin.flow.CloseDayPaylinkFlow;
 import org.w3c.dom.Document;
 import tests.BaseTest;
 
-import static methods.DocumentTools.*;
+import static com.ecom.tests.support.DocumentTools.*;
 
 public class PaylinkRequests extends BaseTest{
 

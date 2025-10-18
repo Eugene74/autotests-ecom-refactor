@@ -1,15 +1,15 @@
 package tests.mt.api.aval;
 
 
-import methods.MoneyTransferRequests;
-import methods.RequestSender;
+import com.ecom.tests.support.MoneyTransferRequests;
+import com.ecom.tests.support.RequestSender;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import org.w3c.dom.Document;
 import tests.mt.BaseTestMoneyTransfer;
 
 import static com.ecom.db.JDBCMethods.getValueFromMTTran;
-import static methods.DocumentTools.*;
+import static com.ecom.tests.support.DocumentTools.*;
 
 public class CardToCardFull3DSMasterVisa extends BaseTestMoneyTransfer {
 

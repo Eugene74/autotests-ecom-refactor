@@ -1,6 +1,6 @@
 package tests.paylink.redirect.test.aval;
 
-import methods.RedirectRequest;
+import com.ecom.tests.support.RedirectRequest;
 import com.ecom.ui.util.Waiters;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -10,7 +10,7 @@ import tests.BaseRedirect;
 import com.ecom.ui.paylink.redirect.pages.InstallmentChoice;
 
 import static com.ecom.db.JDBCMethods.*;
-import static methods.DocumentTools.verifiedDataFromDB;
+import static com.ecom.tests.support.DocumentTools.verifiedDataFromDB;
 import static com.ecom.api.type.Attributes.*;
 import static com.ecom.api.type.Attributes.ALLOW_INSTALLMENT;
 

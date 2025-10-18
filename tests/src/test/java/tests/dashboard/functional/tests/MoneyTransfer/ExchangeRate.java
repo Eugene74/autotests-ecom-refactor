@@ -1,6 +1,6 @@
 package tests.dashboard.functional.tests.MoneyTransfer;
 
-import methods.DashboardRequest;
+import com.ecom.tests.support.DashboardRequest;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import tests.BaseRedirect;

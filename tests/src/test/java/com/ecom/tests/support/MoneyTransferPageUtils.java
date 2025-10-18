@@ -1,4 +1,4 @@
-package methods;
+package com.ecom.tests.support;
 
 import org.openqa.selenium.WebDriver;
 import tests.BaseTest;
@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.ecom.db.JDBCMethods.getRequestIdMT;
-import static methods.Waiters.handleAlert;
+import static com.ecom.ui.util.Waiters.handleAlert;
 
 public class MoneyTransferPageUtils extends BaseTest {
     public static final String senderName = "Yarosh S";

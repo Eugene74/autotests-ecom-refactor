@@ -10,7 +10,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Map;
 
-import static methods.ParserNFile.*;
+import static com.ecom.tests.support.ParserNFile.*;
 
 public class CheckNFileByTransactionsPaylink extends BaseTest {
     ArrayList<Map<FieldsNFile, String>> listOfTransactions = readTransInfoFromSerialized("nfilePayment.txt");

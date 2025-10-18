@@ -7,10 +7,10 @@ import org.w3c.dom.Document;
 import tests.BaseTest;
 
 import static com.ecom.db.JDBCMethods.*;
-import static methods.DocumentTools.*;
-import static methods.PaylinkRequests.getInstPlansRequest;
-import static methods.PaylinkRequests.paymentLocalInstallment;
-import static methods.RequestSender.sendRequest;
+import static com.ecom.tests.support.DocumentTools.*;
+import static com.ecom.tests.support.PaylinkRequests.getInstPlansRequest;
+import static com.ecom.tests.support.PaylinkRequests.paymentLocalInstallment;
+import static com.ecom.tests.support.RequestSender.sendRequest;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNotEquals;
 import static com.ecom.api.type.Attributes.ALLOW_INSTALLMENT;

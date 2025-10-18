@@ -1,4 +1,4 @@
-package methods;
+package com.ecom.tests.support;
 
 import com.google.common.io.CharStreams;
 import com.jcraft.jsch.ChannelExec;

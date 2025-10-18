@@ -1,4 +1,4 @@
-package methods;
+package com.ecom.tests.support;
 
 import io.restassured.RestAssured;
 import io.restassured.config.SSLConfig;

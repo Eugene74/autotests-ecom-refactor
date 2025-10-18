@@ -1,11 +1,11 @@
-package methods;
+package com.ecom.tests.support;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.ecom.db.JDBCMethods;
 import org.w3c.dom.Document;
 
-import static methods.DocumentTools.convertStringToXmlDocument;
+import static com.ecom.tests.support.DocumentTools.convertStringToXmlDocument;
 
 public class ParserISOMsg {
     static final String SENDED_ISO_MSG_TITLE = "Send ISO message :";

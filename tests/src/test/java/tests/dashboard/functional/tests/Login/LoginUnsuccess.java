@@ -1,6 +1,6 @@
 package tests.dashboard.functional.tests.Login;
 
-import methods.DashboardRequest;
+import com.ecom.tests.support.DashboardRequest;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;

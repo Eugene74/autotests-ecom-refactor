@@ -6,10 +6,10 @@ import tests.BaseTest;
 
 import static com.ecom.db.JDBCMethods.getTranIdByOrder;
 import static com.ecom.db.JDBCMethods.getValueFromTRAN;
-import static methods.DocumentTools.*;
-import static methods.PaylinkRequests.paymentPostAuth;
-import static methods.PaylinkRequests.paymentPreAuthPares;
-import static methods.RequestSender.sendRequest;
+import static com.ecom.tests.support.DocumentTools.*;
+import static com.ecom.tests.support.PaylinkRequests.paymentPostAuth;
+import static com.ecom.tests.support.PaylinkRequests.paymentPreAuthPares;
+import static com.ecom.tests.support.RequestSender.sendRequest;
 import static org.testng.Assert.assertEquals;
 
 

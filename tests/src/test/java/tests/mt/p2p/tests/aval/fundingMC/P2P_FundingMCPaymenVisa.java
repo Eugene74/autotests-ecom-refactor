@@ -1,6 +1,6 @@
 package tests.mt.p2p.tests.aval.fundingMC;
 
-import methods.MoneyTransferPageUtils;
+import com.ecom.tests.support.MoneyTransferPageUtils;
 import com.ecom.core.config.PropertiesManager;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.BeforeClass;
@@ -16,8 +16,8 @@ import java.util.Properties;
 import java.util.List;
 
 import static com.ecom.db.JDBCMethods.*;
-import static methods.DocumentTools.verifiedDataMTFromDBFunding;
-import static methods.DocumentTools.verifiedDataMTFromDBPayment;
+import static com.ecom.tests.support.DocumentTools.verifiedDataMTFromDBFunding;
+import static com.ecom.tests.support.DocumentTools.verifiedDataMTFromDBPayment;
 import static com.ecom.api.type.Attributes.ALLOW_CROSS_BORDER;
 import static com.ecom.api.type.Attributes.ALLOW_PAYMENT_WITHOUT_3DS;
 

@@ -5,7 +5,7 @@
 package methods;
 import org.w3c.dom.Document;
 import tests.paylink.api.stoplist.BaseTestStoplist;
-import static methods.DocumentTools.*;
+import static com.ecom.tests.support.DocumentTools.*;
 
 
 public class RequestsStoplist {

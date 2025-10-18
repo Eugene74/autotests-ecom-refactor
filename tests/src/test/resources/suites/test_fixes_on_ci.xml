@@ -2,8 +2,8 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite verbose="0" name="Functional" parallel="false">
     <listeners>
-        <listener class-name="methods.RetryListener"/>
-        <listener class-name="methods.FinalResultListener"/>
+        <listener class-name="com.ecom.tests.support.RetryListener"/>
+        <listener class-name="com.ecom.tests.support.FinalResultListener"/>
     </listeners>
 <!--    <test name="Login">-->
 <!--        <classes>-->

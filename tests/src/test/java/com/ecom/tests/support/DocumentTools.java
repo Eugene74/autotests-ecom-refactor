@@ -1,4 +1,4 @@
-package methods;
+package com.ecom.tests.support;
 
 import com.ecom.core.util.ResourceUtils;
 import com.ecom.db.JDBCMethods;

@@ -1,6 +1,6 @@
 package tests.dashboard.functional.tests.Payments;
 
-import methods.DashboardRequest;
+import com.ecom.tests.support.DashboardRequest;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -12,11 +12,11 @@ import tests.BaseRedirect;
 import static com.ecom.db.JDBCMethods.getTranIdByOrder;
 import static com.ecom.db.JDBCMethods.getValueFromTRAN;
 import static com.ecom.db.JDBCMethods.setMerchantAtt;
-import static methods.DocumentTools.*;
-import static methods.DocumentTools.getElementFromDocument;
-import static methods.DocumentTools.verifiedDataFromResponse;
-import static methods.PaylinkRequests.payment;
-import static methods.RequestSender.sendRequest;
+import static com.ecom.tests.support.DocumentTools.*;
+import static com.ecom.tests.support.DocumentTools.getElementFromDocument;
+import static com.ecom.tests.support.DocumentTools.verifiedDataFromResponse;
+import static com.ecom.tests.support.PaylinkRequests.payment;
+import static com.ecom.tests.support.RequestSender.sendRequest;
 import static org.testng.Assert.assertEquals;
 import static com.ecom.api.type.Attributes.ALLOW_PAYMENT_WITHOUT_3DS;
 

@@ -6,9 +6,9 @@ import org.w3c.dom.Document;
 import tests.mt.BaseTestMoneyTransfer;
 
 import static com.ecom.db.JDBCMethods.getValueFromMTTran;
-import static methods.DocumentTools.*;
-import static methods.MoneyTransferRequests.transferCrossBoard;
-import static methods.RequestSender.sendRequest;
+import static com.ecom.tests.support.DocumentTools.*;
+import static com.ecom.tests.support.MoneyTransferRequests.transferCrossBoard;
+import static com.ecom.tests.support.RequestSender.sendRequest;
 
 public class CrossBoardXML extends BaseTestMoneyTransfer {
 

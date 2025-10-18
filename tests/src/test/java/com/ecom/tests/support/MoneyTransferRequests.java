@@ -1,9 +1,9 @@
-package methods;
+package com.ecom.tests.support;
 
 import org.w3c.dom.Document;
 import tests.mt.BaseTestMoneyTransfer;
 
-import static methods.DocumentTools.*;
+import static com.ecom.tests.support.DocumentTools.*;
 
 public class MoneyTransferRequests extends BaseTestMoneyTransfer {
     

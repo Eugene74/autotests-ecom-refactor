@@ -1,7 +1,7 @@
 package tests.mt.api.aval;
 
 
-import methods.RequestSender;
+import com.ecom.tests.support.RequestSender;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import org.w3c.dom.Document;
@@ -9,9 +9,9 @@ import tests.mt.BaseTestMoneyTransfer;
 
 import static com.ecom.db.JDBCMethods.getValueFromMTTran;
 import static com.ecom.db.JDBCMethods.getValueFromMTTranFunding;
-import static methods.DocumentTools.*;
-import static methods.MoneyTransferRequests.reversalOnFunding;
-import static methods.MoneyTransferRequests.transferCardToAccountPares;
+import static com.ecom.tests.support.DocumentTools.*;
+import static com.ecom.tests.support.MoneyTransferRequests.reversalOnFunding;
+import static com.ecom.tests.support.MoneyTransferRequests.transferCardToAccountPares;
 
 public class CardToAccountFull3DS_Revers extends BaseTestMoneyTransfer {
     protected Document requestDoc;

@@ -5,9 +5,9 @@ import org.w3c.dom.Document;
 import tests.mt.BaseTestMoneyTransfer;
 
 import static com.ecom.db.JDBCMethods.getValueFromMTTran;
-import static methods.DocumentTools.*;
-import static methods.MoneyTransferRequests.transferAccountToCard;
-import static methods.RequestSender.sendRequest;
+import static com.ecom.tests.support.DocumentTools.*;
+import static com.ecom.tests.support.MoneyTransferRequests.transferAccountToCard;
+import static com.ecom.tests.support.RequestSender.sendRequest;
 
 public class AccountToCard extends BaseTestMoneyTransfer {
 

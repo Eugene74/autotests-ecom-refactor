@@ -1,4 +1,4 @@
-package methods;
+package com.ecom.tests.support;
 
 import tests.BaseTest;
 import com.ecom.ui.dashboard.functional.pages.*;

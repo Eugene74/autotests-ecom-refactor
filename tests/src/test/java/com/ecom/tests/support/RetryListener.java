@@ -1,4 +1,4 @@
-package methods;
+package com.ecom.tests.support;
 
 
 
@@ -12,7 +12,7 @@ public class RetryListener implements IAnnotationTransformer {
     @Override
     public void transform(ITestAnnotation annotation, Class testClass, Constructor testConstructor, Method testMethod) {
         if (annotation.getRetryAnalyzerClass() == null) {
-            annotation.setRetryAnalyzer(methods.RetryAnalyzer.class);
+            annotation.setRetryAnalyzer(com.ecom.tests.support.RetryAnalyzer.class);
         }
     }
 }

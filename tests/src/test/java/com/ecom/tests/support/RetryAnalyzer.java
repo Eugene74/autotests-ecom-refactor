@@ -1,4 +1,4 @@
-package methods;
+package com.ecom.tests.support;
 import org.testng.IRetryAnalyzer;
 import org.testng.ITestResult;
 

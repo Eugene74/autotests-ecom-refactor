@@ -1,7 +1,7 @@
 package tests.dashboard.functional.tests.Tools;
 
 import com.ecom.db.JDBCMethods;
-import methods.DashboardRequest;
+import com.ecom.tests.support.DashboardRequest;
 import com.ecom.ui.util.Waiters;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -16,7 +16,7 @@ import java.util.regex.Pattern;
 
 import static com.ecom.db.JDBCMethods.getTranIdByOrder;
 import static com.ecom.db.JDBCMethods.setMerchantAtt;
-import static methods.DocumentTools.verifiedDataFromDB;
+import static com.ecom.tests.support.DocumentTools.verifiedDataFromDB;
 import static com.ecom.api.type.Attributes.ALLOW_PAYMENT_WITHOUT_3DS;
 import static com.ecom.api.type.Attributes.MERCHANT_INVOICING_URL;
 

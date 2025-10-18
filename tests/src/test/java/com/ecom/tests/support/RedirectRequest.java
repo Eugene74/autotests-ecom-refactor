@@ -1,11 +1,11 @@
-package methods;
+package com.ecom.tests.support;
 
 import tests.BaseTest;
 import com.ecom.ui.paylink.redirect.pages.*;
 
 import java.io.File;
 
-import static methods.HtmlMethods.*;
+import static com.ecom.tests.support.HtmlMethods.*;
 
 public class RedirectRequest extends BaseTest {
 

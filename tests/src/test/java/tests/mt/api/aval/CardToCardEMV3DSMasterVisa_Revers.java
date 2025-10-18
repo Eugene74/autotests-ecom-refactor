@@ -1,16 +1,16 @@
 package tests.mt.api.aval;
 
 
-import methods.MoneyTransferRequests;
-import methods.RequestSender;
+import com.ecom.tests.support.MoneyTransferRequests;
+import com.ecom.tests.support.RequestSender;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import org.w3c.dom.Document;
 import tests.mt.BaseTestMoneyTransfer;
 
 import static com.ecom.db.JDBCMethods.*;
-import static methods.DocumentTools.*;
-import static methods.MoneyTransferRequests.reversalOnFunding;
+import static com.ecom.tests.support.DocumentTools.*;
+import static com.ecom.tests.support.MoneyTransferRequests.reversalOnFunding;
 
 public class CardToCardEMV3DSMasterVisa_Revers extends BaseTestMoneyTransfer {
     protected Document requestDoc;

@@ -1,6 +1,6 @@
 package tests.dashboard.functional.tests.FastRefund;
 
-import methods.DashboardRequest;
+import com.ecom.tests.support.DashboardRequest;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
@@ -12,17 +12,17 @@ import org.w3c.dom.Document;
 import tests.BaseRedirect;
 
 import static com.ecom.db.JDBCMethods.setMerchantAtt;
-import static methods.DocumentTools.*;
-import static methods.PaylinkRequests.payment;
-import static methods.RequestSender.sendRequest;
+import static com.ecom.tests.support.DocumentTools.*;
+import static com.ecom.tests.support.PaylinkRequests.payment;
+import static com.ecom.tests.support.RequestSender.sendRequest;
 import static org.testng.Assert.assertEquals;
 
 import static com.ecom.db.JDBCMethods.getTranIdByOrder;
 import static com.ecom.db.JDBCMethods.getValueFromMTTranFR;
 import static com.ecom.db.JDBCMethods.getTranIdByOrderFR;
 
-import static methods.DocumentTools.getElementFromDocument;
-import static methods.DocumentTools.verifiedDataFromResponse;
+import static com.ecom.tests.support.DocumentTools.getElementFromDocument;
+import static com.ecom.tests.support.DocumentTools.verifiedDataFromResponse;
 import static com.ecom.api.type.Attributes.ALLOW_PAYMENT_WITHOUT_3DS;
 import static com.ecom.api.type.Attributes.ALLOW_FAST_REFUND;
 import static com.ecom.api.type.Attributes.ALLOW_PARTIAL_REVERSAL;

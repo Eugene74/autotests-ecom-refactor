@@ -1,6 +1,6 @@
 package tests.paylink.xml;
 
-import methods.RequestSender;
+import com.ecom.tests.support.RequestSender;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -8,8 +8,8 @@ import org.w3c.dom.Document;
 import tests.BaseTest;
 
 import static com.ecom.db.JDBCMethods.*;
-import static methods.DocumentTools.*;
-import static methods.PaylinkRequests.payment;
+import static com.ecom.tests.support.DocumentTools.*;
+import static com.ecom.tests.support.PaylinkRequests.payment;
 import static org.testng.Assert.assertEquals;
 
 public class Moto extends BaseTest {

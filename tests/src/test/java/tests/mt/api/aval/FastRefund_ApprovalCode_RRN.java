@@ -7,10 +7,10 @@ import org.testng.asserts.SoftAssert;
 import org.w3c.dom.Document;
 import tests.mt.BaseTestMoneyTransfer;
 import static com.ecom.db.JDBCMethods.*;
-import static methods.DocumentTools.*;
-import static methods.MoneyTransferRequests.*;
-import static methods.PaylinkRequests.payment;
-import static methods.RequestSender.sendRequest;
+import static com.ecom.tests.support.DocumentTools.*;
+import static com.ecom.tests.support.MoneyTransferRequests.*;
+import static com.ecom.tests.support.PaylinkRequests.payment;
+import static com.ecom.tests.support.RequestSender.sendRequest;
 import static org.testng.Assert.assertEquals;
 import static com.ecom.api.type.Attributes.*;
 

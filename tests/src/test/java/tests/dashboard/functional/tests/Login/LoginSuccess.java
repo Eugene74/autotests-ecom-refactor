@@ -1,6 +1,6 @@
 package tests.dashboard.functional.tests.Login;
 
-import methods.DashboardRequest;
+import com.ecom.tests.support.DashboardRequest;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;

@@ -1,6 +1,6 @@
 package tests.mdesVts;
 
-import methods.MdesVtsRequests;
+import com.ecom.tests.support.MdesVtsRequests;
 import org.apache.http.HttpResponse;
 import org.json.JSONObject;
 import org.testng.Assert;

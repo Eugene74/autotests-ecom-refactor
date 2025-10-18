@@ -1,8 +1,8 @@
 package tests.dashboard.functional.tests.Settings;
 
-import methods.DashboardRequest;
-import methods.MoneyTransferRequests;
-import methods.RequestSender;
+import com.ecom.tests.support.DashboardRequest;
+import com.ecom.tests.support.MoneyTransferRequests;
+import com.ecom.tests.support.RequestSender;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -13,10 +13,10 @@ import org.testng.Assert;
 
 import static com.ecom.db.JDBCMethods.getTranIdByOrder;
 import static com.ecom.db.JDBCMethods.setMerchantAtt;
-import static methods.DocumentTools.*;
-import static methods.DocumentTools.verifiedDataFromDB;
-import static methods.PaylinkRequests.payment;
-import static methods.RequestSender.sendRequest;
+import static com.ecom.tests.support.DocumentTools.*;
+import static com.ecom.tests.support.DocumentTools.verifiedDataFromDB;
+import static com.ecom.tests.support.PaylinkRequests.payment;
+import static com.ecom.tests.support.RequestSender.sendRequest;
 import static org.testng.Assert.assertEquals;
 import static com.ecom.api.type.Attributes.ALLOW_PAYMENT_WITHOUT_3DS;
 

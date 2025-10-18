@@ -6,12 +6,12 @@ package tests.paylink.api.onboarding;
 
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
-import methods.DataDrivenOnboarding;
-import methods.DocumentTools;
-import methods.RequestsOnboarding;
+import com.ecom.tests.support.DataDrivenOnboarding;
+import com.ecom.tests.support.DocumentTools;
+import com.ecom.tests.support.RequestsOnboarding;
 import org.testng.annotations.Test;
 import org.w3c.dom.Document;
-import static methods.DocumentTools.*;
+import static com.ecom.tests.support.DocumentTools.*;
 
 public class DeleteMerchant extends BaseTestOnboarding{
 

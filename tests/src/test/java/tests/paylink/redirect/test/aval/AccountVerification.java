@@ -1,6 +1,6 @@
 package tests.paylink.redirect.test.aval;
 
-import methods.RedirectRequest;
+import com.ecom.tests.support.RedirectRequest;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;

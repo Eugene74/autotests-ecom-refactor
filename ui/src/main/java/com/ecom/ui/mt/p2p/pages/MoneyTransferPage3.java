@@ -8,7 +8,7 @@ import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import com.ecom.ui.common.BasePage;
 
-import static methods.Waiters.handleAlert;
+import static com.ecom.ui.util.Waiters.handleAlert;
 
 public class MoneyTransferPage3 extends MoneyTransferPage {
     public MoneyTransferPage3(WebDriver driver) {

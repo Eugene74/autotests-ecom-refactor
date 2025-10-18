@@ -18,10 +18,10 @@ import java.util.Date;
 import static io.restassured.RestAssured.given;
 import static com.ecom.db.JDBCMethods.*;
 import static com.ecom.db.JDBCMethods.setMerchantAtt;
-import static methods.DocumentTools.*;
-import static methods.DocumentTools.verifiedDataFromDB;
-import static methods.PaylinkRequests.payment;
-import static methods.RequestSender.sendRequest;
+import static com.ecom.tests.support.DocumentTools.*;
+import static com.ecom.tests.support.DocumentTools.verifiedDataFromDB;
+import static com.ecom.tests.support.PaylinkRequests.payment;
+import static com.ecom.tests.support.RequestSender.sendRequest;
 import static org.testng.Assert.assertEquals;
 import static com.ecom.api.type.Attributes.ALLOW_SUPPORT_TOKEN;
 
