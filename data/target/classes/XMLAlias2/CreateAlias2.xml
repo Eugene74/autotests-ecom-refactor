@@ -1,0 +1,64 @@
+<VisaAliasRequest>
+    <MerchantId>${Merchant2ID}</MerchantId>
+    <TerminalId>${Terminal2ID}</TerminalId>
+    <TrackingId>${TrackingId}</TrackingId>
+    <CreateAlias>
+        <aliasValue>${alias2Id}</aliasValue>
+        <identification>
+            <verificationDetails>
+                <verifiedPhone>false</verifiedPhone>
+                <authMethodReference>EXTERNAL, SMS OTP, Email OTP</authMethodReference>
+                <authDateTime>2021-01-01T22:52:46.000Z</authDateTime>
+                <verifiedEmail>true</verifiedEmail>
+                <creationDateTime>2021-01-01T22:52:46.000Z</creationDateTime>
+            </verificationDetails>
+            <type>PASSPORT</type>
+            <value>A123456</value>
+        </identification>
+        <profile>
+            <middleNameLocal>Alexander</middleNameLocal>
+            <lastName>Miller</lastName>
+            <firstName>Alex</firstName>
+            <lastNameLocal>Miller</lastNameLocal>
+            <contactInfo/>
+            <middleName>Robert</middleName>
+            <dateOfBirth>1980-02-01</dateOfBirth>
+            <firstNameLocal>Roberto</firstNameLocal>
+            <preferredName>Miller's Shop</preferredName>
+        </profile>
+        <aliasType>PHONE</aliasType>
+        <externalId>${guid}</externalId>
+        <paymentCredentials>
+            <CardDetailsRequest>
+                <nameOnCard>John Doe</nameOnCard>
+                <issuerName>Bank A</issuerName>
+                <cardType>Visa Platinum</cardType>
+                <externalId>${guid}</externalId>
+                <preferredFor/>
+                <billingAddress>
+                    <country>USA</country>
+                    <streetName>12</streetName>
+                    <city>San Francisco</city>
+                    <postalCode>94105</postalCode>
+                    <addressLine1>1000 Market Street</addressLine1>
+                    <buildingNumber>56</buildingNumber>
+                    <addressLine2>Suite 101</addressLine2>
+                    <state>CA</state>
+                    <minorSubdivisionCode>CA</minorSubdivisionCode>
+                </billingAddress>
+                <type>CARD</type>
+                <accountNumber>4111111111111111</accountNumber>
+                <expirationDate>2030-01</expirationDate>
+            </CardDetailsRequest>
+        </paymentCredentials>
+        <consent>
+            <presenter>Bank A</presenter>
+            <validFromDateTime>2021-12-01T10:00:00.000Z</validFromDateTime>
+            <intermediaries>
+                <intermediary>Client A</intermediary>
+            </intermediaries>
+            <version>1.0</version>
+            <expiryDateTime>2022-06-20T10:00:00.000Z</expiryDateTime>
+        </consent>
+    </CreateAlias>
+</VisaAliasRequest>

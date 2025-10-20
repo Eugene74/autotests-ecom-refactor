@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<ReversalRequest>
+    <MerchantId>1111127</MerchantId>
+    <TerminalId>E1111127</TerminalId>
+    <TrackingId>12695600</TrackingId>
+    <Amount>
+        <Value>100000</Value>
+        <CurrencyCode>980</CurrencyCode>
+        <Surcharge>10</Surcharge>
+    </Amount>
+    <Funding>
+        <ApprovalCode>000352</ApprovalCode>
+        <RRN>029514630628</RRN>
+    </Funding>
+</ReversalRequest>

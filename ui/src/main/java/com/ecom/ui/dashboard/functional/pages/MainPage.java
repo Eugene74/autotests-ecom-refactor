@@ -11,7 +11,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import com.ecom.ui.common.BasePage;
-
+import static com.ecom.core.config.EnvData.*;
 import java.time.Duration;
 import java.io.File;
 import java.util.List;

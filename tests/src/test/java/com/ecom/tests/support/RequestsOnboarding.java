@@ -2,7 +2,7 @@
  * @author semyvolos_h
  * @date 7/28/2022 15:31 PM
  */
-package methods;
+package com.ecom.tests.support;
 
 import org.w3c.dom.Document;
 import tests.paylink.api.onboarding.BaseTestOnboarding;

@@ -10,6 +10,11 @@ import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import tests.BaseRedirect;
 
+import static com.ecom.core.config.CardConfig.cardMC;
+import static com.ecom.core.config.EnvData.URLInvocing;
+import static com.ecom.core.config.EnvData.id_AVAL;
+import static com.ecom.core.config.EnvData.merchant_AVAL;
+import static com.ecom.core.config.EnvData.terminal_AVAL;
 import static com.ecom.db.JDBCMethods.*;
 import static com.ecom.db.JDBCMethods.getValueFromTRAN;
 import static com.ecom.tests.support.DocumentTools.verifiedDataFromDB;

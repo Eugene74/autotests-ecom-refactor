@@ -5,6 +5,10 @@ import org.testng.asserts.SoftAssert;
 import org.w3c.dom.Document;
 import tests.mt.BaseTestMoneyTransfer;
 
+import static com.ecom.core.config.CardConfig.cardMCmta;
+import static com.ecom.core.config.CardConfig.cardVISAmtRev;
+import static com.ecom.core.config.EnvData.merchant_AVAL;
+import static com.ecom.core.config.EnvData.terminal_AVAL;
 import static com.ecom.db.JDBCMethods.getValueFromMTTran;
 import static com.ecom.tests.support.DocumentTools.*;
 import static com.ecom.tests.support.MoneyTransferRequests.transferCrossBoard;

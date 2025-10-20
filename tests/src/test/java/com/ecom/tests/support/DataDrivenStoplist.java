@@ -2,7 +2,7 @@
  * @author semyvolos_h
  * @date 8/29/2023 3:08 PM
  */
-package methods;
+package com.ecom.tests.support;
 
 import com.ecom.core.config.ConfigStoplist;
 import org.testng.annotations.DataProvider;

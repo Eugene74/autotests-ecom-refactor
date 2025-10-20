@@ -5,6 +5,8 @@ import com.ecom.ui.paylink.redirect.pages.*;
 
 import java.io.File;
 
+import static com.ecom.core.config.EnvData.URL_MERCH;
+import static com.ecom.core.config.EnvData.URLredirect;
 import static com.ecom.tests.support.HtmlMethods.*;
 
 public class RedirectRequest extends BaseTest {
@@ -28,7 +30,7 @@ public class RedirectRequest extends BaseTest {
     }
 
     public String paymentAuthorization(String[] card, int delay, String merch, String term) {
-        fillAuthorizationForm(String.valueOf(delay), BaseTest.URLredirect, merch, term);
+        fillAuthorizationForm(String.valueOf(delay), URLredirect, merch, term);
         System.out.println("path = " + getFilePathString(PATH));
         getDriver().get(getFilePathString(PATH));
         PageRequest send = new PageRequest(getDriver());
@@ -39,7 +41,7 @@ public class RedirectRequest extends BaseTest {
     }
 //1111111111111111111111
     public String paymentAuthorizationInstallment(String[] card, int delay, String merch, String term) {
-        fillAuthorizationFormInstallment(String.valueOf(delay), BaseTest.URLredirect, merch, term);
+        fillAuthorizationFormInstallment(String.valueOf(delay), URLredirect, merch, term);
         getDriver().get(getFilePathString(PATH_INSTALLMENT));
         PageRequest send = new PageRequest(getDriver());
         send.sendReq();
@@ -108,7 +110,7 @@ public class RedirectRequest extends BaseTest {
 
 
     public String accountVerify(String[] card) {
-        fillVerificationForm(BaseTest.URLredirect);
+        fillVerificationForm(URLredirect);
         getDriver().get(getFilePathString(PATH_LOOKUP));
         PageRequest send = new PageRequest(getDriver());
         send.sendReq();

@@ -9,7 +9,7 @@ import com.ecom.tests.support.DocumentTools;
 import com.ecom.tests.support.RequestsStoplist;
 import org.testng.annotations.Test;
 import org.w3c.dom.Document;
-
+import static com.ecom.core.config.EnvData.ENVIRONMENT;
 import static io.restassured.RestAssured.given;
 import static com.ecom.tests.support.DocumentTools.getElementFromDocument;
 import static org.testng.Assert.assertEquals;
@@ -37,7 +37,7 @@ public class CreateItem extends BaseTestStoplist{
         assertEquals(getElementFromDocument(responseDoc, "MerchantID"), merchantId, "merchantId");
         assertEquals(getElementFromDocument(responseDoc, "TerminalID"), terminalId, "terminalId");
         assertEquals(getElementFromDocument(responseDoc, "trackingId"), trackingId, "trackingId");
-        if(environment.equals("release") || environment.equals("dev")) {
+        if(ENVIRONMENT.equals("release") || ENVIRONMENT.equals("dev")) {
             assertEquals(getElementFromDocument(responseDoc, "stopListId").length(), 6, "stopListId");
         }
         else {

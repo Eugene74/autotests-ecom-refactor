@@ -6,6 +6,10 @@ import org.testng.annotations.Test;
 import org.w3c.dom.Document;
 import tests.BaseRedirect;
 
+import static com.ecom.core.config.CardConfig.cardMCmt;
+import static com.ecom.core.config.EnvData.merchant_AVAL;
+import static com.ecom.core.config.EnvData.terminal_AVAL;
+import static com.ecom.core.config.EnvData.URL_MT_Tran;
 import static com.ecom.tests.support.DocumentTools.*;
 import static com.ecom.tests.support.MoneyTransferRequests.transferAccountToCard;
 import static com.ecom.tests.support.RequestSenderRest.sendRequest;
@@ -15,7 +19,7 @@ public class DomesticTransfer extends BaseRedirect {
     @Test
     public void moneyTransfer(){
         Document requestDoc = transferAccountToCard(cardMCmt, merchant_AVAL, terminal_AVAL);
-        Document responseDoc = sendRequest(URLmtTran, requestDoc);
+        Document responseDoc = sendRequest(URL_MT_Tran, requestDoc);
         trackingID = getElementFromDocument(responseDoc, "TrackingId");
         System.out.println(trackingID);
 

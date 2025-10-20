@@ -1,0 +1,25 @@
+# === Java / Maven ===
+target/
+*/target/
+!.mvn/wrapper/maven-wrapper.jar
+
+# === IntelliJ IDEA ===
+.idea/
+*.iml
+out/
+
+# === Logs & Temp files ===
+*.log
+*.tmp
+*.swp
+
+# === OS files ===
+.DS_Store
+Thumbs.db
+
+# === Test outputs ===
+surefire-reports/
+test-output/
+
+# === Other ===
+dependency-reduced-pom.xml

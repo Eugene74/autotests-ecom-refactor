@@ -9,6 +9,7 @@ import com.ecom.ui.mt.p2p.pages.MoneyTransferPage;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.ecom.core.config.EnvData.URLp2p;
 import static com.ecom.db.JDBCMethods.getRequestIdMT;
 import static com.ecom.ui.util.Waiters.handleAlert;
 

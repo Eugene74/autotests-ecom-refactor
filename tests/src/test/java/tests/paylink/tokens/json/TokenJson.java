@@ -15,15 +15,17 @@ import java.text.SimpleDateFormat;
 import java.util.Base64;
 import java.util.Date;
 
-import static io.restassured.RestAssured.given;
-import static com.ecom.db.JDBCMethods.*;
+import static com.ecom.api.type.Attributes.ALLOW_SUPPORT_TOKEN;
+import static com.ecom.core.config.CardConfig.cardVISA;
+import static com.ecom.core.config.EnvData.*;
+import static com.ecom.db.JDBCMethods.getTranIdByOrder;
+import static com.ecom.db.JDBCMethods.getValueFromTRAN;
 import static com.ecom.db.JDBCMethods.setMerchantAtt;
 import static com.ecom.tests.support.DocumentTools.*;
-import static com.ecom.tests.support.DocumentTools.verifiedDataFromDB;
 import static com.ecom.tests.support.PaylinkRequests.payment;
 import static com.ecom.tests.support.RequestSender.sendRequest;
+import static io.restassured.RestAssured.given;
 import static org.testng.Assert.assertEquals;
-import static com.ecom.api.type.Attributes.ALLOW_SUPPORT_TOKEN;
 
 public class TokenJson extends BaseTest {
     private String tokenId;

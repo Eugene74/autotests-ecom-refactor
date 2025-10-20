@@ -1,0 +1,31 @@
+{
+  "terminalInfo": {
+    "merchantId": "1111127",
+    "terminalId": "E1111127"
+  },
+  "orderInfo": {
+    "orderId": null,
+    "orderDate": "2025-04-10 13:01:20+02",
+    "amount": "1000",
+    "currencyCode": "980",
+    "description": "api merchant invoice",
+    "fee": "100"
+  },
+  "cardholderInfo": {
+    "firstName": "Yarik",
+    "lastName": "V"
+  },
+  "billingAddressInfo": {
+    "country": "Ukraine",
+    "postalCode": "01001",
+    "street": null
+  },
+  "deliveryEmail": null,
+  "deliveryPhone": null,
+  "upcTokenId": null,
+  "invoiceLinkViewType": "LINK",
+  "callbackUrl": null,
+  "expirationDate": 2,
+  "locale": "UK",
+  "operationType": "0"
+}

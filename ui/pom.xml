@@ -28,9 +28,9 @@
       <groupId>com.codeborne</groupId>
       <artifactId>selenide</artifactId>
     </dependency>
-    <dependency>
-      <groupId>org.seleniumhq.selenium</groupId>
-      <artifactId>selenium-java</artifactId>
-    </dependency>
+      <dependency>
+          <groupId>org.testng</groupId>
+          <artifactId>testng</artifactId>
+      </dependency>
   </dependencies>
 </project>

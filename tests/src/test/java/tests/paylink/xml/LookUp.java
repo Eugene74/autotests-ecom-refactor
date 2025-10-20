@@ -5,6 +5,8 @@ import org.testng.annotations.Test;
 import org.w3c.dom.Document;
 import tests.BaseTest;
 
+import static com.ecom.core.config.CardConfig.cardVISA;
+import static com.ecom.core.config.EnvData.*;
 import static com.ecom.db.JDBCMethods.getTranIdByOrder;
 import static com.ecom.db.JDBCMethods.getValueFromTRAN;
 import static com.ecom.tests.support.DocumentTools.*;
@@ -17,7 +19,7 @@ public class LookUp extends BaseTest {
     @Test
     public void visaLookUp() {
 
-        Document requestDoc = paymentAmount(cardVISA, "0", "mc lookup", merchantIDLook, terminalIDLook);
+        Document requestDoc = paymentAmount(cardVISA, "0", "mc lookup", MERCHANT_ID_LOOK, TERMINAL_ID_LOOK);
         Document responseDoc = sendRequest(URL, requestDoc);
 
         System.out.println("--PAYMENT--\nRequest:\n" + printRequest(requestDoc));

@@ -10,6 +10,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 import com.ecom.ui.common.BasePage;
 
+import static com.ecom.core.config.EnvData.LOGIN;
+import static com.ecom.core.config.EnvData.PASSWORD;
 import static java.lang.Thread.sleep;
 
 public class MainMerchantPage extends BasePage {
@@ -187,8 +189,8 @@ public class MainMerchantPage extends BasePage {
 
     public void loginInGo(String url) {
         getDriver().get(url);
-        username.sendKeys(login);
-        pass.sendKeys(password);
+        username.sendKeys(LOGIN);
+        pass.sendKeys(PASSWORD);
         btn.click();
     }
 
@@ -196,8 +198,8 @@ public class MainMerchantPage extends BasePage {
         getDriver().get(url);
         langRBI.click();
         sleep(1000);
-        username.sendKeys(login);
-        pass.sendKeys(password);
+        username.sendKeys(LOGIN);
+        pass.sendKeys(PASSWORD);
         btn.click();
         Waiters.sleep(500);
     }
@@ -207,8 +209,8 @@ public class MainMerchantPage extends BasePage {
         Select language = new Select(langRBA);
         language.selectByVisibleText("English");
         Waiters.appearElement(getDriver(), username);
-        username.sendKeys(login);
-        pass.sendKeys(password);
+        username.sendKeys(LOGIN);
+        pass.sendKeys(PASSWORD);
         btnBlock.click();
         Waiters.sleep(500);
     }
@@ -218,8 +220,8 @@ public class MainMerchantPage extends BasePage {
         langRBAL.click();
         english.click();
         sleep(1000);
-        username.sendKeys(login);
-        pass.sendKeys(password);
+        username.sendKeys(LOGIN);
+        pass.sendKeys(PASSWORD);
         btnSubmit.click();
         Waiters.sleep(500);
     }
@@ -229,8 +231,8 @@ public class MainMerchantPage extends BasePage {
         langRBAL.click();
         english.click();
         sleep(1000);
-        username.sendKeys(login);
-        pass.sendKeys(password);
+        username.sendKeys(LOGIN);
+        pass.sendKeys(PASSWORD);
         btnSubmitRBKO.click();
         Waiters.sleep(500);
     }
@@ -240,8 +242,8 @@ public class MainMerchantPage extends BasePage {
         langRBAL.click();
 //        english.click();
         sleep(1000);
-        username.sendKeys(login);
-        pass.sendKeys(password);
+        username.sendKeys(LOGIN);
+        pass.sendKeys(PASSWORD);
         btnSubmitRBKO.click();
         Waiters.sleep(500);
     }
@@ -251,8 +253,8 @@ public class MainMerchantPage extends BasePage {
       //  langRBAL.click();
 //        english.click();
         sleep(1000);
-        username.sendKeys(login);
-        pass.sendKeys(password);
+        username.sendKeys(LOGIN);
+        pass.sendKeys(PASSWORD);
         btnSubmitRBBH.click();
         Waiters.sleep(500);
     }
@@ -264,8 +266,8 @@ public class MainMerchantPage extends BasePage {
         langRBAL.click();
         english.click();
         sleep(1000);
-        username.sendKeys(login);
-        pass.sendKeys(password);
+        username.sendKeys(LOGIN);
+        pass.sendKeys(PASSWORD);
         btnSubmitRBKO.click();
         Waiters.sleep(500);
     }

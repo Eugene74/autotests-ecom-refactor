@@ -7,6 +7,9 @@ import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import com.ecom.ui.common.BasePage;
 
+import static com.ecom.core.config.EnvData.LOGIN;
+import static com.ecom.core.config.EnvData.PASSWORD;
+
 public class LoginAdminPage extends BasePage {
     public LoginAdminPage(WebDriver driver) { super(driver); }
 
@@ -49,40 +52,40 @@ public class LoginAdminPage extends BasePage {
 
     public void loginIn(String url) {
         getDriver().get(url);
-        username.sendKeys(login);
-        pass.sendKeys(password);
+        username.sendKeys(LOGIN);
+        pass.sendKeys(PASSWORD);
         btn.click();
         Waiters.sleep(500);
     }
 
     public void loginInRBA(String url) {
         getDriver().get(url);
-        username.sendKeys(login);
-        pass.sendKeys(password);
+        username.sendKeys(LOGIN);
+        pass.sendKeys(PASSWORD);
         btnRBA.click();
         Waiters.sleep(500);
     }
 
     public void loginInRBAL(String url) {
         getDriver().get(url);
-        username.sendKeys(login);
-        pass.sendKeys(password);
+        username.sendKeys(LOGIN);
+        pass.sendKeys(PASSWORD);
         btnRBAL.click();
         Waiters.sleep(500);
     }
 
     public void loginInRBBG(String url) {
         getDriver().get(url);
-        username.sendKeys(login);
-        pass.sendKeys(password);
+        username.sendKeys(LOGIN);
+        pass.sendKeys(PASSWORD);
         btnRBBG.click();
         Waiters.sleep(500);
     }
 
     public void loginInKBC(String url) {
         getDriver().get(url);
-        username.sendKeys(login);
-        pass.sendKeys(password);
+        username.sendKeys(LOGIN);
+        pass.sendKeys(PASSWORD);
         btnRBBG.click();
         Waiters.sleep(500);
     }
@@ -90,24 +93,24 @@ public class LoginAdminPage extends BasePage {
 
     public void loginInRBBH(String url) {
         getDriver().get(url);
-        username.sendKeys(login);
-        pass.sendKeys(password);
+        username.sendKeys(LOGIN);
+        pass.sendKeys(PASSWORD);
         btnRBBH.click();
         Waiters.sleep(500);
     }
 
     public void loginInRBKO(String url) {
         getDriver().get(url);
-        username.sendKeys(login);
-        pass.sendKeys(password);
+        username.sendKeys(LOGIN);
+        pass.sendKeys(PASSWORD);
         btnRBKO.click();
         Waiters.sleep(500);
     }
 
     public void loginInRBRS(String url) {
         getDriver().get(url);
-        username.sendKeys(login);
-        pass.sendKeys(password);
+        username.sendKeys(LOGIN);
+        pass.sendKeys(PASSWORD);
         btnRBRS.click();
         Waiters.sleep(500);
     }

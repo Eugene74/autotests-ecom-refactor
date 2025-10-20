@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TransactionRequest>
+    <MerchantId>1111127</MerchantId>
+    <TerminalId>E1111127</TerminalId>
+    <TrackingId>{track_id}</TrackingId>
+    <Amount>
+        <Value>${amount}</Value>
+        <CurrencyCode>980</CurrencyCode>
+        <Surcharge>10</Surcharge>
+    </Amount>
+    <Funding>
+        <CVV2>${cvv}</CVV2>
+        <CardInfo>
+            <CardNumber>${card_num}</CardNumber>
+            <ExpYear>${year}</ExpYear>
+            <ExpMonth>${month}</ExpMonth>
+        </CardInfo>
+        <SenderInfo>
+            <Name>Sender Name</Name>
+            <Address>
+                <Zip>02002</Zip>
+                <Country>AUS</Country>
+                <City>Pert</City>
+                <Street>Riverside Dr</Street>
+            </Address>
+        </SenderInfo>
+    </Funding>
+</TransactionRequest>

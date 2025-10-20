@@ -6,14 +6,16 @@ package tests.paylink.api.onboarding;
 
 import tests.BaseTest;
 
+import static com.ecom.core.config.EnvData.URL_TOMEE;
+
 public class BaseTestOnboarding extends BaseTest {
 
     /** URLs */
-    protected static String urlGetMerchant = envProperties.getProperty("URLtomee") + "/go/merchants/service";
-    protected static String urlStatusMerchant = envProperties.getProperty("URLtomee") + "/go/merchants/status";
-    protected static String urlCreateMerchant = envProperties.getProperty("URLtomee") + "/go/merchants/service";
-    protected static String urlUpdateMerchant = envProperties.getProperty("URLtomee") + "/go/merchants/service";
-    protected static String urlDeleteMerchant = envProperties.getProperty("URLtomee") + "/go/merchants/service";
+    protected static String urlGetMerchant = URL_TOMEE + "/go/merchants/service";
+    protected static String urlStatusMerchant = URL_TOMEE + "/go/merchants/status";
+    protected static String urlCreateMerchant = URL_TOMEE + "/go/merchants/service";
+    protected static String urlUpdateMerchant = URL_TOMEE + "/go/merchants/service";
+    protected static String urlDeleteMerchant = URL_TOMEE + "/go/merchants/service";
 
     /** templates */
     public static final String XML_TEMPLATES_ONBOARDIND_CREATEMERCHANT_PATH = "template/xml/api/onboarding/createMerchant.xml";

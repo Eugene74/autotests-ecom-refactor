@@ -2,7 +2,7 @@
  * @author semyvolos_h
  * @date 8/31/2023 2:59 PM
  */
-package methods;
+package com.ecom.tests.support;
 import org.w3c.dom.Document;
 import tests.paylink.api.stoplist.BaseTestStoplist;
 import static com.ecom.tests.support.DocumentTools.*;

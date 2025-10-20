@@ -5,7 +5,7 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import tests.BaseRedirect;
-
+import static com.ecom.core.config.EnvData.*;
 import static com.ecom.db.JDBCMethods.setMerchantAtt;
 import static com.ecom.db.JDBCMethods.setPropertyURLs;
 import static com.ecom.api.type.Attributes.MERCHANT_INVOICING_URL;
@@ -39,7 +39,7 @@ public class LoginSuccess extends BaseRedirect {
         Assert.assertFalse(profile_link.isEmpty(), "Profile link is empty");
 
         // Ожидаемый шаблон URL (нечувствительный к регистру)
-        String expectedUrlPattern = "(?i)" + URLmt + "/dashboard/paylink-transactions\\?.*";
+        String expectedUrlPattern = "(?i)" + URL_TOMCAT + "/dashboard/paylink-transactions\\?.*";
         long timeout = 10_000; // 10 seconds
         long startTime = System.currentTimeMillis();
         // Логирование ожидаемого шаблона

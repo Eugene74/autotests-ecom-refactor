@@ -1,0 +1,16 @@
+<ECommerceConnect xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:noNamespaceSchemaLocation="https://secure.upc.ua/go/pub/schema/xmlpay-1.9.xsd">
+    <EMV3DSRequest id="12">
+        <MerchantID>123456789012345</MerchantID>
+        <TerminalID>E7882727</TerminalID>
+        <AuthRequest>
+            <emv3DSVersion>2</emv3DSVersion>
+            <AuthEMV3DSv2Request>
+                <EMV3DSv2Auth>
+                    <emv3DSTransID>${transID}</emv3DSTransID>
+                    <emv3DSServerTransID>${serverTransID}</emv3DSServerTransID>
+                </EMV3DSv2Auth>
+            </AuthEMV3DSv2Request>
+        </AuthRequest>
+    </EMV3DSRequest>
+</ECommerceConnect>

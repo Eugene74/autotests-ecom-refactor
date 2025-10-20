@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ECommerceConnect xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:noNamespaceSchemaLocation="https://secure.upc.ua/go/pub/schema/xmlpay-1.9.xsd">
+    <Message id="${__counter(FALSE)}" version="1.0">
+        <XMLMPIRequest>
+            <MerchantID>${merchId}</MerchantID>
+            <TerminalID>${termId}</TerminalID>
+            <MPIRequest>
+                <MPIEnrolRequest>
+                    <CardNum>${card_num}</CardNum>
+                    <ExpYear>${year}</ExpYear>
+                    <ExpMonth>${month}</ExpMonth>
+                    <TotalAmount>100</TotalAmount>
+                    <Currency>980</Currency>
+                    <Description>MPI TEST</Description>
+                    <DeviceCategory>0</DeviceCategory>
+                </MPIEnrolRequest>
+            </MPIRequest>
+        </XMLMPIRequest>
+    </Message>
+</ECommerceConnect>

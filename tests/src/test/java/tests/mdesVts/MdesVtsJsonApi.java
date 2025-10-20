@@ -1,5 +1,7 @@
 package tests.mdesVts;
-
+import static com.ecom.core.config.CardConfig.cardMdes;
+import static com.ecom.core.config.CardConfig.cardVts;
+import static com.ecom.core.config.EnvData.*;
 import com.ecom.tests.support.MdesVtsRequests;
 import org.apache.http.HttpResponse;
 import org.json.JSONObject;
@@ -14,6 +16,7 @@ import tests.BaseTest;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.ecom.core.xml.TemplateCatalog.*;
 import static com.ecom.db.JDBCMethods.setMerchantAtt;
 import static org.testng.Assert.*;
 import static com.ecom.api.type.Attributes.*;
@@ -99,7 +102,7 @@ public class MdesVtsJsonApi extends BaseAPITest {
         }
         MdesVtsRequests requests = new MdesVtsRequests();
         String jsonData = requests.prepareTokenActionRequest(
-                BaseTest.JSON_TEMPLATES_REFRESH_TOKEN_MDES_VTS,
+                JSON_TEMPLATES_REFRESH_TOKEN_MDES_VTS,
                 trackingId,
                 tokenID,
                 merchantID_aval5,

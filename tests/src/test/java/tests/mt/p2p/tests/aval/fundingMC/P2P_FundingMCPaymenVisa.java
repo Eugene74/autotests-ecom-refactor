@@ -1,25 +1,32 @@
 package tests.mt.p2p.tests.aval.fundingMC;
 
-import com.ecom.tests.support.MoneyTransferPageUtils;
 import com.ecom.core.config.PropertiesManager;
+import com.ecom.tests.support.MoneyTransferPageUtils;
+import com.ecom.ui.common.BasePage;
+import com.ecom.ui.mt.p2p.pages.MoneyTransferPage;
+import com.ecom.ui.mt.p2p.pages.MoneyTransferPage2;
+import com.ecom.ui.mt.p2p.pages.MoneyTransferPage3;
+import com.ecom.ui.mt.p2p.pages.MoneyTransferPage4;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import tests.BaseRedirect;
-import com.ecom.ui.mt.p2p.pages.*;
-import com.ecom.ui.common.BasePage;
-
-import java.util.Properties;
 
 import java.util.List;
+import java.util.Properties;
 
-import static com.ecom.db.JDBCMethods.*;
+import static com.ecom.api.type.Attributes.ALLOW_CROSS_BORDER;
+import static com.ecom.core.config.CardConfig.cardMCmt;
+import static com.ecom.core.config.CardConfig.cardVISArec;
+import static com.ecom.core.config.EnvData.ENVIRONMENT;
+import static com.ecom.db.JDBCMethods.getLastRequestId;
+import static com.ecom.db.JDBCMethods.getRrnFromMTTran;
+import static com.ecom.db.JDBCMethods.getValueFromMTTran;
+import static com.ecom.db.JDBCMethods.setMerchantAtt;
 import static com.ecom.tests.support.DocumentTools.verifiedDataMTFromDBFunding;
 import static com.ecom.tests.support.DocumentTools.verifiedDataMTFromDBPayment;
-import static com.ecom.api.type.Attributes.ALLOW_CROSS_BORDER;
-import static com.ecom.api.type.Attributes.ALLOW_PAYMENT_WITHOUT_3DS;
 
 public class P2P_FundingMCPaymenVisa extends BaseRedirect {
 
@@ -33,10 +40,10 @@ public class P2P_FundingMCPaymenVisa extends BaseRedirect {
     @BeforeClass
     public void setStatusAttr() {
         Properties properties = PropertiesManager.getInstance().getEnvProperties();
-        idAVAL1 = properties.getProperty("idAVAL1." + environment);
-        idAVAL2 = properties.getProperty("idAVAL2." + environment);
-        idAVAL3 = properties.getProperty("idAVAL3." + environment);
-        idAVAL4 = properties.getProperty("idAVAL4." + environment);
+        idAVAL1 = properties.getProperty("idAVAL1." + ENVIRONMENT);
+        idAVAL2 = properties.getProperty("idAVAL2." + ENVIRONMENT);
+        idAVAL3 = properties.getProperty("idAVAL3." + ENVIRONMENT);
+        idAVAL4 = properties.getProperty("idAVAL4." + ENVIRONMENT);
 
         setMerchantAtt(Integer.parseInt(idAVAL3), ALLOW_CROSS_BORDER, "false");
         setMerchantAtt(Integer.parseInt(idAVAL4), ALLOW_CROSS_BORDER, "false");

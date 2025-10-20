@@ -1,0 +1,21 @@
+<VisaAliasRequest>
+    <MerchantId>${Merchant2ID}</MerchantId>
+    <TerminalId>${Terminal2ID}</TerminalId>
+    <TrackingId>${TrackingId}</TrackingId>
+    <ResolveAlias>
+        <aliasValue>16502000116</aliasValue>
+        <transactionDetails>
+            <currencyCode>USD</currencyCode>
+        </transactionDetails>
+        <aliasType>PHONE</aliasType>
+        <filters>
+            <filter>
+                <field>DIRECTORY_NAME</field>
+                <value>STANDARD_VISA</value>
+            </filter>
+        </filters>
+        <userDetails>
+            <userName>Miller's Shop</userName>
+        </userDetails>
+    </ResolveAlias>
+</VisaAliasRequest>

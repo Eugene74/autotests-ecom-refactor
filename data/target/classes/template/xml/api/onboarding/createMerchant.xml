@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ECommerceConnect xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:noNamespaceSchemaLocation="https://secure.upc.ua/go/pub/schema/xmlpay-2.16.xsd" xmlns:xenc="http://www.w3.org/2001/04/xmlenc#" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://secure.upc.ua/go/pub/schema/xmlpay-2.16.xsd">
+    <Message id="${__counter(FALSE)}" version="1.0">
+        <XMLCreateMerchantRequest xmlns:xd="http://www.w3.org/2000/09/xmldsig#">
+            <MerchantID>${MerchantID}</MerchantID>
+            <TerminalID>${TerminalID}</TerminalID>
+            <AccountLogin>${AccountLogin}</AccountLogin>
+            <CreateMerchantRequest>
+                <MerchantID>${ReqMerchantID}</MerchantID>
+                <TerminalID>${ReqTerminalID}</TerminalID>
+                <Mcc>${Mcc}</Mcc>
+                <AddressISO>
+                    <Country>${Country}</Country>
+                    <City>${City}</City>
+                    <Street>${Street}</Street>
+                </AddressISO>
+                <Name>${Name}</Name>
+                <BankCode>${BankCode}</BankCode>
+                <Currency>${currency}</Currency>
+                <siteUrl>${siteUrl}</siteUrl>
+                <MerchantAdditionalData>
+                    <phone>${phone}</phone>
+                    <contact>${contact}</contact>
+                    <fax>${fax}</fax>
+                    <email>${email}</email>
+                    <zip>${zip}</zip>
+                    <remark>${remark}</remark>
+                    <notify_url>${notify_url}</notify_url>
+                    <success_url>${success_url}</success_url>
+                    <failure_url>${failure_url}</failure_url>
+                    <closeday_hour>${closeday_hour}</closeday_hour>
+                    <ipn>${ipn}</ipn>
+                    <terminal_type_id>${terminal_type_id}</terminal_type_id>
+                    <identification>${identification}</identification>
+                    <timeZone>${timeZone}</timeZone>
+                    <sms>${sms}</sms>
+                    <viber>${viber}</viber>
+                    <facebook>${facebook}</facebook>
+                </MerchantAdditionalData>
+            </CreateMerchantRequest>
+        </XMLCreateMerchantRequest>
+    </Message>
+</ECommerceConnect>

@@ -1,5 +1,6 @@
 package com.ecom.tests.support;
 
+import com.ecom.ui.driver.WebDriverHolder;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;

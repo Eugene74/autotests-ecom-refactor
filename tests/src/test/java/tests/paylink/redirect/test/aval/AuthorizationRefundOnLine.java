@@ -8,6 +8,9 @@ import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import tests.BaseRedirect;
 
+import static com.ecom.core.config.CardConfig.cardMC;
+import static com.ecom.core.config.CardConfig.cardVISA;
+import static com.ecom.core.config.EnvData.*;
 import static com.ecom.db.JDBCMethods.*;
 import static com.ecom.tests.support.DocumentTools.verifiedDataFromDB;
 import static com.ecom.tests.support.PaylinkRequests.paylinkCloseDay;

@@ -7,6 +7,14 @@ import org.testng.asserts.SoftAssert;
 import org.w3c.dom.Document;
 import tests.mt.BaseTestMoneyTransfer;
 
+import static com.ecom.core.config.CardConfig.cardMC;
+import static com.ecom.core.config.CardConfig.cardMCardfr;
+import static com.ecom.core.config.CardConfig.cardMCfr;
+import static com.ecom.core.config.CardConfig.cardMCmt;
+import static com.ecom.core.config.EnvData.URL;
+import static com.ecom.core.config.EnvData.id_AVAL;
+import static com.ecom.core.config.EnvData.merchant_AVAL;
+import static com.ecom.core.config.EnvData.terminal_AVAL;
 import static com.ecom.db.JDBCMethods.*;
 import static com.ecom.tests.support.DocumentTools.*;
 import static com.ecom.tests.support.MoneyTransferRequests.*;

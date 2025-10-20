@@ -210,7 +210,7 @@ public class CrossBorder {
     }
 
     private void getMtRequestData() throws Exception {
-        try (Connection connection = jdbc.JDBCConnection.getDBConnection();
+        try (Connection connection = JDBCConnection.getDBConnection();
              PreparedStatement statement = connection.prepareStatement(
                      "SELECT MT_REQUESTS_ID, MERCHANT_CODE, STATUS_CODE, STATUS, TRACKING_ID " +
                              "FROM (SELECT * FROM MT_REQUESTS ORDER BY CREATED DESC) WHERE ROWNUM = 1")) {

@@ -9,6 +9,10 @@ import tests.BaseTest;
 import com.ecom.tests.support.RedirectRequest;
 
 
+import static com.ecom.core.config.CardConfig.cardVisaRed;
+import static com.ecom.core.config.EnvData.URLInvocing;
+import static com.ecom.core.config.EnvData.URL_MERCH;
+import static com.ecom.core.config.EnvData.id_AVAL;
 import static com.ecom.db.JDBCMethods.getTranIdByOrder;
 import static com.ecom.db.JDBCMethods.setMerchantAtt;
 import static com.ecom.tests.support.DocumentTools.verifiedDataFromDB;

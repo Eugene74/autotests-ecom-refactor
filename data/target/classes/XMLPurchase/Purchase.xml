@@ -1,0 +1,31 @@
+<ECommerceConnect xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:noNamespaceSchemaLocation="https://secure.upc.ua/go/pub/schema/xmlpay-2.3.xsd" xmlns:xenc="http://www.w3.org/2001/04/xmlenc#" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://secure.upc.ua/go/pub/schema/xmlpay-2.3.xsd">
+    <Message id="${__counter(FALSE)}" version="1.0">
+        <XMLPayRequest>
+            <RequestData>
+                <MerchantID>${MerchantID}</MerchantID>
+                <TerminalID>${TerminalID}</TerminalID>
+                <Transactions>
+                    <Transaction>
+                        <Authorization>
+                            <PayData>
+                                <Invoice>
+                                    <OrderID>${OrderID}</OrderID>
+                                    <Date>241115202020</Date>
+                                    <TotalAmount>5000</TotalAmount>
+                                    <Currency>980</Currency>
+                                    <Description>t0</Description>
+                                </Invoice>
+                                <Card>
+                                    <CardNum>${CardNum}</CardNum>
+                                    <ExpYear>${ExpYear}</ExpYear>
+                                    <ExpMonth>${ExpMonth}</ExpMonth>
+                                    <CVNum>${CVNum}</CVNum>
+                                </Card>
+                            </PayData>
+                        </Authorization>
+                    </Transaction>
+                </Transactions>
+            </RequestData>
+        </XMLPayRequest>
+    </Message>
+</ECommerceConnect>

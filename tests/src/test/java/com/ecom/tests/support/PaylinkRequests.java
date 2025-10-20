@@ -5,6 +5,7 @@ import com.ecom.ui.paylink.admin.flow.CloseDayPaylinkFlow;
 import org.w3c.dom.Document;
 import tests.BaseTest;
 
+import static com.ecom.core.xml.TemplateCatalog.*;
 import static com.ecom.tests.support.DocumentTools.*;
 
 public class PaylinkRequests extends BaseTest{
@@ -20,26 +21,26 @@ public class PaylinkRequests extends BaseTest{
     }
 
     public static Document payment(String[] card, String description, String merch, String term){
-        Document newRequestDoc = DocumentTools.readXMLFile(BaseTest.XML_TEMPLATES_PAY_REQ_PATH);
+        Document newRequestDoc = DocumentTools.readXMLFile(XML_TEMPLATES_PAY_REQ_PATH);
         fillRequestData(newRequestDoc, card, merch, term, description);
         return newRequestDoc;
     }
 
     public static Document paymentToken(String[] token, String description, String merch, String term){
-        Document newRequestDoc = DocumentTools.readXMLFile(BaseTest.XML_TEMPLATES_TOKEN_REQ_PATH);
+        Document newRequestDoc = DocumentTools.readXMLFile(XML_TEMPLATES_TOKEN_REQ_PATH);
         fillTokenRequestData(newRequestDoc, token, merch, term, description);
         return newRequestDoc;
     }
 
 
     public static Document paymentBorica(String[] card, String description, String merch, String term, String amount){
-        Document newRequestDoc = DocumentTools.readXMLFile(BaseTest.XML_TEMPLATES_PAY_REQ_PATH);
+        Document newRequestDoc = DocumentTools.readXMLFile(XML_TEMPLATES_PAY_REQ_PATH);
         fillRequestDataBorica(newRequestDoc, card, merch, term, description, amount);
         return newRequestDoc;
     }
 
     public static Document paymentAmount(String[] card, String amount, String description, String merch, String term){
-        Document newRequestDoc = DocumentTools.readXMLFile(BaseTest.XML_TEMPLATES_PAY_REQ_PATH);
+        Document newRequestDoc = DocumentTools.readXMLFile(XML_TEMPLATES_PAY_REQ_PATH);
         fillRequestDataAmount(newRequestDoc, card, merch, term, description, amount);
         return newRequestDoc;
     }
@@ -51,13 +52,13 @@ public class PaylinkRequests extends BaseTest{
     }
 
     public static Document getInstPlansRequest(String[] card, String amount, String merch, String term){
-        Document newRequestDoc = DocumentTools.readXMLFile(BaseTest.XML_TEMPLATES_GET_INSTALLMENT_PATH);
+        Document newRequestDoc = DocumentTools.readXMLFile(XML_TEMPLATES_GET_INSTALLMENT_PATH);
         fillGetInstPlanRequest(newRequestDoc, card, amount, merch, term);
         return newRequestDoc;
     }
     
     public static Document paymentLocalInstallment(String[] card, String description, String merch, String term, String subsequentAmount,String instPlanParamId, String numberOfPay, String feeMonth, String interestRate, String checkValue){//, String [] insData){
-        Document newRequestDoc = DocumentTools.readXMLFile(BaseTest.XML_TEMPLATES_LOCAL_INSTALLMENT_PATH);
+        Document newRequestDoc = DocumentTools.readXMLFile(XML_TEMPLATES_LOCAL_INSTALLMENT_PATH);
         assert newRequestDoc != null;
         fillRequestData(newRequestDoc, card, merch, term, description);
         newRequestDoc.getElementsByTagName("TotalAmount").item(0).setTextContent(subsequentAmount);
@@ -116,13 +117,13 @@ public class PaylinkRequests extends BaseTest{
     }
 
     public static Document paymentPostAuth(Document requestPay, Document responsePay, String description, double delta){
-        Document newRequestDoc = DocumentTools.readXMLFile(BaseTest.XML_TEMPLATES_REV_REQ_PATH);
+        Document newRequestDoc = DocumentTools.readXMLFile(XML_TEMPLATES_REV_REQ_PATH);
         fillPostRequest(newRequestDoc, requestPay, responsePay, description, delta);
         return newRequestDoc;
     }
 
     public static Document paymentInstallChoice(Document requestPay, Document responsePay){
-        Document newRequestDoc = DocumentTools.readXMLFile(BaseTest.XML_TEMPLATES_INSTALLMENT_CHOOSE_PATH);
+        Document newRequestDoc = DocumentTools.readXMLFile(XML_TEMPLATES_INSTALLMENT_CHOOSE_PATH);
         assert newRequestDoc != null;
         fillInvoice(newRequestDoc, requestPay);
         fillFromResponseData(newRequestDoc,responsePay);
@@ -130,7 +131,7 @@ public class PaylinkRequests extends BaseTest{
     }
 
     public static Document reversal(Document requestPay, Document responsePay, double delta){
-        Document requestRevDoc = DocumentTools.readXMLFile(BaseTest.XML_TEMPLATES_REV_REQ_PATH);
+        Document requestRevDoc = DocumentTools.readXMLFile(XML_TEMPLATES_REV_REQ_PATH);
         fillRequestRefund(requestRevDoc, requestPay, responsePay, delta);
         return requestRevDoc;
     }
@@ -142,13 +143,13 @@ public class PaylinkRequests extends BaseTest{
     }
 
     public static Document enrollRequest(String[] card, String description, String merch, String term){
-        Document newRequestDoc = DocumentTools.readXMLFile(BaseTest.XML_TEMPLATES_MPI_ENROLL_REQ_PATH);
+        Document newRequestDoc = DocumentTools.readXMLFile(XML_TEMPLATES_MPI_ENROLL_REQ_PATH);
         fillRequestMPIData(newRequestDoc, card, merch, term, description);
         return newRequestDoc;
     }
 
     public static Document mpiAuthRequest(String paRes, String merch, String term){
-        Document newRequestDoc = DocumentTools.readXMLFile(BaseTest.XML_TEMPLATES_MPI_AUTH_REQ_PATH);
+        Document newRequestDoc = DocumentTools.readXMLFile(XML_TEMPLATES_MPI_AUTH_REQ_PATH);
         fillMerchant(newRequestDoc, merch, term );
         newRequestDoc.getElementsByTagName("PaRes").item(0).setTextContent(paRes);
         return newRequestDoc;

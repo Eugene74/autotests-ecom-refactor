@@ -1,0 +1,36 @@
+<html>
+ <head></head> 
+ <body> 
+  <form action="https://review-PLD-1046-Update-Tomee-V2-tomee.dev.ecommerce.upc.intranet/rbi/enter" method="post">
+   <input name="Version" type="hidden" value="1"> 
+   <input name="MerchantID" type="hidden" value="380348003010002"> 
+   <input name="TerminalID" type="hidden" value="E1800008"> 
+   <input name="PurchaseTime" type="hidden" value="18012610082100"> 
+   <input name="OrderID" id="order" type="hidden" value="">
+   <input name="Currency" type="hidden" value="348"> <!-- hungary -->
+   <input name="TotalAmount" type="hidden" value="100000"> 
+   <input name="delay" type="hidden" value="1"> 
+   <input name="locale" type="hidden" value="en"> 
+   <input name="PurchaseDesc" type="hidden" value="rbi">
+   <input name="SCAExemption" type="hidden" value="01"> 
+   <input name="Signature" type=""> 
+   <input name="submit" type="submit" onclick="generate()"> 
+  </form> 
+  <script>
+	function getRandomInt(min, max)
+	{
+	  return Math.floor(Math.random() * (max - min + 1)) + min;
+	}
+
+	function generate()
+	{
+	var order = document.getElementById('order');
+	var randNumber = getRandomInt(100000000000, 999999999999);
+	var randAmount = getRandomInt(10, 999)*100;
+	 document.getElementById('order').value=randNumber;
+	 document.getElementsByName('TotalAmount')[0].value=randAmount;
+	}
+
+	</script>  
+ </body>
+</html>

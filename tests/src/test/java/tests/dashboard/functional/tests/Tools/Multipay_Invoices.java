@@ -11,6 +11,10 @@ import tests.BaseRedirect;
 
 import java.util.Random;
 
+import static com.ecom.core.config.CardConfig.cardMCmt;
+import static com.ecom.core.config.EnvData.URLInvocing;
+import static com.ecom.core.config.EnvData.id_AVAL;
+import static com.ecom.core.config.EnvData.id_AVAL4;
 import static com.ecom.db.JDBCMethods.getTranIdByOrder;
 import static com.ecom.db.JDBCMethods.setMerchantAtt;
 import static com.ecom.tests.support.DocumentTools.verifiedDataFromDB;

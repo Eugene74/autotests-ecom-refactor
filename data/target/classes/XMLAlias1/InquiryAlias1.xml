@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VisaAliasRequest>
+    <MerchantId>${MerchantID}</MerchantId>
+    <TerminalId>${TerminalID}</TerminalId>
+    <TrackingId>${RequestID}</TrackingId>
+    <InquiryAlias>
+        <alias>74958881111</alias>
+        <alias>7911123456</alias>
+        <alias>7911123457</alias>
+        <alias>7911123458</alias>
+        <alias>7911123459</alias>
+        <alias>7911123460</alias>
+    </InquiryAlias>
+</VisaAliasRequest>

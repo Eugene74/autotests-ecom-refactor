@@ -12,6 +12,11 @@ import org.testng.annotations.Test;
 import org.w3c.dom.Document;
 import tests.BaseRedirect;
 
+import static com.ecom.core.config.CardConfig.cardMCmta;
+import static com.ecom.core.config.EnvData.URL;
+import static com.ecom.core.config.EnvData.id_AVAL;
+import static com.ecom.core.config.EnvData.merchant_AVAL;
+import static com.ecom.core.config.EnvData.terminal_AVAL;
 import static com.ecom.db.JDBCMethods.getTranIdByOrder;
 import static com.ecom.db.JDBCMethods.getValueFromMTTranFR;
 import static com.ecom.db.JDBCMethods.getTranIdByOrderFR;

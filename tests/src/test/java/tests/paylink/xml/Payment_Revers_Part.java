@@ -10,6 +10,11 @@ import com.ecom.api.type.FieldsNFile;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.ecom.core.config.CardConfig.cardMC07;
+import static com.ecom.core.config.EnvData.URL;
+import static com.ecom.core.config.EnvData.id_AVAL;
+import static com.ecom.core.config.EnvData.merchant_AVAL;
+import static com.ecom.core.config.EnvData.terminal_AVAL;
 import static com.ecom.db.JDBCMethods.*;
 import static com.ecom.tests.support.DocumentTools.*;
 import static com.ecom.tests.support.PaylinkRequests.payment;

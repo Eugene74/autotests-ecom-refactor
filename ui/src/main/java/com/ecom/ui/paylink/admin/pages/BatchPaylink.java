@@ -9,6 +9,8 @@ import com.ecom.ui.common.BasePage;
 
 import java.util.concurrent.TimeUnit;
 
+import static com.ecom.core.config.EnvData.LOGIN;
+import static com.ecom.core.config.EnvData.PASSWORD;
 import static org.openqa.selenium.By.xpath;
 
 public class BatchPaylink extends BasePage {
@@ -55,8 +57,8 @@ public class BatchPaylink extends BasePage {
     private WebElement sendFile;
 
     public void login(String iD) {
-        username.sendKeys(login);
-        pass.sendKeys(password);
+        username.sendKeys(LOGIN);
+        pass.sendKeys(PASSWORD);
         button.click();
     }
 

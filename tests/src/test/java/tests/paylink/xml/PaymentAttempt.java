@@ -8,6 +8,8 @@ import com.ecom.api.type.FieldsNFile;
 
 import java.util.*;
 
+import static com.ecom.core.config.CardConfig.cardMC06;
+import static com.ecom.core.config.EnvData.*;
 import static com.ecom.db.JDBCMethods.getTranIdByOrder;
 import static com.ecom.db.JDBCMethods.getValueFromTRAN;
 import static com.ecom.tests.support.DocumentTools.*;

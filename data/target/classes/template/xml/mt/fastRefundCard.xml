@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<FastRefundRequest>
+    <MerchantId>1077727</MerchantId>
+    <TerminalId>E1077727</TerminalId>
+    <OriginalTranRefund>
+        <AuthorizationRef>
+            <ApprovalCode>648183</ApprovalCode>
+            <RRN>502016421708</RRN>
+        </AuthorizationRef>
+        <RecipientCardNumber>5559490000000015</RecipientCardNumber>
+        <Amount>
+            <Value>5000</Value>
+            <CurrencyCode>980</CurrencyCode>
+        </Amount>
+    </OriginalTranRefund>
+    <Reason>Test_Fast_refund_card</Reason>
+    <TrackingId>12345</TrackingId>
+</FastRefundRequest>

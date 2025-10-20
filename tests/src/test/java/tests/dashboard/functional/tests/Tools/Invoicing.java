@@ -2,23 +2,25 @@ package tests.dashboard.functional.tests.Tools;
 
 import com.ecom.db.JDBCMethods;
 import com.ecom.tests.support.DashboardRequest;
+import com.ecom.ui.dashboard.functional.pages.KafkaEmailsPage;
+import com.ecom.ui.dashboard.functional.pages.ToolsPage;
 import com.ecom.ui.util.Waiters;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import tests.BaseRedirect;
-import com.ecom.ui.dashboard.functional.pages.KafkaEmailsPage;
-import com.ecom.ui.dashboard.functional.pages.ToolsPage;
 
 import java.util.Random;
 import java.util.regex.Pattern;
 
+import static com.ecom.api.type.Attributes.ALLOW_PAYMENT_WITHOUT_3DS;
+import static com.ecom.api.type.Attributes.MERCHANT_INVOICING_URL;
+import static com.ecom.core.config.CardConfig.cardMCmt;
+import static com.ecom.core.config.EnvData.*;
 import static com.ecom.db.JDBCMethods.getTranIdByOrder;
 import static com.ecom.db.JDBCMethods.setMerchantAtt;
 import static com.ecom.tests.support.DocumentTools.verifiedDataFromDB;
-import static com.ecom.api.type.Attributes.ALLOW_PAYMENT_WITHOUT_3DS;
-import static com.ecom.api.type.Attributes.MERCHANT_INVOICING_URL;
 
 public class Invoicing extends BaseRedirect {
     public String url; // Змінено на нестатичну змінну
@@ -106,7 +108,7 @@ public class Invoicing extends BaseRedirect {
         String phone_number = "380" + (int)(Math.random() * 1000000000);
         invoicePopUp.send_sms(phone_number);
         KafkaEmailsPage emailsPage = new KafkaEmailsPage(driver);
-        String source_text = emailsPage.openEmail(phone_number + "@sms.101.sms.upc.smpp", urlmaildev, pipelineName)
+        String source_text = emailsPage.openEmail(phone_number + "@sms.101.sms.upc.smpp", URL_MAIL_DEV, PIPELINE_NAME)
                 .get_source_text();
         String expepectedHeader1 = "Content-Type: text/plain; charset=UTF-8";
         String expepectedHeader2 = "Content-Transfer-Encoding: 7bit";

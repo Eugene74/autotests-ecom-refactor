@@ -6,14 +6,16 @@ package tests.paylink.api.stoplist;
 
 import tests.BaseTest;
 
+import static com.ecom.core.config.EnvData.URL_TOMEE;
+
 public class BaseTestStoplist extends BaseTest {
 
     /** GlobalStopList Endpoints */
-    protected static String urlCreateItem = envProperties.getProperty("URLtomee") + "/go/stop-list/create";
-    protected static String urlGetItem = envProperties.getProperty("URLtomee") + "/go/stop-list/get";
-    protected static String urlFindItem = envProperties.getProperty("URLtomee") + "/go/stop-list/find";
-    protected static String urlUpdateItem = envProperties.getProperty("URLtomee") + "/go/stop-list/update";
-    protected static String urlDeleteItem = envProperties.getProperty("URLtomee") + "/go/stop-list/delete";
+    protected static String urlCreateItem = URL_TOMEE + "/go/stop-list/create";
+    protected static String urlGetItem = URL_TOMEE + "/go/stop-list/get";
+    protected static String urlFindItem = URL_TOMEE + "/go/stop-list/find";
+    protected static String urlUpdateItem = URL_TOMEE + "/go/stop-list/update";
+    protected static String urlDeleteItem = URL_TOMEE + "/go/stop-list/delete";
 
     /** Templates */
     public static final String XML_TEMPLATES_STOPLIST_CREATE_ITEM_PATH = "template/xml/api/stoplist/createItem.xml";

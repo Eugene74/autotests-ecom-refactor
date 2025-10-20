@@ -11,6 +11,9 @@ import tests.BaseRedirect;
 import org.testng.Assert;
 
 
+import static com.ecom.core.config.CardConfig.cardMCmt;
+import static com.ecom.core.config.CardConfig.cardVISAmtRev;
+import static com.ecom.core.config.EnvData.*;
 import static com.ecom.db.JDBCMethods.getTranIdByOrder;
 import static com.ecom.db.JDBCMethods.setMerchantAtt;
 import static com.ecom.tests.support.DocumentTools.*;
@@ -25,7 +28,6 @@ public class StopList extends BaseRedirect {
     public static String rrn;
     public static String approval_code;
     public static int tranId;
-    protected static String URLmt = envProperties.getProperty("URLtomcat")+ "/mt/tran";
 
     @BeforeClass
     public void setParam() {
@@ -92,7 +94,7 @@ public class StopList extends BaseRedirect {
     @Test(dependsOnMethods = "putCardToStopList")
     public void moneyTransfeAfterPuttingToStopList(){
         Document requestDoc = MoneyTransferRequests.transferCardToCard(cardMCmt, cardVISAmtRev, merchant_AVAL, terminal_AVAL);
-        Document responseDoc = RequestSender.sendRequest(URLmt, requestDoc);
+        Document responseDoc = RequestSender.sendRequest(URL_MT_Tran, requestDoc);
 
         //System.out.println("--TRANSFER--\nRequest:\n" + printRequestMT(requestDoc));
         //System.out.println("Response:\n" + printResponseMT(responseDoc));

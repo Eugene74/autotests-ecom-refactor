@@ -39,7 +39,7 @@ public final class XmlUtils {
   public static Document parse(InputStream inputStream) {
     try {
       return newDocumentBuilder().parse(inputStream);
-    } catch (SAXException | IOException exception) {
+    } catch (SAXException | IOException | ParserConfigurationException exception) {
       throw new XmlProcessingException("Unable to parse XML document", exception);
     }
   }

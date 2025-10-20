@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<TransactionRequest>
+<MerchantId>${Merchant3ID}</MerchantId>
+<TerminalId>${Terminal3ID}</TerminalId>
+<TrackingId>${OrderID}</TrackingId>
+<Amount>
+    <Value>400</Value>
+    <CurrencyCode>980</CurrencyCode>
+    <Surcharge>0</Surcharge>
+</Amount>
+<Funding>
+    <CardInfo>
+        <!-- <CardNumber>5409530000000010</CardNumber> -->
+        <CardNumber>${CardNum}</CardNumber>
+        <ExpYear>${ExpYear}</ExpYear>
+        <ExpMonth>${ExpMonth}</ExpMonth>
+    </CardInfo>
+    <SenderInfo>
+        <Name>Yarik sender</Name>
+    </SenderInfo>
+    <PARes>
+        <Status>Y</Status>
+        <CAVV>AGMBAjESZCRgAAAABxJkAAAAAAA=</CAVV>
+        <ECI>05</ECI>
+        <EMV3ds>
+            <DServerTransID>5ec68480-265e-48fa-b8b2-94f66b1e7259</DServerTransID>
+        </EMV3ds>
+    </PARes>
+</Funding>
+<Payment>
+    <!-- <RecipientCardNumber>5559490000000023</RecipientCardNumber>  -->
+    <RecipientCardNumber>5559490000000007</RecipientCardNumber>
+    <PaymentInfo>
+        <Name>Yarik payment</Name>
+        <Address>
+            <Zip>1111167</Zip>
+            <Country>UKR</Country>
+            <City>Kyiv recipient</City>
+            <Street>recipient street</Street>
+        </Address>
+    </PaymentInfo>
+    <DateOfBirth>11111980</DateOfBirth>
+    <Message>payment message</Message>
+    <SenderPhoneNumber>1122333</SenderPhoneNumber>
+    <SenderAccountNumber>26385001215533</SenderAccountNumber>
+    <BusinessApplicationIdentifier>57</BusinessApplicationIdentifier>
+    <AdditionalData>
+        <PhoneNumber>0635555555</PhoneNumber>
+        <DateOfBirth>15061995</DateOfBirth>
+        <AccountNumber>007</AccountNumber>
+        <IdentificationType>01</IdentificationType>
+        <IdentificationNumber>1234567555</IdentificationNumber>
+        <IdentificationCountryCode>UA</IdentificationCountryCode>
+    </AdditionalData>
+</Payment>
+</TransactionRequest>

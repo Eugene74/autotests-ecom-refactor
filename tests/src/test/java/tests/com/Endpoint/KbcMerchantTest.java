@@ -10,16 +10,16 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import java.io.File;
-import java.io.IOException;
 import java.time.Duration;
 
-
-import static org.testng.Assert.*;
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertNotNull;
+import static org.testng.Assert.assertTrue;
 
 public class KbcMerchantTest extends BaseTest {
 
     @BeforeClass
-    public void setup() throws IOException {
+    public void setup() {
         super.setup();
         driver.get(baseUrl + "/kbc/merchant");
     }

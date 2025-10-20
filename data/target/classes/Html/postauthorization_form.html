@@ -1,0 +1,18 @@
+<html>
+<head></head>
+<body>
+<form action="${base.url}/go/capture" method="post">
+    <input type='hidden' name='MerchantID' value='${MerchantID}' />
+    <input type='hidden' name='TerminalID' value='${TerminalID}' />
+    <input type='hidden' name='OrderID' value='${OrderID}' />
+    <input type='hidden' name='Currency' value='980' />
+    <input type='hidden' name='TotalAmount' value='777' />
+    <input type='hidden' name='PurchaseTime' value='241111142323-0700' />
+    <input type='hidden' name='ApprovalCode' value='${ApprovalCode}' />
+    <input type='hidden' name='RRN' value='${RRN}' />
+    <input type='hidden' name='PostauthorizationAmount' value='777' />
+    <input type='hidden' name='Signature' value='45F345Fafde4455445Gvb550' />
+    <input name="submit" type="submit" id="submit" onclick="generate()">
+</form>
+</body>
+</html>

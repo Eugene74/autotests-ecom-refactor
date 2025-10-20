@@ -1,0 +1,27 @@
+<GetBinInfoRequest>
+    <MerchantId>${MerchantID}</MerchantId>
+    <TerminalId>${TerminalID}</TerminalId>
+    <TrackingId>${RequestID}</TrackingId>
+    <GetBinInfo>
+        <Bin>2229330</Bin>
+    </GetBinInfo>
+    <Signature>
+        <SignedInfo>
+            <CanonicalizationMethod/>
+            <SignatureMethod/>
+            <Reference URI="">
+                <Transforms>
+                    <Transform/>
+                </Transforms>
+                <DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/>
+                <DigestValue>bdJTaGWcCu14aflcgA8bSK+gKdA=</DigestValue>
+            </Reference>
+        </SignedInfo>
+        <SignatureValue>aBOIneD1sIa6AII57BJ5LQqJSP18ix1T7JFQ9zF1noFoX7RicX7tvq9N99OX34h7nHYC3BM8JUv1
+            vghAJx4oXF9/Wlkr+hXCMprC+GCKSaz6z9fQV9DfjedUtZqPDC76mcDnOhLInzBaRWlpxmymGlkR
+            8Ru2DwZaPfxOjrgDAaxZiwnzk/sry4j4q1s0UlPK27q0xodY0JdSk+aAEvHqVYfodnibplYLGJ
+            eQqnhMCRdy4njwHVW15JXRVpfy1UgTm7rBk2LT9R44EnyTv8JXcSfJLareaFramJOtMDE61/TPQ3
+            ubTfnvijyFTtMqYCfMUUhVdLu+4PGLyG+W26iw==
+        </SignatureValue>
+    </Signature>
+</GetBinInfoRequest>

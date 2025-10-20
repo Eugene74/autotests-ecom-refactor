@@ -1,12 +1,7 @@
 package tests.com.Bin;
 
-import tests.com.Endpoint.BasePropertiesTest;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.StringEntity;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClients;
 import org.testng.annotations.BeforeClass;
+import tests.com.Endpoint.BasePropertiesTest;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -21,7 +16,7 @@ public class BaseTestBinInfo extends BasePropertiesTest {
 
     @BeforeClass
     @Override
-    public void setup() throws IOException {
+    public void setup() {
         super.setup();
         URLBinInfo = properties.getProperty("URLtomcat") + "/infopoint/api/v1/getBinInfo";
     }

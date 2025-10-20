@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+ <head> 
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
+  <meta http-equiv="pragma" content="no-cache"> 
+  <meta http-equiv="Cache-Control" content="no-cache"> 
+  <meta http-equiv="Expiration" content="0"> 
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+  <link rel="stylesheet" href="../go/style/def/style.css?v=2.7.34.cert" type="text/css"> 
+  <title>3DS notify</title> 
+  <style type="text/css">
+      .challengeContainer {
+        overflow: hidden;
+        height: 680px;
+        text-align: center;
+      }
+      .threeds-container {
+        border: 0;
+        visibility: hidden;
+      }
+      .h-100 {
+        height: 100% !important;
+      }
+      .w-100 {
+        width: 100% !important;
+      }
+      .border-0 {
+        border: 0 !important;
+      }
+    </style> 
+ </head> 
+ <body> 
+  <input type="text" id="browserTZ" name="browserTZ" value=""> 
+  <input type="text" id="browserScreenWidth" name="browserScreenWidth" value=""> 
+  <input type="text" id="browserScreenHeight" name="browserScreenHeight" value=""> 
+  <input type="text" id="browserColorDepth" name="browserColorDepth" value=""> 
+  <input type="text" id="browserLanguage" name="browserLanguage" value=""> 
+  <input type="text" id="browserJavaEnabled" name="browserJavaEnabled" value=""> 
+  <form id="threeDS" method="post"> 
+   <div class="challengeContainer"> 
+    <div class="spinner"> 
+     <div class="center"> 
+      <br> 
+      <b>Waiting</b> ... The page is redirecting to banking server 
+      <br> 
+      <br>Do not make any interaction with browser because it can result in the transaction failing. 
+     </div> 
+     <div> 
+      <img src="../go/images/loading.gif" border="0"> 
+     </div> 
+     <iframe class="threeds-container" src="https://as.test.upc.ua/api/v2/brw/callback?transId=dca58dbc-178a-4fa7-9d96-a998471b2055&amp;t=3RrzMlkVpbZcWvPgyvZfxCdEuVLqDioJQDxRjvvUgeutcjnfxzxdLgzqyoCN7r1uZjDM06hH"></iframe> 
+    </div> 
+   </div> 
+   <script>
+		document.getElementsByName("browserTZ")[0].value = new Date().getTimezoneOffset();
+	</script> 
+  </form>  
+ </body>
+</html>

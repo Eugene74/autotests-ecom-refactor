@@ -1,6 +1,9 @@
 package tests.com.Endpoint;
 
-import org.openqa.selenium.*;
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.NoAlertPresentException;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
@@ -8,9 +11,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import java.io.File;
-import java.io.IOException;
 import java.time.Duration;
-
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNotNull;
@@ -19,7 +20,7 @@ import static org.testng.Assert.assertTrue;
 public class GoMerchantTest extends BaseTest {
 
     @BeforeClass
-    public void setup() throws IOException {
+    public void setup() {
         super.setup();
         driver.get(baseUrl + "/go/merchant");
     }

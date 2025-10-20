@@ -9,6 +9,8 @@ import org.testng.asserts.SoftAssert;
 import tests.BaseRedirect;
 import com.ecom.ui.paylink.redirect.pages.InstallmentChoice;
 
+import static com.ecom.core.config.CardConfig.cardMCInst;
+import static com.ecom.core.config.EnvData.*;
 import static com.ecom.db.JDBCMethods.*;
 import static com.ecom.tests.support.DocumentTools.verifiedDataFromDB;
 import static com.ecom.api.type.Attributes.*;

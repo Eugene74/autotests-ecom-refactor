@@ -2,7 +2,7 @@
  * @author semyvolos_h
  * @date 7/28/2022 17:17 PM
  */
-package methods;
+package com.ecom.tests.support;
 
 import com.ecom.core.config.ConfigOnboarding;
 import org.testng.annotations.DataProvider;

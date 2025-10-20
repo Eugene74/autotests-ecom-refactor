@@ -6,6 +6,11 @@ import org.testng.annotations.Test;
 import org.w3c.dom.Document;
 import tests.BaseTest;
 
+import static com.ecom.core.config.CardConfig.cardMC;
+import static com.ecom.core.config.EnvData.URL;
+import static com.ecom.core.config.EnvData.VOICE_FILTR;
+import static com.ecom.core.config.EnvData.merchant_AVAL;
+import static com.ecom.core.config.EnvData.terminal_AVAL;
 import static com.ecom.db.JDBCMethods.*;
 import static com.ecom.tests.support.DocumentTools.*;
 import static com.ecom.tests.support.PaylinkRequests.payment;
@@ -17,7 +22,7 @@ public class Voice extends BaseTest {
 
     @BeforeClass
     public void setStatusFilter() {
-        setMerchantFilter(voiceFiltr, "1");
+        setMerchantFilter(VOICE_FILTR, "1");
         System.out.println("SET NEW STATUS OF FILTER VOICE: TRUE");
     }
 
@@ -55,7 +60,7 @@ public class Voice extends BaseTest {
 
     @AfterClass
     public void setDefaultAttr() {
-        setMerchantFilter(voiceFiltr, "0");
+        setMerchantFilter(VOICE_FILTR, "0");
         System.out.println("SET NEW STATUS OF FILTER VOICE: FALSE");
     }
 }

@@ -9,6 +9,10 @@ import tests.BaseTest;
 import java.io.File;
 import java.io.IOException;
 
+import static com.ecom.core.config.EnvData.MERCHANT_ID_LOOK;
+import static com.ecom.core.config.EnvData.TERMINAL_ID_LOOK;
+import static com.ecom.core.xml.TemplateCatalog.*;
+
 public class HtmlMethods extends BaseTest{
     public static Document readHtmlFile(String path){
         String htmlString = "";
@@ -21,14 +25,14 @@ public class HtmlMethods extends BaseTest{
     }
 
     public static void fillAuthorizationForm( String delay, String url, String merch, String term){
-        Document doc = readHtmlFile(BaseTest.AUTH_PATH);
+        Document doc = readHtmlFile(AUTH_PATH);
         doc.getElementsByTag("form").attr("action", url);
         doc.getElementsByAttributeValue("name","MerchantID").attr("value", merch);
         doc.getElementsByAttributeValue("name","TerminalID").attr("value", term);
         System.out.println("Delay " + delay);
         doc.getElementsByAttributeValue("name","delay").attr("value", delay);
 
-        File f = new File(BaseTest.AUTH_PATH);
+        File f = new File(AUTH_PATH);
         try {
                 FileUtils.writeStringToFile(f, doc.outerHtml(), "UTF-8");
                 Waiters.sleep(3000);
@@ -40,13 +44,13 @@ public class HtmlMethods extends BaseTest{
     }
 
     public static void fillAuthorizationFormInstallment( String delay, String url, String merch, String term){
-        Document doc = readHtmlFile(BaseTest.AUTH_PATH_INSTALLMENT);
+        Document doc = readHtmlFile(AUTH_PATH_INSTALLMENT);
         doc.getElementsByTag("form").attr("action", url);
         doc.getElementsByAttributeValue("name","MerchantID").attr("value", merch);
         doc.getElementsByAttributeValue("name","TerminalID").attr("value", term);
         doc.getElementsByAttributeValue("name","delay").attr("value", delay);
 
-        File f = new File(BaseTest.AUTH_PATH_INSTALLMENT);
+        File f = new File(AUTH_PATH_INSTALLMENT);
         try {
             if(f.canWrite()){
             FileUtils.writeStringToFile(f, doc.outerHtml(), "UTF-8");
@@ -57,13 +61,13 @@ public class HtmlMethods extends BaseTest{
     }
 
     public static void fillVerificationForm(String url){
-        Document doc = readHtmlFile(BaseTest.VERIFY_PATH);
+        Document doc = readHtmlFile(VERIFY_PATH);
         doc.getElementsByTag("form").attr("action", url);
-        doc.getElementsByAttributeValue("name","MerchantID").attr("value", merchantIDLook);
-        doc.getElementsByAttributeValue("name","TerminalID").attr("value", terminalIDLook);
+        doc.getElementsByAttributeValue("name","MerchantID").attr("value", MERCHANT_ID_LOOK);
+        doc.getElementsByAttributeValue("name","TerminalID").attr("value", TERMINAL_ID_LOOK);
 
 
-        File f = new File(BaseTest.VERIFY_PATH);
+        File f = new File(VERIFY_PATH);
         try {
             FileUtils.writeStringToFile(f, doc.outerHtml(), "UTF-8");
             String file_string = FileUtils.readFileToString(f, "UTF-8");

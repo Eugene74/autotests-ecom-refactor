@@ -1,5 +1,6 @@
 package com.ecom.ui.dashboard.functional.pages;
 
+import com.ecom.ui.common.BasePage;
 import com.ecom.ui.util.Waiters;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.CacheLookup;
@@ -7,12 +8,13 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import com.ecom.ui.common.BasePage;
 
 import java.io.File;
-import java.security.Key;
 import java.time.Duration;
 import java.util.Locale;
+
+import static com.ecom.core.config.CardConfig.cardMCardfr;
+import static com.ecom.core.config.CardConfig.cardVISAfr;
 
 
 public class PaymentsPage extends BasePage {

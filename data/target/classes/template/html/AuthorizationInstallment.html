@@ -1,0 +1,59 @@
+<html>
+ <head></head> 
+ <body> 
+  <form action="https://release-release-25-41-tomee.release.ecommerce.upc.intranet/go/pay" method="post"> 
+   <input name="Version" type="hidden" value="1"> 
+   <input name="MerchantID" type="hidden" value="2272727"> 
+   <input name="TerminalID" type="hidden" value="E2272727"> 
+   <input name="PurchaseTime" type="hidden" value=""> 
+   <input name="OrderID" id="order" type="hidden" value=""> 
+   <input name="Currency" type="hidden" value="980"> 
+   <input name="TotalAmount" type="hidden" value="100000"> 
+   <input name="delay" type="hidden" value="0"> 
+   <input name="locale" type="hidden" value="en"> 
+   <input name="PurchaseDesc" type="hidden" value="installment"> 
+   <input name="SCAExemption" type="hidden" value="01"> 
+   <input name="Signature" type=""> 
+   <input name="submit" type="submit" onclick="generate()"> 
+  </form> 
+  <script>
+
+   function generate(){
+    var randAmount = getRandomInt(10, 999)*100;
+
+    document.getElementById('order').value="Go01-" + getDate();
+    document.getElementsByName('TotalAmount')[0].value=randAmount;
+    document.getElementsByName('PurchaseTime')[0].value=getDate();
+   }
+
+   function getRandomInt(min, max)
+   {
+     return Math.floor(Math.random() * (max - min + 1)) + min;
+   }
+
+   function getDate() {
+       d = new Date();
+       return(d.YYMMDDHHMMSS());
+   }
+
+   function pad(number, length) {
+       var str = '' + number;
+       while (str.length < length) {
+           str = '0' + str;
+       }
+       return str;
+   }
+
+   Date.prototype.YYMMDDHHMMSS = function () {
+       var yy = this.getFullYear().toString().substr(-2);
+       var MM = pad(this.getMonth() + 1,2);
+       var dd = pad(this.getDate(), 2);
+       var hh = pad(this.getHours(), 2);
+       var mm = pad(this.getMinutes(), 2)
+       var ss = pad(this.getSeconds(), 2)
+
+       return yy + MM + dd + hh + mm + ss;
+   }
+  </script>  
+ </body>
+</html>

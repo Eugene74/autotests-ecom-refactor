@@ -8,6 +8,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
+import static com.ecom.core.config.EnvData.isHeadless;
+
 /**
  * Base class for redirect-specific UI tests.
  */
