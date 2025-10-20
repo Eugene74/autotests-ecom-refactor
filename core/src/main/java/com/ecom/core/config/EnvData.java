@@ -14,7 +14,7 @@ public final class EnvData {
             PROPERTIES.getEnv("URLtomee").split("-tomee")[0].replace("https://", "").toLowerCase();
     public static boolean isHeadless = PROPERTIES.isHeadless();
 
-        public static final String URL_TOMCAT = PROPERTIES.getEnv("URLtomcat");
+    public static final String URL_TOMCAT = PROPERTIES.getEnv("URLtomcat");
     public static final String URL_MT_Tran = PROPERTIES.getEnv("URLtomcat") + "/mt/tran";
     public static final String URLp2p = PROPERTIES.getEnv("URLtomcat") + "/mt/p2p/init/";
     public static final String URLdasboard = PROPERTIES.getEnv("URLtomcat") + "/dashboard/login";
