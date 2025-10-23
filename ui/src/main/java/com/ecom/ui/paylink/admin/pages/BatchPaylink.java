@@ -6,7 +6,7 @@ import static org.openqa.selenium.By.xpath;
 
 import com.ecom.ui.common.BasePage;
 import com.ecom.ui.util.Waiters;
-import java.util.concurrent.TimeUnit;
+import java.time.Duration;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
@@ -63,7 +63,7 @@ public class BatchPaylink extends BasePage {
   }
 
   public void closed(String iD) {
-    getDriver().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+    getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     Waiters.appearElement(getDriver(), settl);
     //      Waiters.sleep(1000);
     settl.click();
