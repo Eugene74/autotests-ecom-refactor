@@ -1,18 +1,15 @@
 package com.ecom.core.config;
 
 import com.ecom.utils.ResourceUtils;
-import org.yaml.snakeyaml.Yaml;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Properties;
+import org.yaml.snakeyaml.Yaml;
 
-/**
- * Centralised environment configuration loader that resolves values from classpath resources.
- */
+/** Centralised environment configuration loader that resolves values from classpath resources. */
 public final class EnvConfig {
 
   private static final String APPLICATION_DEFAULT = "config/application-default.properties";
@@ -37,8 +34,7 @@ public final class EnvConfig {
   private EnvConfig() {
     loadOptional(APPLICATION_DEFAULT, null);
     loadOptional(ENV_PROPERTIES, envProperties);
-    this.environment =
-        System.getProperty("env", properties.getProperty("default_env", "default"));
+    this.environment = System.getProperty("env", properties.getProperty("default_env", "default"));
     loadOptional(String.format(APPLICATION_ENV_PROPERTIES, environment), null);
     loadOptional(String.format(APPLICATION_ENV_YAML, environment), null);
     loadOptional(String.format(APPLICATION_ENV_YML, environment), null);

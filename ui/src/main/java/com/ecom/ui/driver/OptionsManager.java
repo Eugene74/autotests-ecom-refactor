@@ -2,9 +2,7 @@ package com.ecom.ui.driver;
 
 import org.openqa.selenium.chrome.ChromeOptions;
 
-/**
- * Factory-style helper that produces {@link ChromeOptions} consistently across the test suite.
- */
+/** Factory-style helper that produces {@link ChromeOptions} consistently across the test suite. */
 public final class OptionsManager {
 
   private static final String WINDOW_SIZE_4K = "--window-size=3840,2160";

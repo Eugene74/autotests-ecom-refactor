@@ -6,20 +6,20 @@ import org.testng.annotations.BeforeClass;
 
 public abstract class BaseHybridTest extends BaseApiTest {
 
-    protected BaseUiTest uiHelper;
+  protected BaseUiTest uiHelper;
 
-    @BeforeClass(alwaysRun = true)
-    public void hybridSetUp() {
-        uiHelper = new BaseUiTest() {}; // анонимный, чтобы использовать его setUp()
-        uiHelper.setUp();
-    }
+  @BeforeClass(alwaysRun = true)
+  public void hybridSetUp() {
+    uiHelper = new BaseUiTest() {}; // анонимный, чтобы использовать его setUp()
+    uiHelper.setUp();
+  }
 
-    @AfterClass(alwaysRun = true)
-    public void hybridTearDown() {
-        uiHelper.tearDown();
-    }
+  @AfterClass(alwaysRun = true)
+  public void hybridTearDown() {
+    uiHelper.tearDown();
+  }
 
-    protected WebDriver getDriver() {
-        return uiHelper.getDriver();
-    }
+  protected WebDriver getDriver() {
+    return uiHelper.getDriver();
+  }
 }

@@ -3,9 +3,7 @@ package com.ecom.ui.driver;
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.chrome.ChromeOptions;
 
-/**
- * Produces Selenium {@link Capabilities} tailored for the requested browser.
- */
+/** Produces Selenium {@link Capabilities} tailored for the requested browser. */
 public final class CapabilityFactory {
 
   private CapabilityFactory() {

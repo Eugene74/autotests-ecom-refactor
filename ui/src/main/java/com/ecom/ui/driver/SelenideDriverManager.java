@@ -3,9 +3,7 @@ package com.ecom.ui.driver;
 import com.codeborne.selenide.Configuration;
 import com.ecom.core.config.EnvConfig;
 
-/**
- * Configures Selenide based on environment properties.
- */
+/** Configures Selenide based on environment properties. */
 public final class SelenideDriverManager {
 
   private SelenideDriverManager() {
@@ -15,7 +13,8 @@ public final class SelenideDriverManager {
   public static void configure() {
     EnvConfig config = EnvConfig.getInstance();
     Configuration.browser = System.getProperty("browser", "chrome");
-    boolean headless = config.getBoolean("selenide.headless", config.getBoolean("is_headless", false));
+    boolean headless =
+        config.getBoolean("selenide.headless", config.getBoolean("is_headless", false));
     Configuration.browserSize = headless ? "3840x2160" : Configuration.browserSize;
     Configuration.headless = headless;
     Configuration.timeout = config.getLong("selenide.timeout", 10_000L);

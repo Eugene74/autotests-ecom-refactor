@@ -1,5 +1,21 @@
 package tests.dashboard.functional.tests.FastRefund;
 
+import static com.ecom.api.type.Attributes.ALLOW_FAST_REFUND;
+import static com.ecom.api.type.Attributes.ALLOW_PARTIAL_REVERSAL;
+import static com.ecom.api.type.Attributes.ALLOW_PAYMENT_WITHOUT_3DS;
+import static com.ecom.core.config.CardConfig.cardMCmta;
+import static com.ecom.core.config.EnvData.ID_AVAL;
+import static com.ecom.core.config.EnvData.MERCHANT_ID_AVAL;
+import static com.ecom.core.config.EnvData.TERMINAL_ID_AVAL;
+import static com.ecom.core.config.EnvData.URL;
+import static com.ecom.db.JDBCMethods.getTranIdByOrder;
+import static com.ecom.db.JDBCMethods.getTranIdByOrderFR;
+import static com.ecom.db.JDBCMethods.getValueFromMTTranFR;
+import static com.ecom.db.JDBCMethods.setMerchantAtt;
+import static com.ecom.tests.support.DocumentTools.*;
+import static com.ecom.tests.support.PaylinkRequests.payment;
+import static com.ecom.tests.support.RequestSenderRest.sendRequest;
+import static org.testng.Assert.assertEquals;
 
 import com.ecom.tests.base.BaseUiTest;
 import com.ecom.tests.support.DashboardRequest;
@@ -12,118 +28,113 @@ import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import org.w3c.dom.Document;
 
-import static com.ecom.api.type.Attributes.ALLOW_FAST_REFUND;
-import static com.ecom.api.type.Attributes.ALLOW_PARTIAL_REVERSAL;
-import static com.ecom.api.type.Attributes.ALLOW_PAYMENT_WITHOUT_3DS;
-import static com.ecom.core.config.CardConfig.cardMCmta;
-import static com.ecom.core.config.EnvData.URL;
-import static com.ecom.core.config.EnvData.id_AVAL;
-import static com.ecom.core.config.EnvData.merchant_AVAL;
-import static com.ecom.core.config.EnvData.terminal_AVAL;
-import static com.ecom.db.JDBCMethods.getTranIdByOrder;
-import static com.ecom.db.JDBCMethods.getTranIdByOrderFR;
-import static com.ecom.db.JDBCMethods.getValueFromMTTranFR;
-import static com.ecom.db.JDBCMethods.setMerchantAtt;
-import static com.ecom.tests.support.DocumentTools.*;
-import static com.ecom.tests.support.PaylinkRequests.payment;
-import static com.ecom.tests.support.RequestSenderRest.sendRequest;
-import static org.testng.Assert.assertEquals;
+public class FastRefund extends BaseUiTest {
+  public static String orderId;
+  public static String rrn;
+  public static String approval_code;
+  public static int tranId;
 
-    public class FastRefund extends BaseUiTest {
-    public static String orderId;
-    public static String rrn;
-    public static String approval_code;
-    public static int tranId;
+  @BeforeClass
+  public void setParam() {
+    setMerchantAtt(ID_AVAL, ALLOW_PAYMENT_WITHOUT_3DS, "true");
+    System.out.println("ALLOW_PAYMENT_WITHOUT_3DS: TRUE");
+    setMerchantAtt(ID_AVAL, ALLOW_FAST_REFUND, "true");
+    System.out.println("ALLOW_FAST_REFUND: TRUE");
+    setMerchantAtt(ID_AVAL, ALLOW_PARTIAL_REVERSAL, "true");
+    System.out.println("ALLOW_PARTIAL_REVERSAL: TRUE");
+  }
 
-    @BeforeClass
-    public void setParam() {
-        setMerchantAtt(id_AVAL, ALLOW_PAYMENT_WITHOUT_3DS, "true");
-        System.out.println("ALLOW_PAYMENT_WITHOUT_3DS: TRUE");
-        setMerchantAtt(id_AVAL, ALLOW_FAST_REFUND, "true");
-        System.out.println("ALLOW_FAST_REFUND: TRUE");
-        setMerchantAtt(id_AVAL, ALLOW_PARTIAL_REVERSAL, "true");
-        System.out.println("ALLOW_PARTIAL_REVERSAL: TRUE");
+  @Test
+  public void makePayment() {
+    Document requestDoc =
+        payment(cardMCmta, "payment FastRefund", MERCHANT_ID_AVAL, TERMINAL_ID_AVAL);
+    Document responseDoc = sendRequest(URL, requestDoc);
+
+    System.out.println("--PAYMENT--\nRequest:\n" + printRequest(requestDoc));
+    System.out.println("Response:\n" + printResponse(responseDoc));
+
+    tranId = getTranIdByOrder(getElementFromDocument(requestDoc, "OrderID"));
+    orderId = getElementFromDocument(requestDoc, "OrderID");
+    approval_code = getElementFromDocument(responseDoc, "ApprovalCode");
+    rrn = getElementFromDocument(responseDoc, "Rrn");
+
+    assertEquals(approval_code.length(), 6, "ApprovalCode");
+    assertEquals(rrn.length(), 12, "Rrn");
+
+    System.out.println("Verified:");
+    String[] verifiedResponse = {"TranCode", "CVResult", "HostCode", "Rrn", "ApprovalCode"};
+    String[] verifiedResponseFromDB = {"ECI"};
+    try {
+      verifiedDataFromResponse(responseDoc, verifiedResponse);
+      verifiedDataFromDB(tranId, verifiedResponseFromDB);
+    } catch (Exception e) {
+      System.out.println("TEST FAILED");
     }
+  }
 
-    @Test
-    public void makePayment() {
-        Document requestDoc = payment(cardMCmta, "payment FastRefund", merchant_AVAL, terminal_AVAL);
-        Document responseDoc = sendRequest(URL, requestDoc);
+  @Test(dependsOnMethods = "makePayment")
+  public void searchByOrderID() {
+    DashboardRequest request = new DashboardRequest();
+    boolean searchByMerch = request.findPaymentByOrder(orderId);
+    Assert.assertEquals(searchByMerch, true, "Search result flag");
+  }
 
-        System.out.println("--PAYMENT--\nRequest:\n" + printRequest(requestDoc));
-        System.out.println("Response:\n" + printResponse(responseDoc));
+  @Test(dependsOnMethods = "makePayment")
+  public void searchByApprovalCode() {
+    DashboardRequest request = new DashboardRequest();
+    boolean searchByMerch = request.findPaymentByApprovalCode(orderId, approval_code);
+    Assert.assertEquals(searchByMerch, true, "Search result flag");
+  }
 
-        tranId = getTranIdByOrder(getElementFromDocument(requestDoc, "OrderID"));
-        orderId = getElementFromDocument(requestDoc, "OrderID");
-        approval_code = getElementFromDocument(responseDoc, "ApprovalCode");
-        rrn = getElementFromDocument(responseDoc, "Rrn");
+  @Test(dependsOnMethods = "makePayment")
+  public void makeFastRefund() {
+    DashboardRequest request = new DashboardRequest();
+    request.makeFastRefundForPayment(orderId, String.valueOf(tranId));
 
-        assertEquals(approval_code.length(), 6, "ApprovalCode");
-        assertEquals(rrn.length(), 12, "Rrn");
+    // Зчитування значення MT_TRAN_ID з таблиці
+    WebElement refundIdElement =
+        getDriver().findElement(By.xpath("//td[text()='Refund']/following-sibling::td"));
+    String refundIdFromTable = refundIdElement.getText();
 
-        System.out.println("Verified:");
-        String[] verifiedResponse = {"TranCode", "CVResult", "HostCode", "Rrn", "ApprovalCode"};
-        String[] verifiedResponseFromDB = {"ECI"};
-        try {
-            verifiedDataFromResponse(responseDoc, verifiedResponse);
-            verifiedDataFromDB(tranId, verifiedResponseFromDB);
-        } catch (Exception e) {
-            System.out.println("TEST FAILED");
-        }  }
+    // Отримання значення MT_TRAN_ID з бази даних
+    int refundIdFromDB = getTranIdByOrderFR(orderId);
 
-    @Test (dependsOnMethods = "makePayment")
-    public void searchByOrderID(){
-        DashboardRequest request = new DashboardRequest();
-        boolean searchByMerch = request.findPaymentByOrder(orderId);
-        Assert.assertEquals(searchByMerch, true, "Search result flag");
+    // Перевірка відповідності значень
+    Assert.assertEquals(
+        refundIdFromTable, String.valueOf(refundIdFromDB), "MT_TRAN_ID does not match!");
+
+    // Додаткові перевірки
+    SoftAssert softAssertion = new SoftAssert();
+    softAssertion.assertEquals(getValueFromMTTranFR(refundIdFromDB, "TRAN_TYPE"), "A", "TRAN_TYPE");
+    softAssertion.assertEquals(String.valueOf(refundIdFromDB).length(), 6, "MT_TRAN_ID length");
+    softAssertion.assertEquals(
+        getValueFromMTTranFR(refundIdFromDB, "RRN").length(), 12, "RRN length");
+    softAssertion.assertEquals(
+        getValueFromMTTranFR(refundIdFromDB, "ACTION_CODE"), "000", "ACTION_CODE");
+    softAssertion.assertEquals(
+        getValueFromMTTranFR(refundIdFromDB, "APPROVAL_CODE").length(), 6, "APPROVAL_CODE length");
+    softAssertion.assertEquals(
+        getValueFromMTTranFR(refundIdFromDB, "CL_TYPE"), "MC_FAST_REFUND", "CL_TYPE");
+    softAssertion.assertAll();
+
+    System.out.println("Verified:");
+    String[] verifiedResponseFromDB = {
+      "TRAN_TYPE", "MT_TRAN_ID", "RRN", "ACTION_CODE", "APPROVAL_CODE", "CL_TYPE"
+    };
+    try {
+      verifiedDataFromDBFR(refundIdFromDB, verifiedResponseFromDB);
+    } catch (Exception e) {
+      System.out.println("TEST FAILED");
     }
+  }
 
-    @Test (dependsOnMethods = "makePayment")
-    public void searchByApprovalCode() {
-        DashboardRequest request = new DashboardRequest();
-        boolean searchByMerch = request.findPaymentByApprovalCode(orderId, approval_code);
-        Assert.assertEquals(searchByMerch, true, "Search result flag");
-    }
-
-        @Test(dependsOnMethods = "makePayment")
-        public void makeFastRefund() {
-            DashboardRequest request = new DashboardRequest();
-            request.makeFastRefundForPayment(orderId, String.valueOf(tranId));
-
-            // Зчитування значення MT_TRAN_ID з таблиці
-            WebElement refundIdElement = getDriver().findElement(By.xpath("//td[text()='Refund']/following-sibling::td"));
-            String refundIdFromTable = refundIdElement.getText();
-
-            // Отримання значення MT_TRAN_ID з бази даних
-            int refundIdFromDB = getTranIdByOrderFR(orderId);
-
-            // Перевірка відповідності значень
-            Assert.assertEquals(refundIdFromTable, String.valueOf(refundIdFromDB), "MT_TRAN_ID does not match!");
-
-            // Додаткові перевірки
-            SoftAssert softAssertion = new SoftAssert();
-            softAssertion.assertEquals(getValueFromMTTranFR(refundIdFromDB, "TRAN_TYPE"), "A", "TRAN_TYPE");
-            softAssertion.assertEquals(String.valueOf(refundIdFromDB).length(), 6, "MT_TRAN_ID length");
-            softAssertion.assertEquals(getValueFromMTTranFR(refundIdFromDB, "RRN").length(), 12, "RRN length");
-            softAssertion.assertEquals(getValueFromMTTranFR(refundIdFromDB, "ACTION_CODE"), "000", "ACTION_CODE");
-            softAssertion.assertEquals(getValueFromMTTranFR(refundIdFromDB, "APPROVAL_CODE").length(), 6, "APPROVAL_CODE length");
-            softAssertion.assertEquals(getValueFromMTTranFR(refundIdFromDB, "CL_TYPE"), "MC_FAST_REFUND", "CL_TYPE");
-            softAssertion.assertAll();
-
-            System.out.println("Verified:");
-            String[] verifiedResponseFromDB = {"TRAN_TYPE", "MT_TRAN_ID", "RRN", "ACTION_CODE", "APPROVAL_CODE", "CL_TYPE"};
-            try {
-                verifiedDataFromDBFR(refundIdFromDB, verifiedResponseFromDB);
-            } catch (Exception e) {
-                System.out.println("TEST FAILED");
-            } }
-
-    @AfterClass
-    public void setDefaultParam() {
-        setMerchantAtt(id_AVAL, ALLOW_PAYMENT_WITHOUT_3DS, "false");
-        System.out.println("ALLOW_PAYMENT_WITHOUT_3DS: FALSE");
-        setMerchantAtt(id_AVAL, ALLOW_FAST_REFUND, "false");
-        System.out.println("ALLOW_FAST_REFUND: FALSE");
-        setMerchantAtt(id_AVAL, ALLOW_PARTIAL_REVERSAL, "false");
-        System.out.println("ALLOW_PARTIAL_REVERSAL: FALSE");
-    } }
+  @AfterClass
+  public void setDefaultParam() {
+    setMerchantAtt(ID_AVAL, ALLOW_PAYMENT_WITHOUT_3DS, "false");
+    System.out.println("ALLOW_PAYMENT_WITHOUT_3DS: FALSE");
+    setMerchantAtt(ID_AVAL, ALLOW_FAST_REFUND, "false");
+    System.out.println("ALLOW_FAST_REFUND: FALSE");
+    setMerchantAtt(ID_AVAL, ALLOW_PARTIAL_REVERSAL, "false");
+    System.out.println("ALLOW_PARTIAL_REVERSAL: FALSE");
+  }
+}

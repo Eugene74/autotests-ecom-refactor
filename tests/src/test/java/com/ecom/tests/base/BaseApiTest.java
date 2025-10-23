@@ -1,6 +1,18 @@
 package com.ecom.tests.base;
 
 import com.ecom.db.JDBCConnection;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URI;
+import java.nio.charset.StandardCharsets;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.Base64;
+import javax.net.ssl.SSLContext;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpEntityEnclosingRequestBase;
 import org.apache.http.client.methods.HttpGet;
@@ -15,23 +27,8 @@ import org.json.JSONObject;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 
-import javax.net.ssl.SSLContext;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URI;
-import java.nio.charset.StandardCharsets;
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.util.Base64;
-
-/**
- * Common HTTP helpers used by API tests.
- */
-public abstract class BaseApiTest extends BaseTest{ //todo переделать
+/** Common HTTP helpers used by API tests. */
+public abstract class BaseApiTest extends BaseTest { // todo переделать то GotClass
 
   protected CloseableHttpClient createAllTrustingClient() throws Exception {
     SSLContext sslContext =
@@ -166,5 +163,4 @@ public abstract class BaseApiTest extends BaseTest{ //todo переделать
     put.setEntity(new StringEntity(xmlContent));
     return client.execute(put);
   }
-
 }

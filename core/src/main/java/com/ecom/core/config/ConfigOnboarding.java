@@ -4,9 +4,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
-/**
- * Loads onboarding-related test data from the classpath.
- */
+/** Loads onboarding-related test data from the classpath. */
 public final class ConfigOnboarding {
 
   private static final String DATA_FILE = "/DataDriven/api.onboarding.properties";

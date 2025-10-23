@@ -1,17 +1,12 @@
 package tests.paylink.xml;
 
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
-import org.w3c.dom.Document;
-
 import static com.ecom.api.type.Attributes.ALLOW_AIRLINE_ADDENDUM_DATA;
 import static com.ecom.api.type.Attributes.ALLOW_REF3;
 import static com.ecom.core.config.CardConfig.cardMC05;
+import static com.ecom.core.config.EnvData.ID_AVAL;
+import static com.ecom.core.config.EnvData.MERCHANT_ID_AVAL;
+import static com.ecom.core.config.EnvData.TERMINAL_ID_AVAL;
 import static com.ecom.core.config.EnvData.URL;
-import static com.ecom.core.config.EnvData.id_AVAL;
-import static com.ecom.core.config.EnvData.merchant_AVAL;
-import static com.ecom.core.config.EnvData.terminal_AVAL;
 import static com.ecom.db.JDBCMethods.getAddendumData;
 import static com.ecom.db.JDBCMethods.getTranIdByOrder;
 import static com.ecom.db.JDBCMethods.getValueFromTRAN;
@@ -22,55 +17,62 @@ import static com.ecom.tests.support.RequestSenderRest.sendRequest;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
+import org.w3c.dom.Document;
+
 public class PaymentFull3DSAddendumRef3 {
 
-    @BeforeClass
-    public void setStatusAttr() {
-        setMerchantAtt(id_AVAL, ALLOW_REF3, "true");
-        setMerchantAtt(id_AVAL, ALLOW_AIRLINE_ADDENDUM_DATA, "true");
-        System.out.println("SET NEW STATUS - ALLOW_REF3 AND ALLOW_AIRLINE_ADDENDUM_DATA: TRUE");
+  @BeforeClass
+  public void setStatusAttr() {
+    setMerchantAtt(ID_AVAL, ALLOW_REF3, "true");
+    setMerchantAtt(ID_AVAL, ALLOW_AIRLINE_ADDENDUM_DATA, "true");
+    System.out.println("SET NEW STATUS - ALLOW_REF3 AND ALLOW_AIRLINE_ADDENDUM_DATA: TRUE");
+  }
+
+  @Test
+  public void mcPaymentFull3DSAddendum() {
+    Document requestDoc =
+        paymentAddendum(
+            cardMC05, "MCFull3DS_AddendumDataRef3", MERCHANT_ID_AVAL, TERMINAL_ID_AVAL, "VISA");
+    Document responseDoc = sendRequest(URL, requestDoc);
+
+    System.out.println("--PAYMENT--\nRequest:\n" + printRequest(requestDoc));
+    System.out.println("Response:\n" + printResponse(responseDoc));
+
+    int tranId = getTranIdByOrder(getElementFromDocument(requestDoc, "OrderID"));
+
+    //        from Response
+    assertEquals(getElementFromDocument(responseDoc, "TranCode"), "000", "TranCode");
+    assertEquals(getElementFromDocument(responseDoc, "CVResult"), "P2", "CVResult");
+    assertEquals(getElementFromDocument(responseDoc, "HostCode"), "000", "HostCode");
+    assertEquals(getElementFromDocument(responseDoc, "Rrn").length(), 12, "Rrn");
+    assertEquals(getElementFromDocument(responseDoc, "ApprovalCode").length(), 6, "ApprovalCode");
+    //        from DB
+    assertEquals(getValueFromTRAN(tranId, "ECI"), "02", "ECI");
+    assertEquals(getValueFromTRAN(tranId, "PAResStatus"), "Y", "PAResStatus");
+    assertEquals(getValueFromTRAN(tranId, "PA_ECI"), "02", "PA_ECI");
+    assertEquals(getValueFromTRAN(tranId, "AddendumData"), "1", "AddendumData");
+    assertTrue(getAddendumData(tranId, "Ref3"));
+    assertTrue(getAddendumData(tranId, "AirlineAddendumData"));
+    //        assertEquals(getValueFromTRAN(tranId, "FEE"), "400", "FEE");
+
+    System.out.println("Verified:");
+    String[] verifiedResponse = {"TranCode", "CVResult", "HostCode", "Rrn", "ApprovalCode"};
+    String[] verifiedResponseFromDB = {"ECI", "PAResStatus", "PA_ECI", "AddendumData"};
+    try {
+      verifiedDataFromResponse(responseDoc, verifiedResponse);
+      verifiedDataFromDB(tranId, verifiedResponseFromDB);
+    } catch (Exception e) {
+      System.out.println("TEST FAILED");
     }
+  }
 
-    @Test
-    public void mcPaymentFull3DSAddendum() {
-        Document requestDoc = paymentAddendum(cardMC05, "MCFull3DS_AddendumDataRef3", merchant_AVAL, terminal_AVAL, "VISA");
-        Document responseDoc = sendRequest(URL, requestDoc);
-
-        System.out.println("--PAYMENT--\nRequest:\n" + printRequest(requestDoc));
-        System.out.println("Response:\n" + printResponse(responseDoc));
-
-        int tranId = getTranIdByOrder(getElementFromDocument(requestDoc, "OrderID"));
-
-//        from Response
-        assertEquals(getElementFromDocument(responseDoc, "TranCode"), "000", "TranCode");
-        assertEquals(getElementFromDocument(responseDoc, "CVResult"), "P2", "CVResult");
-        assertEquals(getElementFromDocument(responseDoc, "HostCode"), "000", "HostCode");
-        assertEquals(getElementFromDocument(responseDoc, "Rrn").length(), 12, "Rrn");
-        assertEquals(getElementFromDocument(responseDoc, "ApprovalCode").length(), 6, "ApprovalCode");
-//        from DB
-        assertEquals(getValueFromTRAN(tranId, "ECI"), "02", "ECI");
-        assertEquals(getValueFromTRAN(tranId, "PAResStatus"), "Y", "PAResStatus");
-        assertEquals(getValueFromTRAN(tranId, "PA_ECI"), "02", "PA_ECI");
-        assertEquals(getValueFromTRAN(tranId, "AddendumData"), "1", "AddendumData");
-        assertTrue(getAddendumData(tranId, "Ref3"));
-        assertTrue(getAddendumData(tranId, "AirlineAddendumData"));
-//        assertEquals(getValueFromTRAN(tranId, "FEE"), "400", "FEE");
-
-        System.out.println("Verified:");
-        String[] verifiedResponse = {"TranCode", "CVResult", "HostCode", "Rrn", "ApprovalCode"};
-        String[] verifiedResponseFromDB = {"ECI", "PAResStatus", "PA_ECI", "AddendumData"};
-        try {
-            verifiedDataFromResponse(responseDoc, verifiedResponse);
-            verifiedDataFromDB(tranId, verifiedResponseFromDB);
-        } catch (Exception e) {
-            System.out.println("TEST FAILED");
-        }
-    }
-
-    @AfterClass
-    public void setDefaultAttr() {
-        setMerchantAtt(id_AVAL, ALLOW_REF3, "false");
-        setMerchantAtt(id_AVAL, ALLOW_AIRLINE_ADDENDUM_DATA, "false");
-        System.out.println("SET NEW STATUS - ALLOW_REF3 AND ALLOW_AIRLINE_ADDENDUM_DATA: FALSE");
-    }
+  @AfterClass
+  public void setDefaultAttr() {
+    setMerchantAtt(ID_AVAL, ALLOW_REF3, "false");
+    setMerchantAtt(ID_AVAL, ALLOW_AIRLINE_ADDENDUM_DATA, "false");
+    System.out.println("SET NEW STATUS - ALLOW_REF3 AND ALLOW_AIRLINE_ADDENDUM_DATA: FALSE");
+  }
 }

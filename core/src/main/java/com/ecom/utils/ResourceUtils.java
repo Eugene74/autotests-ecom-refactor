@@ -18,8 +18,8 @@ public final class ResourceUtils {
 
   /**
    * Opens a resource as an {@link InputStream}. The path may be provided as a plain classpath
-   * resource (e.g. {@code template/xml/paylink/PayRequest.xml}) or as a legacy
-   * {@code src/main/resources/...} location.
+   * resource (e.g. {@code template/xml/paylink/PayRequest.xml}) or as a legacy {@code
+   * src/main/resources/...} location.
    */
   public static InputStream stream(String resourcePath) {
     String normalized = normalize(resourcePath);

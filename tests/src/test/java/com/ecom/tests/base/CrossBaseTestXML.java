@@ -5,17 +5,11 @@ import static com.ecom.core.config.EnvData.MERCHANT_ID_AVAL_1;
 import static com.ecom.core.config.EnvData.TERMINAL_ID_AVAL_1;
 import static com.ecom.core.config.EnvData.URL_TOMEE;
 
-import com.ecom.db.JDBCConnection;
-import com.ecom.utils.ResourceUtils;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.util.Random;
 import org.testng.annotations.BeforeClass;
 
-public class BaseTestService01
-    extends BaseHybridTest { // todo потом переделать(или убрать) BaseTestService01
-
+public class CrossBaseTestXML extends BaseApiTest {
   protected String baseUrl = URL_TOMEE;
   protected String MerchantID = MERCHANT_ID_AVAL_1;
   protected String TerminalID = TERMINAL_ID_AVAL_1;
@@ -71,26 +65,10 @@ public class BaseTestService01
     }
   }
 
-  protected String getResourceContent(String filePath) {
-    return ResourceUtils.readAsString(filePath);
-  }
-
-  protected String[] getDatabaseValues() {
-    String[] values = new String[3];
-    try (Connection connection = JDBCConnection.getDBConnection();
-        PreparedStatement statement =
-            connection.prepareStatement(
-                "SELECT RRN, APPROVAL_CODE, ORDER_ID FROM TRAN WHERE TRAN_ID = (SELECT MAX(TRAN_ID) FROM TRAN)")) {
-      ResultSet resultSet = statement.executeQuery();
-      if (resultSet.next()) {
-        values[0] = resultSet.getString("ORDER_ID"); // ORDER_ID
-        values[1] = resultSet.getString("APPROVAL_CODE"); // APPROVAL_CODE
-        values[2] = resultSet.getString("RRN"); // RRN
-      }
-    } catch (Exception e) {
-      e.printStackTrace();
-      throw new IllegalStateException("Не вдалося виконати запит до бази даних: " + e.getMessage());
-    }
-    return values;
+  // Метод для генерації динамічного OrderID
+  protected String generateOrderID() {
+    Random random = new Random();
+    int orderId = random.nextInt(1000000) + 1;
+    return "24" + orderId;
   }
 }

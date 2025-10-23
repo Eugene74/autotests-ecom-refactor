@@ -148,7 +148,7 @@
     </test>
     <test name="Endpoint">
         <classes>
-            <class name="tests.com.Endpoint.BaseTest"/>
+            <class name="com.ecom.tests.base.EndpointBaseTest"/>
             <class name="tests.com.Endpoint.RbhuMerchantTest"/>
             <class name="tests.com.Endpoint.GoMerchantTest"/>
             <class name="tests.com.Endpoint.KbcMerchantTest"/>

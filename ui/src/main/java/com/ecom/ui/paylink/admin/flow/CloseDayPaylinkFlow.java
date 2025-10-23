@@ -10,7 +10,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 /**
- * Imperative flow that signs into the Paylink extranet and closes the settlement day for a merchant.
+ * Imperative flow that signs into the Paylink extranet and closes the settlement day for a
+ * merchant.
  */
 public class CloseDayPaylinkFlow {
 

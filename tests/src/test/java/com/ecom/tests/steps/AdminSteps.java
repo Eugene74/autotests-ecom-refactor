@@ -6,16 +6,16 @@ import org.openqa.selenium.WebDriver;
 
 public class AdminSteps {
 
-    private final WebDriver driver;
+  private final WebDriver driver;
 
-    public AdminSteps(WebDriver driver) {
-        this.driver = driver;
-    }
+  public AdminSteps(WebDriver driver) {
+    this.driver = driver;
+  }
 
-    public void changeAquirerID(String inputID, String url) {
-        LoginAdminPage loginPage = new LoginAdminPage(driver);
-        loginPage.loginIn(url);
-        BanksPage banksPage = new BanksPage(driver);
-        banksPage.chandeAquirerID(inputID);
-    }
+  public void changeAquirerID(String inputID, String url) {
+    LoginAdminPage loginPage = new LoginAdminPage(driver);
+    loginPage.loginIn(url);
+    BanksPage banksPage = new BanksPage(driver);
+    banksPage.chandeAquirerID(inputID);
+  }
 }

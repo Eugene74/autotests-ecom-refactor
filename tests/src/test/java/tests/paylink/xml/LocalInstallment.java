@@ -1,18 +1,13 @@
 package tests.paylink.xml;
 
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
-import org.w3c.dom.Document;
-
 import static com.ecom.api.type.Attributes.ALLOW_INSTALLMENT;
 import static com.ecom.api.type.Attributes.ALLOW_PAYMENT_WITHOUT_3DS;
 import static com.ecom.core.config.CardConfig.cardMC07;
 import static com.ecom.core.config.CardConfig.cardMCInst;
+import static com.ecom.core.config.EnvData.ID_AVAL;
+import static com.ecom.core.config.EnvData.MERCHANT_ID_AVAL;
+import static com.ecom.core.config.EnvData.TERMINAL_ID_AVAL;
 import static com.ecom.core.config.EnvData.URL;
-import static com.ecom.core.config.EnvData.id_AVAL;
-import static com.ecom.core.config.EnvData.merchant_AVAL;
-import static com.ecom.core.config.EnvData.terminal_AVAL;
 import static com.ecom.db.JDBCMethods.getTranIdByOrder;
 import static com.ecom.db.JDBCMethods.getValueFromTRAN;
 import static com.ecom.db.JDBCMethods.setMerchantAtt;
@@ -23,89 +18,106 @@ import static com.ecom.tests.support.RequestSenderRest.sendRequest;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNotEquals;
 
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
+import org.w3c.dom.Document;
+
 public class LocalInstallment {
-    private static Document requestDoc;
-    private static Document responseDoc;
-    private static String instPlanParamId;
-    private static String numberOfPay;
-    private static String feeMonth;
-    private static String interestRate;
-    private static String checkValue;
-    private static String subsequentAmount;
+  private static Document requestDoc;
+  private static Document responseDoc;
+  private static String instPlanParamId;
+  private static String numberOfPay;
+  private static String feeMonth;
+  private static String interestRate;
+  private static String checkValue;
+  private static String subsequentAmount;
 
+  @BeforeClass
+  public void setStatusAttr() {
+    setMerchantAtt(ID_AVAL, ALLOW_INSTALLMENT, "true");
+    setMerchantAtt(ID_AVAL, ALLOW_PAYMENT_WITHOUT_3DS, "true");
+    System.out.println("ALLOW_INSTALLMENT: TRUE");
+    System.out.println("ALLOW_PAYMENT_WITHOUT_3DS: TRUE");
+  }
 
-    @BeforeClass
-    public void setStatusAttr() {
-        setMerchantAtt(id_AVAL, ALLOW_INSTALLMENT, "true");
-        setMerchantAtt(id_AVAL, ALLOW_PAYMENT_WITHOUT_3DS, "true");
-        System.out.println("ALLOW_INSTALLMENT: TRUE");
-        System.out.println("ALLOW_PAYMENT_WITHOUT_3DS: TRUE");
+  @Test
+  public void chooseInstPlan() {
+    requestDoc = getInstPlansRequest(cardMC07, "100000", MERCHANT_ID_AVAL, TERMINAL_ID_AVAL);
+    responseDoc = sendRequest(URL, requestDoc);
+
+    System.out.println("--PAYMENT--\nRequest:\n" + printRequest(requestDoc));
+    System.out.println("Response:\n" + printResponse(responseDoc));
+
+    instPlanParamId = getElementFromDocument(responseDoc, "instPlanParamId");
+    numberOfPay = getElementFromDocument(responseDoc, "numberOfPay");
+    feeMonth = getElementFromDocument(responseDoc, "feeMonth");
+    interestRate = getElementFromDocument(responseDoc, "interestRate");
+    checkValue = getElementFromDocument(responseDoc, "checkValue");
+    subsequentAmount = getElementFromDocument(responseDoc, "subsequentAmount");
+
+    assertNotEquals(instPlanParamId, null, "instPlanParamId");
+    assertNotEquals(numberOfPay, null, "numberOfPay");
+    assertNotEquals(feeMonth, null, "feeMonth");
+    assertNotEquals(interestRate, null, "interestRate");
+    assertNotEquals(checkValue, null, "CheckValue");
+
+    System.out.println("Verified:");
+    String[] verifiedResponse = {
+      "instPlanParamId", "numberOfPay", "feeMonth", "interestRate", "checkValue"
+    };
+    try {
+      verifiedDataFromResponse(responseDoc, verifiedResponse);
+    } catch (Exception e) {
+      System.out.println("TEST FAILED");
     }
+  }
 
-    @Test
-    public void chooseInstPlan() {
-        requestDoc = getInstPlansRequest(cardMC07, "100000", merchant_AVAL, terminal_AVAL);
-        responseDoc = sendRequest(URL, requestDoc);
+  @Test(dependsOnMethods = "chooseInstPlan")
+  public void payLocalInstallmentChoice() {
+    Document requestInstChoose =
+        paymentLocalInstallment(
+            cardMCInst,
+            "local installment",
+            MERCHANT_ID_AVAL,
+            TERMINAL_ID_AVAL,
+            subsequentAmount,
+            instPlanParamId,
+            numberOfPay,
+            feeMonth,
+            interestRate,
+            checkValue);
+    Document responseInstChoose = sendRequest(URL, requestInstChoose);
 
-        System.out.println("--PAYMENT--\nRequest:\n" + printRequest(requestDoc));
-        System.out.println("Response:\n" + printResponse(responseDoc));
+    System.out.println("--INSTALLMENT--\nRequest:\n" + printRequest(requestInstChoose));
+    System.out.println("Response:\n" + printResponse(responseInstChoose));
 
-        instPlanParamId = getElementFromDocument(responseDoc, "instPlanParamId");
-        numberOfPay = getElementFromDocument(responseDoc, "numberOfPay");
-        feeMonth = getElementFromDocument(responseDoc, "feeMonth");
-        interestRate = getElementFromDocument(responseDoc, "interestRate");
-        checkValue = getElementFromDocument(responseDoc, "checkValue");
-        subsequentAmount = getElementFromDocument(responseDoc, "subsequentAmount");
+    int tranId = getTranIdByOrder(getElementFromDocument(requestInstChoose, "OrderID"));
+    String approvalCode = getElementFromDocument(responseInstChoose, "ApprovalCode");
+    String rrn = getElementFromDocument(responseInstChoose, "Rrn");
 
-        assertNotEquals(instPlanParamId, null, "instPlanParamId");
-        assertNotEquals(numberOfPay, null, "numberOfPay");
-        assertNotEquals(feeMonth, null, "feeMonth");
-        assertNotEquals(interestRate, null, "interestRate");
-        assertNotEquals(checkValue, null, "CheckValue");
+    assertEquals(getElementFromDocument(responseInstChoose, "CVResult"), "M", "CVResult");
+    assertEquals(getElementFromDocument(responseInstChoose, "HostCode"), "000", "HostCode");
+    assertEquals(approvalCode.length(), 6, "ApprovalCode");
+    assertEquals(rrn.length(), 12, "Rrn");
+    assertEquals(getValueFromTRAN(tranId, "ECI"), "07", "ECI");
 
-        System.out.println("Verified:");
-        String[] verifiedResponse = {"instPlanParamId", "numberOfPay", "feeMonth", "interestRate", "checkValue"};
-        try {
-            verifiedDataFromResponse(responseDoc, verifiedResponse);
-        } catch (Exception e) {
-            System.out.println("TEST FAILED");
-        }
+    System.out.println("Verified:");
+    String[] verifiedResponse = {"TranCode", "CVResult", "HostCode", "Rrn", "ApprovalCode"};
+    String[] verifiedResponseFromDB = {"ECI"};
+    try {
+      verifiedDataFromResponse(responseInstChoose, verifiedResponse);
+      verifiedDataFromDB(tranId, verifiedResponseFromDB);
+    } catch (Exception e) {
+      System.out.println("TEST FAILED");
     }
+  }
 
-    @Test(dependsOnMethods = "chooseInstPlan")
-    public void payLocalInstallmentChoice() {
-        Document requestInstChoose = paymentLocalInstallment(cardMCInst, "local installment", merchant_AVAL, terminal_AVAL, subsequentAmount, instPlanParamId, numberOfPay, feeMonth, interestRate, checkValue);
-        Document responseInstChoose = sendRequest(URL, requestInstChoose);
-
-        System.out.println("--INSTALLMENT--\nRequest:\n" + printRequest(requestInstChoose));
-        System.out.println("Response:\n" + printResponse(responseInstChoose));
-
-        int tranId = getTranIdByOrder(getElementFromDocument(requestInstChoose, "OrderID"));
-        String approvalCode = getElementFromDocument(responseInstChoose, "ApprovalCode");
-        String rrn = getElementFromDocument(responseInstChoose, "Rrn");
-
-        assertEquals(getElementFromDocument(responseInstChoose, "CVResult"), "M", "CVResult");
-        assertEquals(getElementFromDocument(responseInstChoose, "HostCode"), "000", "HostCode");
-        assertEquals(approvalCode.length(), 6, "ApprovalCode");
-        assertEquals(rrn.length(), 12, "Rrn");
-        assertEquals(getValueFromTRAN(tranId, "ECI"), "07", "ECI");
-
-        System.out.println("Verified:");
-        String[] verifiedResponse = {"TranCode", "CVResult", "HostCode", "Rrn", "ApprovalCode"};
-        String[] verifiedResponseFromDB = {"ECI"};
-        try {
-            verifiedDataFromResponse(responseInstChoose, verifiedResponse);
-            verifiedDataFromDB(tranId, verifiedResponseFromDB);
-        } catch (Exception e) {
-            System.out.println("TEST FAILED");
-        }
-    }
-
-    @AfterClass
-    public void setDefaultAttr() {
-        setMerchantAtt(id_AVAL, ALLOW_INSTALLMENT, "false");
-        setMerchantAtt(id_AVAL, ALLOW_PAYMENT_WITHOUT_3DS, "false");
-        System.out.println("ALLOW_INSTALLMENT: FALSE");
-        System.out.println("ALLOW_PAYMENT_WITHOUT_3DS: FALSE");
-    }
+  @AfterClass
+  public void setDefaultAttr() {
+    setMerchantAtt(ID_AVAL, ALLOW_INSTALLMENT, "false");
+    setMerchantAtt(ID_AVAL, ALLOW_PAYMENT_WITHOUT_3DS, "false");
+    System.out.println("ALLOW_INSTALLMENT: FALSE");
+    System.out.println("ALLOW_PAYMENT_WITHOUT_3DS: FALSE");
+  }
 }

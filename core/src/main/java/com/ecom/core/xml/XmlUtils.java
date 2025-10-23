@@ -45,8 +45,7 @@ public final class XmlUtils {
   }
 
   public static Document parse(String xml) {
-    try (InputStream stream =
-        new ByteArrayInputStream(xml.getBytes(StandardCharsets.UTF_8))) {
+    try (InputStream stream = new ByteArrayInputStream(xml.getBytes(StandardCharsets.UTF_8))) {
       return parse(stream);
     } catch (IOException exception) {
       throw new XmlProcessingException("Unable to read XML payload", exception);
@@ -99,8 +98,7 @@ public final class XmlUtils {
   }
 
   public static Schema loadSchema(String schemaPath) {
-    SchemaFactory schemaFactory =
-        SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
+    SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
     try (InputStream stream = ResourceUtils.stream(schemaPath)) {
       return schemaFactory.newSchema(new StreamSource(stream));
     } catch (SAXException | IOException exception) {

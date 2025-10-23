@@ -4,9 +4,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
-/**
- * Loads stoplist test data from the classpath.
- */
+/** Loads stoplist test data from the classpath. */
 public final class ConfigStoplist {
 
   private static final String DATA_FILE = "/DataDriven/api.stoplist.properties";

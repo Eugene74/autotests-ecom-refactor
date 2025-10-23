@@ -7,24 +7,24 @@ import org.testng.annotations.Test;
 
 public class ExchangeRate extends BaseUiTest {
 
-    public static final String currencyFrom = "AFN";
-    public static final String currencyTo = "ALL";
-    public static final String rate = "56";
-    public static final String bank = "AVAL";
+  public static final String currencyFrom = "AFN";
+  public static final String currencyTo = "ALL";
+  public static final String rate = "56";
+  public static final String bank = "AVAL";
 
-    @Test
-    public static void createExchangeRate(){
-        DashboardRequest request = new DashboardRequest();
-        boolean createFlag = request.createExchangeRate(currencyFrom, currencyTo, rate, bank);
+  @Test
+  public static void createExchangeRate() {
+    DashboardRequest request = new DashboardRequest();
+    boolean createFlag = request.createExchangeRate(currencyFrom, currencyTo, rate, bank);
 
-        Assert.assertEquals(createFlag, true, "creation flag");
-    }
+    Assert.assertEquals(createFlag, true, "creation flag");
+  }
 
-    @Test(dependsOnMethods = "createExchangeRate")
-    public static void deleteExchangeRate(){
-        DashboardRequest request = new DashboardRequest();
-        boolean createFlag = request.deleteExchangeRate(currencyFrom, currencyTo, rate, bank);
+  @Test(dependsOnMethods = "createExchangeRate")
+  public static void deleteExchangeRate() {
+    DashboardRequest request = new DashboardRequest();
+    boolean createFlag = request.deleteExchangeRate(currencyFrom, currencyTo, rate, bank);
 
-        Assert.assertEquals(createFlag, true, "creation flag");
-    }
+    Assert.assertEquals(createFlag, true, "creation flag");
+  }
 }

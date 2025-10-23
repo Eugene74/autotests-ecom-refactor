@@ -1,14 +1,5 @@
 package tests.dashboard.functional.tests.Settings;
 
-import com.ecom.tests.base.BaseUiTest;
-import com.ecom.tests.support.DashboardRequest;
-import com.ecom.tests.support.MoneyTransferRequests;
-import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
-import org.w3c.dom.Document;
-
 import static com.ecom.api.type.Attributes.ALLOW_PAYMENT_WITHOUT_3DS;
 import static com.ecom.core.config.CardConfig.cardMCmt;
 import static com.ecom.core.config.CardConfig.cardVISAmtRev;
@@ -20,97 +11,108 @@ import static com.ecom.tests.support.PaylinkRequests.payment;
 import static com.ecom.tests.support.RequestSenderRest.sendRequest;
 import static org.testng.Assert.assertEquals;
 
+import com.ecom.tests.base.BaseUiTest;
+import com.ecom.tests.support.DashboardRequest;
+import com.ecom.tests.support.MoneyTransferRequests;
+import org.testng.Assert;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
+import org.w3c.dom.Document;
+
 public class StopList extends BaseUiTest {
-    public static String orderId;
-    public static String rrn;
-    public static String approval_code;
-    public static int tranId;
+  public static String orderId;
+  public static String rrn;
+  public static String approval_code;
+  public static int tranId;
 
-    @BeforeClass
-    public void setParam() {
-        setMerchantAtt(id_AVAL, ALLOW_PAYMENT_WITHOUT_3DS, "true");
-        System.out.println("ALLOW_PAYMENT_WITHOUT_3DS: TRUE");
+  @BeforeClass
+  public void setParam() {
+    setMerchantAtt(ID_AVAL, ALLOW_PAYMENT_WITHOUT_3DS, "true");
+    System.out.println("ALLOW_PAYMENT_WITHOUT_3DS: TRUE");
+  }
+
+  @Test
+  public void makePayment() {
+    Document requestDoc = payment(cardMCmt, "payment", MERCHANT_ID_AVAL, TERMINAL_ID_AVAL);
+    Document responseDoc = sendRequest(URL, requestDoc);
+
+    System.out.println("--PAYMENT--\nRequest:\n" + printRequest(requestDoc));
+    System.out.println("Response:\n" + printResponse(responseDoc));
+
+    tranId = getTranIdByOrder(getElementFromDocument(requestDoc, "OrderID"));
+    orderId = getElementFromDocument(requestDoc, "OrderID");
+    approval_code = getElementFromDocument(responseDoc, "ApprovalCode");
+    rrn = getElementFromDocument(responseDoc, "Rrn");
+
+    assertEquals(approval_code.length(), 6, "ApprovalCode");
+    assertEquals(rrn.length(), 12, "Rrn");
+
+    System.out.println("Verified:");
+    String[] verifiedResponse = {"TranCode", "CVResult", "HostCode", "Rrn", "ApprovalCode"};
+    String[] verifiedResponseFromDB = {"ECI"};
+    try {
+      verifiedDataFromResponse(responseDoc, verifiedResponse);
+      verifiedDataFromDB(tranId, verifiedResponseFromDB);
+    } catch (Exception e) {
+      System.out.println("TEST FAILED");
     }
+  }
 
-    @Test
-    public void makePayment(){
-        Document requestDoc = payment(cardMCmt, "payment", merchant_AVAL, terminal_AVAL);
-        Document responseDoc = sendRequest(URL, requestDoc);
+  @Test(dependsOnMethods = "makePayment")
+  public void putCardToStopList() {
+    DashboardRequest request = new DashboardRequest();
+    boolean searchByCard = request.putCardToStopList(orderId, String.valueOf(tranId));
+    System.out.println(searchByCard);
+    Assert.assertEquals(searchByCard, true, "Search result flag");
+  }
 
-        System.out.println("--PAYMENT--\nRequest:\n" + printRequest(requestDoc));
-        System.out.println("Response:\n" + printResponse(responseDoc));
+  @Test(dependsOnMethods = "putCardToStopList")
+  public void makePaymentAfterPuttingToStopList() {
+    Document requestDoc = payment(cardMCmt, "MC payment", MERCHANT_ID_AVAL, TERMINAL_ID_AVAL);
+    Document responseDoc = sendRequest(URL, requestDoc);
 
-        tranId = getTranIdByOrder(getElementFromDocument(requestDoc, "OrderID"));
-        orderId = getElementFromDocument(requestDoc, "OrderID");
-        approval_code = getElementFromDocument(responseDoc, "ApprovalCode");
-        rrn = getElementFromDocument(responseDoc, "Rrn");
+    System.out.println("--PAYMENT--\nRequest:\n" + printRequest(requestDoc));
+    System.out.println("Response:\n" + printResponse(responseDoc));
 
-        assertEquals(approval_code.length(), 6, "ApprovalCode");
-        assertEquals(rrn.length(), 12, "Rrn");
+    Assert.assertEquals(getElementFromDocument(responseDoc, "TranCode"), "432", "TranCode");
 
-        System.out.println("Verified:");
-        String[] verifiedResponse = {"TranCode", "CVResult", "HostCode", "Rrn", "ApprovalCode"};
-        String[] verifiedResponseFromDB = {"ECI"};
-        try {
-            verifiedDataFromResponse(responseDoc, verifiedResponse);
-            verifiedDataFromDB(tranId, verifiedResponseFromDB);
-        } catch (Exception e) {
-            System.out.println("TEST FAILED");
-        }
+    System.out.println("Verified:");
+    String[] verifiedResponse = {"TranCode"};
+    String[] verifiedResponseFromDB = {"ECI"};
+    try {
+      verifiedDataFromResponse(responseDoc, verifiedResponse);
+      verifiedDataFromDB(tranId, verifiedResponseFromDB);
+    } catch (Exception e) {
+      System.out.println("Error. TEST FAILED");
     }
+  }
 
-    @Test(dependsOnMethods = "makePayment")
-    public void putCardToStopList()  {
-        DashboardRequest request = new DashboardRequest();
-        boolean searchByCard = request.putCardToStopList(orderId, String.valueOf(tranId));
-        System.out.println(searchByCard);
-        Assert.assertEquals(searchByCard, true, "Search result flag");
-    }
+  @Test(dependsOnMethods = "putCardToStopList")
+  public void moneyTransfeAfterPuttingToStopList() {
+    Document requestDoc =
+        MoneyTransferRequests.transferCardToCard(
+            cardMCmt, cardVISAmtRev, MERCHANT_ID_AVAL, TERMINAL_ID_AVAL);
+    Document responseDoc = sendRequest(URL_MT_TRAN, requestDoc);
 
-    @Test(dependsOnMethods = "putCardToStopList")
-    public void makePaymentAfterPuttingToStopList(){
-        Document requestDoc = payment(cardMCmt, "MC payment", merchant_AVAL, terminal_AVAL);
-        Document responseDoc = sendRequest(URL, requestDoc);
+    // System.out.println("--TRANSFER--\nRequest:\n" + printRequestMT(requestDoc));
+    // System.out.println("Response:\n" + printResponseMT(responseDoc));
 
-        System.out.println("--PAYMENT--\nRequest:\n" + printRequest(requestDoc));
-        System.out.println("Response:\n" + printResponse(responseDoc));
+    String rrnPayment = getElementFromDocument(responseDoc, "RRN");
+    Assert.assertEquals(rrnPayment.length(), 12, "RRN");
+  }
 
-        Assert.assertEquals(getElementFromDocument(responseDoc, "TranCode"), "432", "TranCode");
+  @Test(dependsOnMethods = "makePaymentAfterPuttingToStopList")
+  public void deleteCardFromStopList() {
+    DashboardRequest request = new DashboardRequest();
+    boolean searchByCard = request.deleteCardFromStopList(cardMCmt[0]);
+    System.out.println(searchByCard);
+    Assert.assertEquals(searchByCard, false, "Search result flag");
+  }
 
-        System.out.println("Verified:");
-        String[] verifiedResponse = {"TranCode"};
-        String[] verifiedResponseFromDB = {"ECI"};
-        try {
-            verifiedDataFromResponse(responseDoc, verifiedResponse);
-            verifiedDataFromDB(tranId, verifiedResponseFromDB);
-        } catch (Exception e) {
-            System.out.println("Error. TEST FAILED");
-        }
-    }
-
-    @Test(dependsOnMethods = "putCardToStopList")
-    public void moneyTransfeAfterPuttingToStopList(){
-        Document requestDoc = MoneyTransferRequests.transferCardToCard(cardMCmt, cardVISAmtRev, merchant_AVAL, terminal_AVAL);
-        Document responseDoc = sendRequest(URL_MT_Tran, requestDoc);
-
-        //System.out.println("--TRANSFER--\nRequest:\n" + printRequestMT(requestDoc));
-        //System.out.println("Response:\n" + printResponseMT(responseDoc));
-
-        String rrnPayment = getElementFromDocument(responseDoc, "RRN");
-        Assert.assertEquals(rrnPayment.length(), 12, "RRN");
-    }
-
-    @Test(dependsOnMethods = "makePaymentAfterPuttingToStopList")
-    public void deleteCardFromStopList()  {
-        DashboardRequest request = new DashboardRequest();
-        boolean searchByCard = request.deleteCardFromStopList(cardMCmt[0]);
-        System.out.println(searchByCard);
-        Assert.assertEquals(searchByCard, false, "Search result flag");
-    }
-
-    @AfterClass
-    public void setDefaultParam() {
-        setMerchantAtt(id_AVAL, ALLOW_PAYMENT_WITHOUT_3DS, "false");
-        System.out.println("ALLOW_PAYMENT_WITHOUT_3DS: FALSE");
-    }
+  @AfterClass
+  public void setDefaultParam() {
+    setMerchantAtt(ID_AVAL, ALLOW_PAYMENT_WITHOUT_3DS, "false");
+    System.out.println("ALLOW_PAYMENT_WITHOUT_3DS: FALSE");
+  }
 }

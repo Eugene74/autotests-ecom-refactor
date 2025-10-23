@@ -12,7 +12,8 @@ final class OracleDatabaseService extends BaseDatabaseService {
   }
 
   private static ConnectionProvider createProvider(DatabaseSettings settings) {
-    return () -> DriverManager.getConnection(settings.url(), settings.username(), settings.password());
+    return () ->
+        DriverManager.getConnection(settings.url(), settings.username(), settings.password());
   }
 
   private static void loadDriver(DatabaseSettings settings) {
