@@ -1,8 +1,8 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="onbording">
-    <test name="onbording">
+<suite name="onboarding">
+    <test name="onboarding">
         <classes>
-            <class name="tests.com.Onbording.Onboarding"/>
+            <class name="tests.com.Onboarding.Onboarding"/>
             </classes>
     </test>
 </suite>

@@ -1,5 +1,6 @@
 package tests.com.Service01;
 
+import com.ecom.tests.base.BaseApiTest;
 import org.apache.http.HttpResponse;
 import org.apache.http.util.EntityUtils;
 import org.testng.annotations.Test;
@@ -11,36 +12,39 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.ByteArrayInputStream;
 import java.nio.charset.StandardCharsets;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
+import static com.ecom.core.config.CardConfig.cardVISA;
+import static com.ecom.core.config.EnvData.URL_TOMEE;
+import static com.ecom.core.config.EnvData.merchantID_aval1;
+import static com.ecom.core.config.EnvData.terminalID_aval1;
 import static com.ecom.db.JDBCMethods.verifyOrders;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNotNull;
 
-public class Purchase extends BaseTest {
+public class Purchase extends BaseApiTest {
 
     private String approvalCode;
     private String rrn;
-
+    private String orderID;
     @Test
     public void authorization() throws Exception {
         // Генерація динамічного OrderID
-        OrderID = generateOrderID();
-
+        orderID = generateOrderID();
+        // Завантаження даних картки з окремого файлу
+        String[] cardData = cardVISA; //cardDetails.split(";");
         // Заповнення XML з пропертів
         String xmlContent = getResourceContent("XMLPurchase/Purchase.xml");
         Map<String, String> params = new HashMap<>();
-        params.put("MerchantID", MerchantID);
-        params.put("TerminalID", TerminalID);
-        params.put("OrderID", OrderID);
-        params.put("CardNum", CardNum);
-        params.put("ExpYear", ExpYear);
-        params.put("ExpMonth", ExpMonth);
-        params.put("CVNum", CVNum);
+        params.put("MerchantID", merchantID_aval1);
+        params.put("TerminalID", terminalID_aval1);
+        params.put("OrderID", orderID);
+        params.put("CardNum", cardData[0].trim());
+        params.put("ExpYear", cardData[1].trim());
+        params.put("ExpMonth", cardData[2].trim());
+        params.put("CVNum", cardData[3].trim());
 
         for (Map.Entry<String, String> entry : params.entrySet()) {
             String key = entry.getKey();
@@ -53,7 +57,7 @@ public class Purchase extends BaseTest {
         }
 
         // Відправка POST запиту
-        String url = baseUrl + "/go/service/02";
+        String url = URL_TOMEE + "/go/service/02";
         HttpResponse response = sendPostRequest(url, xmlContent);
         assertNotNull(response);
         int statusCode = response.getStatusLine().getStatusCode();
@@ -74,7 +78,7 @@ public class Purchase extends BaseTest {
         System.out.println("OrderID from DB: " + orderIdFromDb);
 
         // Збереження OrderID для подальшого використання
-        BaseTest.OrderID = orderIdFromDb;
+        orderID = orderIdFromDb;
     }
 
     private String verifyXmlResponse(String xml, SoftAssert softAssertion) throws Exception {
@@ -121,7 +125,7 @@ public class Purchase extends BaseTest {
         );
     }
 
-    private String verifyDatabase(String approvalCode, String rrn) throws Exception {
+   /* private String verifyDatabase(String approvalCode, String rrn) throws Exception {
         try (Connection connection = getDBConnection()) {
             String sql = "SELECT ORDER_ID FROM TRAN WHERE RRN = ? AND APPROVAL_CODE = ?";
             try (PreparedStatement statement = connection.prepareStatement(sql)) {
@@ -135,5 +139,11 @@ public class Purchase extends BaseTest {
                 }
             }
         }
+    }*/
+    // Метод для генерації динамічного OrderID
+    protected String generateOrderID() {
+        Random random = new Random();
+        int orderId = random.nextInt(1000000) + 1;
+        return "24" + orderId;
     }
 }

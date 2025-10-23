@@ -1,5 +1,6 @@
 package tests.dashboard.functional.tests.Login;
 
+import com.ecom.tests.base.BaseUiTest;
 import com.ecom.tests.support.DashboardRequest;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -8,11 +9,10 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import tests.BaseRedirect;
 
 import java.time.Duration;
 
-public class LoginUnsuccess extends BaseRedirect {
+public class LoginUnsuccess extends BaseUiTest {
 
     @Test
     public void loginDashboard() {

@@ -4,24 +4,22 @@
  */
 package tests.paylink.redirect.test.aval;
 
-import com.ecom.tests.support.RedirectRequest;
+import com.ecom.tests.base.BaseUiTest;
+import com.ecom.tests.steps.PaymentSteps;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-import tests.BaseRedirect;
 
-import static com.ecom.core.config.CardConfig.cardMC;
-import static com.ecom.core.config.EnvData.URLInvocing;
-import static com.ecom.core.config.EnvData.id_AVAL;
-import static com.ecom.core.config.EnvData.merchant_AVAL;
-import static com.ecom.core.config.EnvData.terminal_AVAL;
-import static com.ecom.db.JDBCMethods.*;
-import static com.ecom.db.JDBCMethods.getValueFromTRAN;
-import static com.ecom.tests.support.DocumentTools.verifiedDataFromDB;
 import static com.ecom.api.type.Attributes.ALLOW_PAYMENT_WITHOUT_3DS;
 import static com.ecom.api.type.Attributes.MERCHANT_INVOICING_URL;
+import static com.ecom.core.config.CardConfig.cardMC;
+import static com.ecom.core.config.EnvData.*;
+import static com.ecom.db.JDBCMethods.getTranIdByOrder;
+import static com.ecom.db.JDBCMethods.getValueFromTRAN;
+import static com.ecom.db.JDBCMethods.setMerchantAtt;
+import static com.ecom.tests.support.DocumentTools.verifiedDataFromDB;
 
-public class Capture extends BaseRedirect {
+public class Capture extends BaseUiTest {
 
     private static String orderRedirect;
     private static int tranId;
@@ -35,9 +33,8 @@ public class Capture extends BaseRedirect {
 
     @Test
     public void preAuthorization() {
-        RedirectRequest pay = new RedirectRequest();
-        orderRedirect = pay.paymentAuthorization(cardMC, 1, merchant_AVAL, terminal_AVAL);
-        pay.usedCVC(cardMC);
+        orderRedirect =new PaymentSteps(driver).authorizePayment(cardMC, 1, merchant_AVAL, terminal_AVAL, URLredirect);
+        new PaymentSteps(driver).usedCVC(cardMC);
 
         System.out.println("Order: " + orderRedirect);
 

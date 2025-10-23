@@ -23,5 +23,13 @@
       <groupId>org.yaml</groupId>
       <artifactId>snakeyaml</artifactId>
     </dependency>
+      <dependency>
+          <groupId>org.json</groupId>
+          <artifactId>json</artifactId>
+      </dependency>
+    <dependency>
+      <groupId>org.apache.httpcomponents</groupId>
+      <artifactId>httpclient</artifactId>
+    </dependency>
   </dependencies>
 </project>

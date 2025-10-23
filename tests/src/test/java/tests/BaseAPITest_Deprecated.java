@@ -6,4 +6,4 @@ import com.ecom.tests.base.BaseApiTest;
  * Legacy alias for {@link BaseApiTest}.
  */
 @Deprecated
-public abstract class BaseAPITest extends BaseApiTest {}
+public abstract class BaseAPITest_Deprecated extends BaseApiTest {}

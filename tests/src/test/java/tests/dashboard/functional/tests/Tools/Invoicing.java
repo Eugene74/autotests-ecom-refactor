@@ -1,6 +1,7 @@
 package tests.dashboard.functional.tests.Tools;
 
 import com.ecom.db.JDBCMethods;
+import com.ecom.tests.base.BaseUiTest;
 import com.ecom.tests.support.DashboardRequest;
 import com.ecom.ui.dashboard.functional.pages.KafkaEmailsPage;
 import com.ecom.ui.dashboard.functional.pages.ToolsPage;
@@ -9,7 +10,6 @@ import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import tests.BaseRedirect;
 
 import java.util.Random;
 import java.util.regex.Pattern;
@@ -22,7 +22,7 @@ import static com.ecom.db.JDBCMethods.getTranIdByOrder;
 import static com.ecom.db.JDBCMethods.setMerchantAtt;
 import static com.ecom.tests.support.DocumentTools.verifiedDataFromDB;
 
-public class Invoicing extends BaseRedirect {
+public class Invoicing extends BaseUiTest {
     public String url; // Змінено на нестатичну змінну
     public String order;
 

@@ -1,7 +1,7 @@
 package tests.com.Capture;
 
 import com.ecom.core.config.PropertiesManager;
-import com.ecom.core.util.ResourceUtils;
+import com.ecom.utils.ResourceUtils;
 import com.ecom.db.JDBCConnection;
 import com.ecom.ui.driver.WebDriverHolder;
 import org.openqa.selenium.*;
@@ -13,7 +13,6 @@ import org.testng.Assert;
 import org.testng.annotations.*;
 
 import java.io.BufferedWriter;
-import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;

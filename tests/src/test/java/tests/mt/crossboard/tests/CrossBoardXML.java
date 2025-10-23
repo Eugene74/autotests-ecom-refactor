@@ -3,23 +3,23 @@ package tests.mt.crossboard.tests;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import org.w3c.dom.Document;
-import tests.mt.BaseTestMoneyTransfer;
 
 import static com.ecom.core.config.CardConfig.cardMCmta;
 import static com.ecom.core.config.CardConfig.cardVISAmtRev;
+import static com.ecom.core.config.EnvData.URL_MT_Tran;
 import static com.ecom.core.config.EnvData.merchant_AVAL;
 import static com.ecom.core.config.EnvData.terminal_AVAL;
 import static com.ecom.db.JDBCMethods.getValueFromMTTran;
 import static com.ecom.tests.support.DocumentTools.*;
 import static com.ecom.tests.support.MoneyTransferRequests.transferCrossBoard;
-import static com.ecom.tests.support.RequestSender.sendRequest;
+import static com.ecom.tests.support.RequestSenderRest.sendRequest;
 
-public class CrossBoardXML extends BaseTestMoneyTransfer {
+public class CrossBoardXML {
 
     @Test
     public void crossBoardXML() {
         Document requestDoc = transferCrossBoard(cardMCmta, cardVISAmtRev, merchant_AVAL, terminal_AVAL);
-        Document responseDoc = sendRequest(URLmt, requestDoc);
+        Document responseDoc = sendRequest(URL_MT_Tran, requestDoc);
 
         System.out.println("--TRANSFER--\nRequest:\n" + printRequestMT(requestDoc));
         System.out.println("Response:\n" + printResponseMT(responseDoc));

@@ -1,18 +1,19 @@
 package tests.nFile;
 
 
+import com.ecom.api.type.FieldsNFile;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-import tests.BaseTest;
-import com.ecom.api.type.FieldsNFile;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Map;
 
-import static com.ecom.tests.support.ParserNFile.*;
+import static com.ecom.tests.support.ParserNFile.checkNFile;
+import static com.ecom.tests.support.ParserNFile.readTransInfoFromNFile;
+import static com.ecom.tests.support.ParserNFile.readTransInfoFromSerialized;
 
-public class CheckNFileByTransactionsPaylink extends BaseTest {
+public class CheckNFileByTransactionsPaylink {
     ArrayList<Map<FieldsNFile, String>> listOfTransactions = readTransInfoFromSerialized("nfilePayment.txt");
     SoftAssert softAssertion= new SoftAssert();
 

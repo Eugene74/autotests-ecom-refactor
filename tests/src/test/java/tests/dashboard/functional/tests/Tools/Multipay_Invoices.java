@@ -1,16 +1,18 @@
 package tests.dashboard.functional.tests.Tools;
 
 import com.ecom.db.JDBCMethods;
+import com.ecom.tests.base.BaseUiTest;
 import com.ecom.tests.support.DashboardRequest;
 import com.ecom.ui.util.Waiters;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import tests.BaseRedirect;
 
 import java.util.Random;
 
+import static com.ecom.api.type.Attributes.ALLOW_PAYMENT_WITHOUT_3DS;
+import static com.ecom.api.type.Attributes.MERCHANT_INVOICING_URL;
 import static com.ecom.core.config.CardConfig.cardMCmt;
 import static com.ecom.core.config.EnvData.URLInvocing;
 import static com.ecom.core.config.EnvData.id_AVAL;
@@ -18,10 +20,8 @@ import static com.ecom.core.config.EnvData.id_AVAL4;
 import static com.ecom.db.JDBCMethods.getTranIdByOrder;
 import static com.ecom.db.JDBCMethods.setMerchantAtt;
 import static com.ecom.tests.support.DocumentTools.verifiedDataFromDB;
-import static com.ecom.api.type.Attributes.ALLOW_PAYMENT_WITHOUT_3DS;
-import static com.ecom.api.type.Attributes.MERCHANT_INVOICING_URL;
 
-public class Multipay_Invoices extends BaseRedirect {
+public class Multipay_Invoices extends BaseUiTest {
     public String url; // Змінено на нестатичну змінну
     public String order; // Змінено на нестатичну змінну
     public String invoiceId; // Змінна для збереження invoice_id

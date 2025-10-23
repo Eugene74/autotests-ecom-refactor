@@ -1,11 +1,11 @@
 package tests.dashboard.functional.tests.MoneyTransfer;
 
+import com.ecom.tests.base.BaseUiTest;
 import com.ecom.tests.support.DashboardRequest;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import tests.BaseRedirect;
 
-public class ExchangeRate extends BaseRedirect {
+public class ExchangeRate extends BaseUiTest {
 
     public static final String currencyFrom = "AFN";
     public static final String currencyTo = "ALL";

@@ -1,4 +1,4 @@
-package com.ecom.core.util;
+package com.ecom.utils;
 
 import java.io.IOException;
 import java.io.InputStream;

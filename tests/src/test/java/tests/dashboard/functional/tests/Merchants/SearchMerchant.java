@@ -1,13 +1,11 @@
 package tests.dashboard.functional.tests.Merchants;
 
+import com.ecom.tests.base.BaseUiTest;
 import com.ecom.tests.support.DashboardRequest;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import tests.BaseRedirect;
-import com.ecom.ui.dashboard.functional.pages.MainPage;
 
-public class SearchMerchant extends BaseRedirect  {
+public class SearchMerchant extends BaseUiTest {
     @Test
     public static void searchMerchByID() {
         DashboardRequest request = new DashboardRequest();

@@ -1,7 +1,7 @@
 package tests.com.Capture;
 
 import com.ecom.core.config.PropertiesManager;
-import com.ecom.core.util.ResourceUtils;
+import com.ecom.utils.ResourceUtils;
 import com.ecom.db.JDBCConnection;
 import com.ecom.db.JDBCMethods;
 import com.ecom.ui.driver.WebDriverHolder;

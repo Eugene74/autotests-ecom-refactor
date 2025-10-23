@@ -2,7 +2,6 @@ package tests.paylink.xml;
 
 import org.testng.annotations.Test;
 import org.w3c.dom.Document;
-import tests.BaseTest;
 
 import static com.ecom.core.config.CardConfig.cardMCa;
 import static com.ecom.core.config.EnvData.URL;
@@ -13,11 +12,11 @@ import static com.ecom.db.JDBCMethods.getValueFromTRAN;
 import static com.ecom.tests.support.DocumentTools.*;
 import static com.ecom.tests.support.PaylinkRequests.paymentPostAuth;
 import static com.ecom.tests.support.PaylinkRequests.paymentPreAuthPares;
-import static com.ecom.tests.support.RequestSender.sendRequest;
+import static com.ecom.tests.support.RequestSenderRest.sendRequest;
 import static org.testng.Assert.assertEquals;
 
 
-public class PreAuthorizationPostAttempt extends BaseTest {
+public class PreAuthorizationPostAttempt {
     private static Document requestDoc;
     private static Document responseDoc;
     private static int tranId;

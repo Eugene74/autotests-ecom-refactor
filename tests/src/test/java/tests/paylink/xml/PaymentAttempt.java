@@ -1,26 +1,30 @@
 package tests.paylink.xml;
 
 import com.ecom.api.model.*;
+import com.ecom.api.type.FieldsNFile;
 import org.testng.annotations.Test;
 import org.w3c.dom.Document;
-import tests.BaseTest;
-import com.ecom.api.type.FieldsNFile;
+import tests.context.TransactionContext;
 
 import java.util.*;
 
+import static com.ecom.api.type.FieldsNFile.*;
+import static com.ecom.api.type.Mtid.Mtid16;
+import static com.ecom.api.type.Tags.Mtid16_3DSV;
+import static com.ecom.api.type.Tags.Mtid16_CAVV;
+import static com.ecom.api.type.Tags.Mtid16_SAAV;
 import static com.ecom.core.config.CardConfig.cardMC06;
-import static com.ecom.core.config.EnvData.*;
+import static com.ecom.core.config.EnvData.URL;
+import static com.ecom.core.config.EnvData.merchant_AVAL;
+import static com.ecom.core.config.EnvData.terminal_AVAL;
 import static com.ecom.db.JDBCMethods.getTranIdByOrder;
 import static com.ecom.db.JDBCMethods.getValueFromTRAN;
 import static com.ecom.tests.support.DocumentTools.*;
 import static com.ecom.tests.support.PaylinkRequests.paymentPares;
-import static com.ecom.tests.support.RequestSender.sendRequest;
+import static com.ecom.tests.support.RequestSenderRest.sendRequest;
 import static org.testng.Assert.assertEquals;
-import static com.ecom.api.type.FieldsNFile.*;
-import static com.ecom.api.type.Mtid.Mtid16;
-import static com.ecom.api.type.Tags.*;
 
-public class PaymentAttempt extends BaseTest {
+public class PaymentAttempt {
 
     @Test
     public void mcPaymentAttempt() {
@@ -80,7 +84,7 @@ public class PaymentAttempt extends BaseTest {
         checkTransaction.put(EPI_42_48_FULL, "212");
         checkTransaction.put(Mtid, "16");
 
-        tranPaymentFields.add(checkTransaction);
+        TransactionContext.ECOM_TRAN_PAYMENT_FIELDS.add(checkTransaction);
     }
 
     public void addTransactionRecordsToCheckNfile(Document requestDoc, int tranID, String approvalCode, String rrn, String[] card) {
@@ -113,7 +117,7 @@ public class PaymentAttempt extends BaseTest {
                 new TransactionRecord(fieldValues),
                 Collections.singletonList(new AcquirerData(Mtid16, tagValues)));
 
-        transactions.add(eCommTransaction);
+        TransactionContext.ECOMM_TRANSACTION_LIST.add(eCommTransaction);
     }
 
 }

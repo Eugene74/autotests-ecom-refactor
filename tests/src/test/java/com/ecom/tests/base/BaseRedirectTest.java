@@ -1,21 +1,12 @@
 package com.ecom.tests.base;
 
-import com.ecom.ui.driver.OptionsManager;
-import com.ecom.ui.driver.SelenideDriverManager;
-import com.ecom.ui.driver.WebDriverHolder;
-import org.openqa.selenium.Dimension;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-
-import static com.ecom.core.config.EnvData.isHeadless;
-
 /**
  * Base class for redirect-specific UI tests.
  */
+@Deprecated
 public abstract class BaseRedirectTest extends BaseTestSupport {
 
-  @BeforeMethod
+  /*@BeforeMethod
   public void setUpRedirectDriver() {
     SelenideDriverManager.ensureChromeDriverBinary();
     SelenideDriverManager.configure();
@@ -35,5 +26,5 @@ public abstract class BaseRedirectTest extends BaseTestSupport {
       driver.quit();
     }
     WebDriverHolder.removeDriver();
-  }
+  }*/
 }

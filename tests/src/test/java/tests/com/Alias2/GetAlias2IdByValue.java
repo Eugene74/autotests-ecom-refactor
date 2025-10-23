@@ -1,6 +1,6 @@
 package tests.com.Alias2;
 
-import tests.com.Alias1.BaseTestAlias1;
+import com.ecom.tests.base.BaseTestAlias2;
 import tests.com.Alias1.SharedDataStore;
 import org.apache.http.HttpResponse;
 import org.apache.http.util.EntityUtils;
@@ -16,10 +16,12 @@ import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.ecom.core.config.EnvData.URLAlias2GetAliasId;
+import static com.ecom.core.config.XMLAliasResource.XML_GET_ALIAS2ID_BY_VALUE_RESOURCE;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNotNull;
 
-public class GetAlias2IdByValue extends BaseTestAlias1 {
+public class GetAlias2IdByValue extends BaseTestAlias2 {
 
     @Test
     public void testGetAliasIdByValue() throws Exception {
@@ -27,36 +29,28 @@ public class GetAlias2IdByValue extends BaseTestAlias1 {
         if (SharedDataStore.aliasValue == null) {
             throw new IllegalArgumentException("The aliasValue is not set in SharedDataStore.");
         }
-
         // Складання XML-запиту
         String xmlContent = getResourceContent(XML_GET_ALIAS2ID_BY_VALUE_RESOURCE);
-
         // Підставляння змінних у XML-запит
         Map<String, String> params = new HashMap<>();
         params.put("Merchant2ID", Merchant2ID);
         params.put("Terminal2ID", Terminal2ID);
         params.put("TrackingId", SharedDataStore.trackingId);
         params.put("aliasValue", SharedDataStore.aliasValue);
-
         for (Map.Entry<String, String> entry : params.entrySet()) {
             xmlContent = xmlContent.replace("${" + entry.getKey() + "}", entry.getValue());
         }
-
         // Друк XML-запиту для налагодження
        // System.out.println("Request XML: " + xmlContent);
-
         // Відправка POST-запиту
         HttpResponse response = sendPostRequest(URLAlias2GetAliasId, xmlContent);
         assertNotNull(response);
-
         // Друкуємо статус код і повну відповідь для налагодження
         int statusCode = response.getStatusLine().getStatusCode();
         System.out.println("Received status code from the server: " + statusCode);
         String responseContent = EntityUtils.toString(response.getEntity(), "UTF-8");
         //System.out.println("Full Response: " + responseContent);
-
         assertEquals(statusCode, 200, "Received status code " + statusCode + " from the server, but expected 200");
-
         // Парсинг та верифікація XML-відповіді
         SoftAssert softAssertion = new SoftAssert();
         verifyGetAliasIdResponse(responseContent, softAssertion);

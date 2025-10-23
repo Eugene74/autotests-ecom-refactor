@@ -1,23 +1,24 @@
 package tests.paylink.xml;
 
-import com.ecom.tests.support.RequestSender;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.w3c.dom.Document;
-import tests.BaseTest;
 
 import static com.ecom.core.config.CardConfig.cardMC;
 import static com.ecom.core.config.EnvData.MOTO_FILTR;
 import static com.ecom.core.config.EnvData.URL;
 import static com.ecom.core.config.EnvData.merchant_AVAL;
 import static com.ecom.core.config.EnvData.terminal_AVAL;
-import static com.ecom.db.JDBCMethods.*;
+import static com.ecom.db.JDBCMethods.getTranIdByOrder;
+import static com.ecom.db.JDBCMethods.getValueFromTRAN;
+import static com.ecom.db.JDBCMethods.setMerchantFilter;
 import static com.ecom.tests.support.DocumentTools.*;
 import static com.ecom.tests.support.PaylinkRequests.payment;
+import static com.ecom.tests.support.RequestSenderRest.sendRequest;
 import static org.testng.Assert.assertEquals;
 
-public class Moto extends BaseTest {
+public class Moto {
 
     @BeforeClass
     public void setStatusFilter() {
@@ -28,7 +29,7 @@ public class Moto extends BaseTest {
     @Test
     public void PaymentMoto() {
         Document requestDoc = payment(cardMC, "MOTO", merchant_AVAL, terminal_AVAL);
-        Document responseDoc = RequestSender.sendRequest(URL, requestDoc);
+        Document responseDoc = sendRequest(URL, requestDoc);
 
         System.out.println("--PAYMENT--\nRequest:\n" + printRequest(requestDoc));
         System.out.println("Response:\n" + printResponse(responseDoc));

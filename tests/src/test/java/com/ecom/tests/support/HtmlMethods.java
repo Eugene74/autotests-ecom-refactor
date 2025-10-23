@@ -4,16 +4,18 @@ import com.ecom.ui.util.Waiters;
 import org.apache.commons.io.FileUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import tests.BaseTest;
 
 import java.io.File;
 import java.io.IOException;
 
 import static com.ecom.core.config.EnvData.MERCHANT_ID_LOOK;
 import static com.ecom.core.config.EnvData.TERMINAL_ID_LOOK;
-import static com.ecom.core.xml.TemplateCatalog.*;
+import static com.ecom.core.xml.TemplateCatalog.AUTH_PATH;
+import static com.ecom.core.xml.TemplateCatalog.AUTH_PATH_INSTALLMENT;
+import static com.ecom.core.xml.TemplateCatalog.VERIFY_PATH;
 
-public class HtmlMethods extends BaseTest{
+public class HtmlMethods {
+
     public static Document readHtmlFile(String path){
         String htmlString = "";
         try {
@@ -77,4 +79,8 @@ public class HtmlMethods extends BaseTest{
         }
     }
 
+    public static String getHtmlPath(String fileName) {
+        return "file:///" + System.getProperty("user.dir")
+                + "/src/main/resources/template/html/" + fileName;
+    }
 }

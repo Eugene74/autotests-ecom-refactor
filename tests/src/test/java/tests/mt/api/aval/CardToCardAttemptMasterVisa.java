@@ -2,25 +2,25 @@ package tests.mt.api.aval;
 
 
 import com.ecom.tests.support.MoneyTransferRequests;
-import com.ecom.tests.support.RequestSender;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import org.w3c.dom.Document;
-import tests.mt.BaseTestMoneyTransfer;
 
 import static com.ecom.core.config.CardConfig.cardMCmta;
 import static com.ecom.core.config.CardConfig.cardVISAmt;
+import static com.ecom.core.config.EnvData.URL_MT_Tran;
 import static com.ecom.core.config.EnvData.merchant_AVAL;
 import static com.ecom.core.config.EnvData.terminal_AVAL;
 import static com.ecom.db.JDBCMethods.getValueFromMTTran;
 import static com.ecom.tests.support.DocumentTools.*;
+import static com.ecom.tests.support.RequestSenderRest.sendRequest;;
 
-public class CardToCardAttemptMasterVisa extends BaseTestMoneyTransfer {
+public class CardToCardAttemptMasterVisa {
 
     @Test
     public void transferCardToCard() {
         Document requestDoc = MoneyTransferRequests.transferCardToCardPares(cardMCmta, cardVISAmt, merchant_AVAL, terminal_AVAL);
-        Document responseDoc = RequestSender.sendRequest(URLmt, requestDoc);
+        Document responseDoc = sendRequest(URL_MT_Tran, requestDoc);
         
         System.out.println("--TRANSFER--\nRequest:\n" + printRequestMT(requestDoc));
         System.out.println("Response:\n" + printResponseMT(responseDoc));

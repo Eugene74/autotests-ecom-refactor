@@ -1,5 +1,6 @@
 package tests.paylink.tokens.json;
 
+import com.ecom.tests.base.BaseUiTest;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.json.simple.JSONObject;
@@ -8,7 +9,6 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.w3c.dom.Document;
-import tests.BaseTest;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -23,11 +23,11 @@ import static com.ecom.db.JDBCMethods.getValueFromTRAN;
 import static com.ecom.db.JDBCMethods.setMerchantAtt;
 import static com.ecom.tests.support.DocumentTools.*;
 import static com.ecom.tests.support.PaylinkRequests.payment;
-import static com.ecom.tests.support.RequestSender.sendRequest;
+import static com.ecom.tests.support.RequestSenderRest.sendRequest;
 import static io.restassured.RestAssured.given;
 import static org.testng.Assert.assertEquals;
 
-public class TokenJson extends BaseTest {
+public class TokenJson extends BaseUiTest {
     private String tokenId;
     private int tranId;
 

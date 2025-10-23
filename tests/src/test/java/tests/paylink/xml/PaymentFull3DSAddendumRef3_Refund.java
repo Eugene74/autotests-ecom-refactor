@@ -4,23 +4,28 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.w3c.dom.Document;
-import tests.BaseTest;
 
+import static com.ecom.api.type.Attributes.ALLOW_AIRLINE_ADDENDUM_DATA;
+import static com.ecom.api.type.Attributes.ALLOW_REF3;
 import static com.ecom.core.config.CardConfig.cardMC05;
-
 import static com.ecom.core.config.EnvData.URL;
 import static com.ecom.core.config.EnvData.id_AVAL;
 import static com.ecom.core.config.EnvData.merchant_AVAL;
 import static com.ecom.core.config.EnvData.terminal_AVAL;
-import static com.ecom.db.JDBCMethods.*;
+import static com.ecom.db.JDBCMethods.getAddendumData;
+import static com.ecom.db.JDBCMethods.getTranIdByOrder;
+import static com.ecom.db.JDBCMethods.getValueFromTRAN;
+import static com.ecom.db.JDBCMethods.setMerchantAtt;
 import static com.ecom.tests.support.DocumentTools.*;
-import static com.ecom.tests.support.PaylinkRequests.*;
-import static com.ecom.tests.support.RequestSender.sendRequest;
-import static org.testng.Assert.*;
-import static com.ecom.api.type.Attributes.ALLOW_AIRLINE_ADDENDUM_DATA;
-import static com.ecom.api.type.Attributes.ALLOW_REF3;
+import static com.ecom.tests.support.PaylinkRequests.paylinkCloseDayForApi;
+import static com.ecom.tests.support.PaylinkRequests.paymentAddendum;
+import static com.ecom.tests.support.PaylinkRequests.reversal;
+import static com.ecom.tests.support.RequestSenderRest.sendRequest;
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertFalse;
+import static org.testng.Assert.assertTrue;
 
-public class PaymentFull3DSAddendumRef3_Refund extends BaseTest {
+public class PaymentFull3DSAddendumRef3_Refund {
     protected static Document requestDoc;
     protected static Document responseDoc;
     private static int tranId;

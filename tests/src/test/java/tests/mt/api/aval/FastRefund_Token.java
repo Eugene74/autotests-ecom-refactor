@@ -5,22 +5,24 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import org.w3c.dom.Document;
-import tests.mt.BaseTestMoneyTransfer;
 
+import static com.ecom.api.type.Attributes.ALLOW_FAST_REFUND;
+import static com.ecom.api.type.Attributes.ALLOW_PARTIAL_REVERSAL;
+import static com.ecom.api.type.Attributes.ALLOW_PAYMENT_WITHOUT_3DS;
+import static com.ecom.api.type.Attributes.ALLOW_SUPPORT_TOKEN;
 import static com.ecom.core.config.CardConfig.cardMCmt;
-import static com.ecom.core.config.EnvData.URL;
-import static com.ecom.core.config.EnvData.id_AVAL;
-import static com.ecom.core.config.EnvData.merchant_AVAL;
-import static com.ecom.core.config.EnvData.terminal_AVAL;
-import static com.ecom.db.JDBCMethods.*;
+import static com.ecom.core.config.EnvData.*;
+import static com.ecom.db.JDBCMethods.getTranIdByOrder;
+import static com.ecom.db.JDBCMethods.getTranIdByOrderFR;
+import static com.ecom.db.JDBCMethods.getValueFromMTTranFR;
+import static com.ecom.db.JDBCMethods.setMerchantAtt;
 import static com.ecom.tests.support.DocumentTools.*;
-import static com.ecom.tests.support.MoneyTransferRequests.*;
+import static com.ecom.tests.support.MoneyTransferRequests.fastRefundAPIToken;
 import static com.ecom.tests.support.PaylinkRequests.payment;
-import static com.ecom.tests.support.RequestSender.sendRequest;
+import static com.ecom.tests.support.RequestSenderRest.sendRequest;
 import static org.testng.Assert.assertEquals;
-import static com.ecom.api.type.Attributes.*;
 
-public class FastRefund_Token extends BaseTestMoneyTransfer {
+public class FastRefund_Token {
     protected Document requestDoc;
     protected Document responseDoc;
 

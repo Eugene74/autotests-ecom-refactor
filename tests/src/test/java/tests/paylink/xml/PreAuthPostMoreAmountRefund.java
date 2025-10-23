@@ -3,10 +3,8 @@ package tests.paylink.xml;
 import com.ecom.db.JDBCMethods;
 import org.testng.annotations.Test;
 import org.w3c.dom.Document;
-import tests.BaseTest;
 
 import static com.ecom.core.config.CardConfig.cardMC;
-
 import static com.ecom.core.config.EnvData.URL;
 import static com.ecom.core.config.EnvData.id_AVAL;
 import static com.ecom.core.config.EnvData.merchant_AVAL;
@@ -14,13 +12,16 @@ import static com.ecom.core.config.EnvData.terminal_AVAL;
 import static com.ecom.db.JDBCMethods.getTranIdByOrder;
 import static com.ecom.db.JDBCMethods.getValueFromTRAN;
 import static com.ecom.tests.support.DocumentTools.*;
-import static com.ecom.tests.support.PaylinkRequests.*;
-import static com.ecom.tests.support.RequestSender.sendRequest;
+import static com.ecom.tests.support.PaylinkRequests.paylinkCloseDayForApi;
+import static com.ecom.tests.support.PaylinkRequests.paymentPostAuth;
+import static com.ecom.tests.support.PaylinkRequests.paymentPreAuth;
+import static com.ecom.tests.support.PaylinkRequests.reversal;
+import static com.ecom.tests.support.RequestSenderRest.sendRequest;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertFalse;
 
 
-public class PreAuthPostMoreAmountRefund extends BaseTest {
+public class PreAuthPostMoreAmountRefund {
     private Document requestDoc;
     private Document responseDoc;
     private Document requestPostAuth;

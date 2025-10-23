@@ -2,13 +2,11 @@
  * @author semyvolos_h
  * @date 8/29/2023 1:41 PM
  */
-package tests.paylink.api.stoplist;
-
-import tests.BaseTest;
+package com.ecom.tests.base;
 
 import static com.ecom.core.config.EnvData.URL_TOMEE;
 
-public class BaseTestStoplist extends BaseTest {
+public class BaseTestStopList {
 
     /** GlobalStopList Endpoints */
     protected static String urlCreateItem = URL_TOMEE + "/go/stop-list/create";

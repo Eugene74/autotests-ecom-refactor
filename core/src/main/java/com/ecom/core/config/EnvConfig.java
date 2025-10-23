@@ -1,13 +1,14 @@
 package com.ecom.core.config;
 
-import com.ecom.core.util.ResourceUtils;
+import com.ecom.utils.ResourceUtils;
+import org.yaml.snakeyaml.Yaml;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Properties;
-import org.yaml.snakeyaml.Yaml;
 
 /**
  * Centralised environment configuration loader that resolves values from classpath resources.
@@ -22,6 +23,7 @@ public final class EnvConfig {
   private static final String ENV_PROPERTIES = "config/env.properties";
   private static final String CARDS_PROPERTIES = "config/cards.properties";
   private static final String DB_PROPERTIES = "config/db.properties";
+  private static final String P2P_PROPERTIES = "config/p2p-data.properties";
 
   private static final EnvConfig INSTANCE = new EnvConfig();
 
@@ -29,6 +31,7 @@ public final class EnvConfig {
   private final Properties envProperties = new Properties();
   private final Properties cardProperties = new Properties();
   private final Properties dbProperties = new Properties();
+  private final Properties p2pProperties = new Properties();
   private final String environment;
 
   private EnvConfig() {
@@ -41,6 +44,7 @@ public final class EnvConfig {
     loadOptional(String.format(APPLICATION_ENV_YML, environment), null);
     loadOptional(DB_PROPERTIES, dbProperties);
     loadOptional(CARDS_PROPERTIES, cardProperties);
+    loadOptional(P2P_PROPERTIES, p2pProperties);
   }
 
   public static EnvConfig getInstance() {

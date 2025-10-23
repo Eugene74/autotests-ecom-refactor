@@ -1,9 +1,9 @@
 package com.ecom.tests.support;
 
+import com.ecom.tests.base.BaseApiTest;
 import org.apache.http.HttpResponse;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONObject;
-import tests.BaseAPITest;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -11,7 +11,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class MdesVtsRequests extends BaseAPITest {
+public class MdesVtsRequests extends BaseApiTest {
     public String prepareRequest(
             String xmlTemplatePath,
             String trackingId,

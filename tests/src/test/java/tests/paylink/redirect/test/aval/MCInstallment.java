@@ -1,21 +1,22 @@
 package tests.paylink.redirect.test.aval;
 
-import com.ecom.tests.support.RedirectRequest;
+import com.ecom.tests.base.BaseUiTest;
+import com.ecom.tests.steps.PaymentSteps;
 import com.ecom.ui.util.Waiters;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-import tests.BaseRedirect;
 
+import static com.ecom.api.type.Attributes.*;
 import static com.ecom.core.config.CardConfig.cardMCInst;
 import static com.ecom.core.config.EnvData.*;
-import static com.ecom.db.JDBCMethods.*;
+import static com.ecom.db.JDBCMethods.getTranIdByOrder1;
+import static com.ecom.db.JDBCMethods.getValueFromTRAN;
+import static com.ecom.db.JDBCMethods.setMerchantAtt;
 import static com.ecom.tests.support.DocumentTools.verifiedDataFromDB;
-import static com.ecom.api.type.Attributes.*;
-import static com.ecom.api.type.Attributes.ALLOW_INSTALLMENT;
 
-public class MCInstallment extends BaseRedirect {
+public class MCInstallment extends BaseUiTest {
     @BeforeClass
     public void setParam() {
         setMerchantAtt(id_AVAL1, ALLOW_PAYMENT_WITHOUT_3DS, "true");
@@ -33,9 +34,9 @@ public class MCInstallment extends BaseRedirect {
 
     @Test
     public void installmentPay() {
-        RedirectRequest pay = new RedirectRequest();
-        String orderRedirect = pay.paymentAuthorizationInstallment(cardMCInst, 0, merchantID_aval1, terminalID_aval1);
-        pay.usedCVC(cardMCInst);
+        String orderRedirect = new PaymentSteps(driver)
+                .authorizePaymentInstallment(cardMCInst, 0, merchantID_aval1, terminalID_aval1, URLredirect);
+        new PaymentSteps(driver).usedCVC(cardMCInst);
         System.out.println("Order Redirect: "+ orderRedirect);
 
         Waiters.sleep(3500); //использовать только на тест среде, задержка для БД

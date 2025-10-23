@@ -1,22 +1,23 @@
 package tests.paylink.redirect.test.aval;
 
-import com.ecom.tests.support.RedirectRequest;
+import com.ecom.tests.base.BaseUiTest;
+import com.ecom.tests.steps.VerificationSteps;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-import tests.BaseRedirect;
 
+import static com.ecom.api.type.Attributes.ALLOW_PAYMENT_WITHOUT_3DS;
+import static com.ecom.api.type.Attributes.MERCHANT_INVOICING_URL;
 import static com.ecom.core.config.CardConfig.cardVISA;
 import static com.ecom.core.config.EnvData.URLInvocing;
+import static com.ecom.core.config.EnvData.URLredirect;
 import static com.ecom.core.config.EnvData.id_AVAL;
 import static com.ecom.db.JDBCMethods.getTranIdByOrder;
 import static com.ecom.db.JDBCMethods.getValueFromTRAN;
 import static com.ecom.db.JDBCMethods.setMerchantAtt;
-import static com.ecom.api.type.Attributes.ALLOW_PAYMENT_WITHOUT_3DS;
-import static com.ecom.api.type.Attributes.MERCHANT_INVOICING_URL;
 
-public class AccountVerification extends BaseRedirect {
+public class AccountVerification extends BaseUiTest {
 
     @BeforeClass
     public void setParam() {
@@ -27,8 +28,7 @@ public class AccountVerification extends BaseRedirect {
 
     @Test
     public void lookUp() {
-        RedirectRequest pay = new RedirectRequest();
-        String orderRedirect = pay.accountVerify(cardVISA);
+        String orderRedirect = new VerificationSteps(driver).verifyAccount(cardVISA, URLredirect);
         System.out.println("Order Redirect: " + orderRedirect);
 
         // Логика повторных попыток для получения tranId

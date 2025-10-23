@@ -1,147 +1,99 @@
-/**
- * @author semyvolos_h
- * @date 8/1/2022 9:33 AM
- */
 package tests.paylink.api.onboarding;
 
+import com.ecom.tests.base.BaseTestMerchantOnboarding;
+import com.ecom.tests.model.onboarding.*;
+import com.ecom.tests.support.*;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
-import com.ecom.tests.support.DataDrivenOnboarding;
-import com.ecom.tests.support.DocumentTools;
-import com.ecom.tests.support.RequestsOnboarding;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.testng.annotations.Test;
 import org.w3c.dom.Document;
+
 import static com.ecom.tests.support.DocumentTools.*;
+@Slf4j
+public class CreateMerchant extends BaseTestMerchantOnboarding {
 
-public class CreateMerchant extends BaseTestOnboarding {
-        public static String requestID;
+    public static String requestID;
 
-        @Test(dataProvider = "createMerchant", dataProviderClass = DataDrivenOnboarding.class)
-        public void createMerchant(String MerchantID,
-                                     String TerminalID,
-                                     String AccountLogin,
-                                     String ReqMerchantID,
-                                     String Mcc,
-                                     String ReqTerminalID,
-                                     String Country,
-                                     String City,
-                                     String Street,
-                                     String Name,
-                                     String BankCode,
-                                     String Currency,
-                                     String siteUrl,
-                                     String phone,
-                                     String contact,
-                                     String fax,
-                                     String email,
-                                     String zip,
-                                     String remark,
-                                     String notify_url,
-                                     String success_url,
-                                     String failure_url,
-                                     String closeday_hour,
-                                     String ipn,
-                                     String terminal_type_id,
-                                     String identification,
-                                     String timeZone,
-                                     String sms,
-                                     String viber,
-                                     String facebook) {
-        Document requestDoc = RequestsOnboarding.createMerchantDocument(MerchantID, TerminalID, AccountLogin, ReqMerchantID, Mcc, ReqTerminalID, Country, City, Street, Name, BankCode, Currency, siteUrl, phone, contact, fax, email, zip, remark, notify_url, success_url, failure_url, closeday_hour, ipn, terminal_type_id, identification, timeZone, sms, viber, facebook);
-        String response = RestAssured.given().contentType(ContentType.XML).accept(ContentType.XML).body(DocumentTools.toStringApi(requestDoc)).relaxedHTTPSValidation().when().post(urlCreateMerchant).asString();
+    @Test(dataProvider = "createMerchant", dataProviderClass = DataDrivenOnboarding.class)
+    public void createMerchant(MerchantData data) {
+        Document requestDoc = RequestsOnboarding.createMerchantDocument(
+                data.merchantID(), data.terminalID(), data.accountLogin(), data.reqMerchantID(),
+                data.mcc(), data.reqTerminalID(), data.country(), data.city(), data.street(),
+                data.name(), data.bankCode(), data.currency(), data.siteUrl(), data.phone(),
+                data.contact(), data.fax(), data.email(), data.zip(), data.remark(),
+                data.notifyUrl(), data.successUrl(), data.failureUrl(), data.closedayHour(),
+                data.ipn(), data.terminalTypeId(), data.identification(), data.timeZone(),
+                data.sms(), data.viber(), data.facebook()
+        );
+
+        String response = RestAssured.given()
+                .contentType(ContentType.XML)
+                .accept(ContentType.XML)
+                .body(DocumentTools.toStringApi(requestDoc))
+                .relaxedHTTPSValidation()
+                .when().post(urlCreateMerchant)
+                .asString();
+
         response = printResponseCreateMerchant(convertStringToXmlDocument(response));
         requestID = StringUtils.substringBetween(response, "<RequestID>", "</RequestID>");
-        System.out.println("--CREATE MERCHANT--\nRequest:\n" + printRequestCreateMerchant(requestDoc));
-        System.out.println("Response:\n" + response);
+        log.info("--CREATE MERCHANT--\nRequest:\n{}", printRequestCreateMerchant(requestDoc));
+        log.info("Response:\n{}", response);
     }
 
-        @Test(dataProvider = "createMerchantMcPaymentFacilitator", dataProviderClass = DataDrivenOnboarding.class)
-        public void mcPaymentFacilitator(String MerchantID,
-                           String TerminalID,
-                           String AccountLogin,
-                           String ReqMerchantID,
-                           String Mcc,
-                           String ReqTerminalID,
-                           String Country,
-                           String City,
-                           String Street,
-                           String Name,
-                           String BankCode,
-                           String Currency,
-                           String siteUrl,
-                           String phone,
-                           String contact,
-                           String fax,
-                           String email,
-                           String zip,
-                           String remark,
-                           String notify_url,
-                           String success_url,
-                           String failure_url,
-                           String closeday_hour,
-                           String ipn,
-                           String terminal_type_id,
-                           String identification,
-                           String mcPaymentFacilitatorId,
-                           String mcIndependentSalesOrgId,
-                           String mcSubMerchantId,
-                           String timeZone,
-                           String sms,
-                           String viber,
-                           String facebook
-        ) {
-        Document requestDoc = RequestsOnboarding.createMcPaymentFacilitatorDocument(MerchantID, TerminalID, AccountLogin, ReqMerchantID, Mcc, ReqTerminalID, Country, City, Street, Name, BankCode, Currency, siteUrl, phone, contact, fax, email, zip, remark, notify_url, success_url, failure_url, closeday_hour, ipn, terminal_type_id, identification, mcPaymentFacilitatorId, mcIndependentSalesOrgId, mcSubMerchantId, timeZone, sms, viber, facebook);
-        String response = RestAssured.given().contentType(ContentType.XML).accept(ContentType.XML).body(DocumentTools.toStringApi(requestDoc)).relaxedHTTPSValidation().when().post(urlCreateMerchant).asString();
+    @Test(dataProvider = "createMerchantMcPaymentFacilitator", dataProviderClass = DataDrivenOnboarding.class)
+    public void mcPaymentFacilitator(McFacilitatorData data) {
+        MerchantData d = data.base();
+        Document requestDoc = RequestsOnboarding.createMcPaymentFacilitatorDocument(
+                d.merchantID(), d.terminalID(), d.accountLogin(), d.reqMerchantID(), d.mcc(),
+                d.reqTerminalID(), d.country(), d.city(), d.street(), d.name(), d.bankCode(),
+                d.currency(), d.siteUrl(), d.phone(), d.contact(), d.fax(), d.email(), d.zip(),
+                d.remark(), d.notifyUrl(), d.successUrl(), d.failureUrl(), d.closedayHour(),
+                d.ipn(), d.terminalTypeId(), d.identification(),
+                data.mcPaymentFacilitatorId(), data.mcIndependentSalesOrgId(), data.mcSubMerchantId(),
+                d.timeZone(), d.sms(), d.viber(), d.facebook()
+        );
+
+        String response = RestAssured.given()
+                .contentType(ContentType.XML)
+                .accept(ContentType.XML)
+                .body(DocumentTools.toStringApi(requestDoc))
+                .relaxedHTTPSValidation()
+                .when().post(urlCreateMerchant)
+                .asString();
+
         response = printResponseCreateMcPaymentFacilitator(convertStringToXmlDocument(response));
         requestID = StringUtils.substringBetween(response, "<RequestID>", "</RequestID>");
-        System.out.println("--CREATE MERCHANT--\nRequest:\n" + printRequestCreateMcPaymentFacilitator(requestDoc));
-        System.out.println("Response:\n" + response);
-        }
+        log.info("--CREATE MERCHANT MC--\nRequest:\n{}", printRequestCreateMcPaymentFacilitator(requestDoc));
+        log.info("Response:\n{}", response);
+    }
 
-        @Test(dataProvider = "createMerchantVisaPaymentFacilitatorCliche", dataProviderClass = DataDrivenOnboarding.class)
-        public void visaPaymentFacilitatorCliche(String MerchantID,
-                       String TerminalID,
-                       String AccountLogin,
-                       String ReqMerchantID,
-                       String Mcc,
-                       String ReqTerminalID,
-                       String Country,
-                       String City,
-                       String Street,
-                       String Name,
-                       String BankCode,
-                       String Currency,
-                       String siteUrl,
-                       String phone,
-                       String contact,
-                       String fax,
-                       String email,
-                       String zip,
-                       String remark,
-                       String notify_url,
-                       String success_url,
-                       String failure_url,
-                       String closeday_hour,
-                       String ipn,
-                       String terminal_type_id,
-                       String identification,
-                       String visaPaymentFacilitatorId,
-                       String visaIndependentSalesOrgId,
-                       String visaSubMerchantId,
-                       String merchantCode,
-                       String terminalId,
-                       String merchantName,
-                       String timeZone,
-                       String sms,
-                       String viber,
-                       String facebook
-        ){
-        Document requestDoc = RequestsOnboarding.createVisaPaymentFacilitatorClicheDocument(MerchantID, TerminalID, AccountLogin, ReqMerchantID, Mcc, ReqTerminalID, Country, City, Street, Name, BankCode, Currency, siteUrl, phone, contact, fax, email, zip, remark, notify_url, success_url, failure_url, closeday_hour, ipn, terminal_type_id, identification, visaPaymentFacilitatorId, visaIndependentSalesOrgId, visaSubMerchantId, merchantCode, terminalId, merchantName, timeZone, sms, viber, facebook);
-        String response = RestAssured.given().contentType(ContentType.XML).accept(ContentType.XML).body(DocumentTools.toStringApi(requestDoc)).relaxedHTTPSValidation().when().post(urlCreateMerchant).asString();
+    @Test(dataProvider = "createMerchantVisaPaymentFacilitatorCliche", dataProviderClass = DataDrivenOnboarding.class)
+    public void visaPaymentFacilitatorCliche(VisaFacilitatorData data) {
+        MerchantData d = data.base();
+        Document requestDoc = RequestsOnboarding.createVisaPaymentFacilitatorClicheDocument(
+                d.merchantID(), d.terminalID(), d.accountLogin(), d.reqMerchantID(), d.mcc(),
+                d.reqTerminalID(), d.country(), d.city(), d.street(), d.name(), d.bankCode(),
+                d.currency(), d.siteUrl(), d.phone(), d.contact(), d.fax(), d.email(), d.zip(),
+                d.remark(), d.notifyUrl(), d.successUrl(), d.failureUrl(), d.closedayHour(),
+                d.ipn(), d.terminalTypeId(), d.identification(),
+                data.visaPaymentFacilitatorId(), data.visaIndependentSalesOrgId(),
+                data.visaSubMerchantId(), data.merchantCode(), data.terminalId(),
+                data.merchantName(), d.timeZone(), d.sms(), d.viber(), d.facebook()
+        );
+
+        String response = RestAssured.given()
+                .contentType(ContentType.XML)
+                .accept(ContentType.XML)
+                .body(DocumentTools.toStringApi(requestDoc))
+                .relaxedHTTPSValidation()
+                .when().post(urlCreateMerchant)
+                .asString();
+
         response = printResponseCreateVisaPaymentFacilitatorCliche(convertStringToXmlDocument(response));
         requestID = StringUtils.substringBetween(response, "<RequestID>", "</RequestID>");
-        System.out.println("--CREATE MERCHANT--\nRequest:\n" + printRequestCreateVisaPaymentFacilitatorCliche(requestDoc));
-        System.out.println("Response:\n" + response);
+        log.info("--CREATE MERCHANT VISA--\nRequest:\n{}", printRequestCreateVisaPaymentFacilitatorCliche(requestDoc));
+        log.info("Response:\n{}", response);
     }
 }

@@ -1,20 +1,22 @@
 package tests.paylink.redirect.test.aval;
 
-import com.ecom.tests.support.RedirectRequest;
+import com.ecom.tests.base.BaseUiTest;
+import com.ecom.tests.steps.PaymentSteps;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-import tests.BaseRedirect;
 
-import static com.ecom.core.config.CardConfig.cardVISA;
-import static com.ecom.core.config.EnvData.*;
-import static com.ecom.db.JDBCMethods.*;
-import static com.ecom.tests.support.DocumentTools.verifiedDataFromDB;
 import static com.ecom.api.type.Attributes.ALLOW_PAYMENT_WITHOUT_3DS;
 import static com.ecom.api.type.Attributes.MERCHANT_INVOICING_URL;
+import static com.ecom.core.config.CardConfig.cardVISA;
+import static com.ecom.core.config.EnvData.*;
+import static com.ecom.db.JDBCMethods.getTranIdByOrder;
+import static com.ecom.db.JDBCMethods.getValueFromTRAN;
+import static com.ecom.db.JDBCMethods.setMerchantAtt;
+import static com.ecom.tests.support.DocumentTools.verifiedDataFromDB;
 
-public class FacilitatorAuth extends BaseRedirect {
+public class FacilitatorAuth extends BaseUiTest {
 
     @BeforeClass
     public void setParam() {
@@ -25,12 +27,10 @@ public class FacilitatorAuth extends BaseRedirect {
 
     @Test
     public void authorizationPay() {
-        RedirectRequest pay = new RedirectRequest();
-        String orderRedirect = pay.paymentAuthorization(cardVISA, 0, merchantIDFacil_AVAL, terminalIDFacil_AVAL);
-
-        pay.usedCVC(cardVISA);
+        String orderRedirect = new PaymentSteps(driver)
+                .authorizePayment(cardVISA, 0, merchantIDFacil_AVAL, terminalIDFacil_AVAL, URLredirect);
+        new PaymentSteps(driver).usedCVC(cardVISA);
         System.out.println("Order: " + orderRedirect);
-        exit();
 
         // Логика повторных попыток для получения tranId
         int tranId = getTranIdByOrderWithRetry(orderRedirect, 5, 2000);

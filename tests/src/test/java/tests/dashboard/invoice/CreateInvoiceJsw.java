@@ -1,7 +1,7 @@
 package tests.dashboard.invoice;
 
 
-import com.ecom.core.util.ResourceUtils;
+import com.ecom.utils.ResourceUtils;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
@@ -9,7 +9,6 @@ import org.bouncycastle.openssl.PEMKeyPair;
 import org.bouncycastle.openssl.PEMParser;
 import org.bouncycastle.openssl.jcajce.JcaPEMKeyConverter;
 import org.testng.annotations.Test;
-import tests.BaseTest;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -21,7 +20,7 @@ import java.security.Security;
 import static io.restassured.RestAssured.given;
 
 @Test
-public class CreateInvoiceJsw extends BaseTest{
+public class CreateInvoiceJsw {
 
     public String privateKeyPath = "keys/private.pem";
 

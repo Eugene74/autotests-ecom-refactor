@@ -1,14 +1,16 @@
 package tests.paylink.redirect.test.aval;
 
 import com.ecom.db.JDBCMethods;
+import com.ecom.tests.base.BaseUiTest;
+import com.ecom.tests.steps.InvoiceSteps;
+import com.ecom.tests.steps.PaymentSteps;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-import tests.BaseTest;
-import com.ecom.tests.support.RedirectRequest;
 
-
+import static com.ecom.api.type.Attributes.ALLOW_PAYMENT_WITHOUT_3DS;
+import static com.ecom.api.type.Attributes.MERCHANT_INVOICING_URL;
 import static com.ecom.core.config.CardConfig.cardVisaRed;
 import static com.ecom.core.config.EnvData.URLInvocing;
 import static com.ecom.core.config.EnvData.URL_MERCH;
@@ -16,11 +18,9 @@ import static com.ecom.core.config.EnvData.id_AVAL;
 import static com.ecom.db.JDBCMethods.getTranIdByOrder;
 import static com.ecom.db.JDBCMethods.setMerchantAtt;
 import static com.ecom.tests.support.DocumentTools.verifiedDataFromDB;
-import static com.ecom.api.type.Attributes.ALLOW_PAYMENT_WITHOUT_3DS;
-import static com.ecom.api.type.Attributes.MERCHANT_INVOICING_URL;
 
 
-public class Invoicing extends BaseTest {
+public class Invoicing extends BaseUiTest {
 
     @BeforeClass
     public void setParam(){
@@ -31,12 +31,9 @@ public class Invoicing extends BaseTest {
 
     @Test
     public void authorizationPay() {
-        setup();
-        RedirectRequest pay = new RedirectRequest();
-        String orderRedirect = pay.paymentInvoicing(URL_MERCH, cardVisaRed, id_AVAL);
-        pay.usedCVC(cardVisaRed);
+        String orderRedirect = new InvoiceSteps(driver).payInvoice(URL_MERCH, cardVisaRed, id_AVAL);
+        new PaymentSteps(driver).usedCVC(cardVisaRed);
         System.out.println("Order: " + orderRedirect);
-        exit();
 
         int tranID = getTranIdByOrder(orderRedirect);
 

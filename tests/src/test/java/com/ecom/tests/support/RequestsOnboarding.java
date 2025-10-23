@@ -5,7 +5,7 @@
 package com.ecom.tests.support;
 
 import org.w3c.dom.Document;
-import tests.paylink.api.onboarding.BaseTestOnboarding;
+import com.ecom.tests.base.BaseTestMerchantOnboarding;
 import static com.ecom.tests.support.DocumentTools.*;
 
 public class RequestsOnboarding {
@@ -40,7 +40,7 @@ public class RequestsOnboarding {
                                                   String sms,
                                                   String viber,
                                                   String facebook) {
-        Document newRequestDoc = DocumentTools.readXMLFile(BaseTestOnboarding.XML_TEMPLATES_ONBOARDIND_CREATEMERCHANT_PATH);
+        Document newRequestDoc = DocumentTools.readXMLFile(BaseTestMerchantOnboarding.XML_TEMPLATES_ONBOARDIND_CREATEMERCHANT_PATH);
         fillCreateMerchant(newRequestDoc, MerchantID, TerminalID, AccountLogin, ReqMerchantID, Mcc, ReqTerminalID, Country, City, Street, Name, BankCode, Currency, siteUrl, phone, contact, fax, email, zip, remark, notify_url, success_url, failure_url, closeday_hour, ipn, terminal_type_id, identification, timeZone, sms, viber, facebook);
         return newRequestDoc;
     }
@@ -78,7 +78,7 @@ public class RequestsOnboarding {
                                                   String sms,
                                                   String viber,
                                                   String facebook) {
-        Document newRequestDoc = DocumentTools.readXMLFile(BaseTestOnboarding.XML_TEMPLATES_ONBOARDIND_CREATEMCPAYMENTFACILITATOR_PATH);
+        Document newRequestDoc = DocumentTools.readXMLFile(BaseTestMerchantOnboarding.XML_TEMPLATES_ONBOARDIND_CREATEMCPAYMENTFACILITATOR_PATH);
         fillCreateMcPaymentFacilitator(newRequestDoc, MerchantID, TerminalID, AccountLogin, ReqMerchantID, Mcc, ReqTerminalID, Country, City, Street, Name, BankCode, Currency, siteUrl, phone, contact, fax, email, zip, remark, notify_url, success_url, failure_url, closeday_hour, ipn, terminal_type_id, identification, mcPaymentFacilitatorId, mcIndependentSalesOrgId, mcSubMerchantId, timeZone, sms, viber, facebook);
         return newRequestDoc;
     }
@@ -119,31 +119,31 @@ public class RequestsOnboarding {
                                                                       String sms,
                                                                       String viber,
                                                                       String facebook){
-        Document newRequestDoc = DocumentTools.readXMLFile(BaseTestOnboarding.XML_TEMPLATES_ONBOARDIND_CREATEVISAPAYMENTFACILITATORCLICHE_PATH);
+        Document newRequestDoc = DocumentTools.readXMLFile(BaseTestMerchantOnboarding.XML_TEMPLATES_ONBOARDIND_CREATEVISAPAYMENTFACILITATORCLICHE_PATH);
         fillcreateVisaPaymentFacilitatorCliche(newRequestDoc, MerchantID, TerminalID, AccountLogin, ReqMerchantID, Mcc, ReqTerminalID, Country, City, Street, Name, BankCode, Currency, siteUrl, phone, contact, fax, email, zip, remark, notify_url, success_url, failure_url, closeday_hour, ipn, terminal_type_id, identification, visaPaymentFacilitatorId, visaIndependentSalesOrgId, visaSubMerchantId, merchantCode, terminalId, merchantName, timeZone, sms, viber, facebook);
         return newRequestDoc;
     }
 
     public static Document getMerchantDocument(String MerchantID, String TerminalID, String AccountLogin, String ReqMerchantID, String ReqTerminalID){
-        Document newRequestDoc = DocumentTools.readXMLFile(BaseTestOnboarding.XML_TEMPLATES_ONBOARDIND_GETMERCHANT_PATH);
+        Document newRequestDoc = DocumentTools.readXMLFile(BaseTestMerchantOnboarding.XML_TEMPLATES_ONBOARDIND_GETMERCHANT_PATH);
         fillGetMerchant(newRequestDoc, MerchantID, TerminalID, AccountLogin, ReqMerchantID, ReqTerminalID);
         return newRequestDoc;
     }
 
     public static Document deleteMerchantDocument(String MerchantID, String TerminalID, String AccountLogin, String ReqMerchantID, String ReqTerminalID){
-        Document newRequestDoc = DocumentTools.readXMLFile(BaseTestOnboarding.XML_TEMPLATES_ONBOARDIND_DELETEMERCHANT_PATH);
+        Document newRequestDoc = DocumentTools.readXMLFile(BaseTestMerchantOnboarding.XML_TEMPLATES_ONBOARDIND_DELETEMERCHANT_PATH);
         fillDeleteMerchant(newRequestDoc, MerchantID, TerminalID, AccountLogin, ReqMerchantID, ReqTerminalID);
         return newRequestDoc;
     }
 
     public static Document updateMerchantDocument(String MerchantID, String TerminalID, String AccountLogin, String ReqMerchantID, String ReqTerminalID, String updField){
-        Document newRequestDoc = DocumentTools.readXMLFile(BaseTestOnboarding.XML_TEMPLATES_ONBOARDIND_UPDATEMERCHANT_PATH);
+        Document newRequestDoc = DocumentTools.readXMLFile(BaseTestMerchantOnboarding.XML_TEMPLATES_ONBOARDIND_UPDATEMERCHANT_PATH);
         fillUpdateMerchant(newRequestDoc, MerchantID, TerminalID, AccountLogin, ReqMerchantID, ReqTerminalID, updField);
         return newRequestDoc;
     }
 
     public static Document getStatusDocument(String MerchantID, String TerminalID, String requestID){
-        Document newRequestDoc = DocumentTools.readXMLFile(BaseTestOnboarding.XML_TEMPLATES_ONBOARDIND_GETSTATUS_PATH);
+        Document newRequestDoc = DocumentTools.readXMLFile(BaseTestMerchantOnboarding.XML_TEMPLATES_ONBOARDIND_GETSTATUS_PATH);
         fillGetStatus(newRequestDoc, MerchantID, TerminalID, requestID);
         return newRequestDoc;
     }

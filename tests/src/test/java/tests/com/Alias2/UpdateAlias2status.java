@@ -1,13 +1,13 @@
 package tests.com.Alias2;
 
-import tests.com.Alias1.BaseTestAlias1;
-import tests.com.Alias1.SharedDataStore;
+import com.ecom.tests.base.BaseTestAlias2;
 import org.apache.http.HttpResponse;
 import org.apache.http.util.EntityUtils;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
+import tests.com.Alias1.SharedDataStore;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -19,17 +19,16 @@ import javax.xml.transform.stream.StreamResult;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.nio.charset.StandardCharsets;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.ecom.core.config.EnvData.URLAlias2UpdateStatus;
+import static com.ecom.core.config.XMLAliasResource.XML_UPDATE_ALIAS2_STATUS_RESOURCE;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNotNull;
 
-public class UpdateAlias2status extends BaseTestAlias1 {
-
+public class UpdateAlias2status extends BaseTestAlias2 {
+    private static final String QUERY ="SELECT ALIAS_ID FROM VA_USER_REQUEST WHERE TRACKING_ID = ? AND TYPE = 'CREATE_ALIAS'";
     @Test
     public void testUpdateAlias2status() throws Exception {
         updateAliasStatus("DISABLED");
@@ -38,7 +37,7 @@ public class UpdateAlias2status extends BaseTestAlias1 {
 
     private void updateAliasStatus(String status) throws Exception {
         // Отримання значення aliasId з бази даних
-        String aliasId = getAliasIdFromDatabase(SharedDataStore.trackingId);
+        String aliasId = getAliasIdFromDatabase(SharedDataStore.trackingId, QUERY,"ALIAS_ID");
 
         if (aliasId == null) {
             throw new IllegalArgumentException("The aliasId is not set.");
@@ -115,23 +114,6 @@ public class UpdateAlias2status extends BaseTestAlias1 {
                 }
             }
         }
-    }
-
-    // Метод для отримання aliasId з бази даних
-    private String getAliasIdFromDatabase(String trackingId) throws Exception {
-        String aliasId = null;
-        try (Connection connection = getDBConnection();
-             PreparedStatement statement = connection.prepareStatement(
-                     "SELECT ALIAS_ID FROM VA_USER_REQUEST WHERE TRACKING_ID = ? AND TYPE = 'CREATE_ALIAS'")) {
-
-            statement.setString(1, trackingId);
-            try (ResultSet resultSet = statement.executeQuery()) {
-                if (resultSet.next()) {
-                    aliasId = resultSet.getString("ALIAS_ID");
-                }
-            }
-        }
-        return aliasId;
     }
 
     // Метод для витягання тега <updateAliasStatus> з XML-запиту

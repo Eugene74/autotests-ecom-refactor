@@ -1,20 +1,23 @@
 package tests.paylink.redirect.test.aval;
 
-import com.ecom.tests.support.RedirectRequest;
+import com.ecom.tests.base.BaseUiTest;
+import com.ecom.tests.steps.PaymentSteps;
+import com.ecom.tests.steps.RefundSteps;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-import tests.BaseRedirect;
 
-import static com.ecom.core.config.CardConfig.cardMC;
-import static com.ecom.core.config.EnvData.*;
-import static com.ecom.db.JDBCMethods.*;
-import static com.ecom.tests.support.DocumentTools.verifiedDataFromDB;
 import static com.ecom.api.type.Attributes.ALLOW_PAYMENT_WITHOUT_3DS;
 import static com.ecom.api.type.Attributes.MERCHANT_INVOICING_URL;
+import static com.ecom.core.config.CardConfig.cardMC;
+import static com.ecom.core.config.EnvData.*;
+import static com.ecom.db.JDBCMethods.getTranIdByOrder;
+import static com.ecom.db.JDBCMethods.getValueFromTRAN;
+import static com.ecom.db.JDBCMethods.setMerchantAtt;
+import static com.ecom.tests.support.DocumentTools.verifiedDataFromDB;
 
-public class PreAuthorizationPostRevers extends BaseRedirect {
+public class PreAuthorizationPostRevers extends BaseUiTest {
     private static String orderRedirect;
     private static int tranId;
     private static int tranPostId;
@@ -28,9 +31,9 @@ public class PreAuthorizationPostRevers extends BaseRedirect {
 
     @Test
     public void visaPreAuthorization() {
-        RedirectRequest pay = new RedirectRequest();
-        orderRedirect = pay.paymentAuthorization(cardMC, 1, merchant_AVAL, terminal_AVAL);
-        pay.usedCVC(cardMC);
+        orderRedirect = new PaymentSteps(driver)
+                .authorizePayment(cardMC, 1, merchant_AVAL, terminal_AVAL, URLredirect);
+        new PaymentSteps(driver).usedCVC(cardMC);
 
         System.out.println("Order: " + orderRedirect);
 
@@ -64,25 +67,20 @@ public class PreAuthorizationPostRevers extends BaseRedirect {
 
     @Test(dependsOnMethods = "visaPreAuthorization")
     public void visaPreAuthorizationPost() {
-        RedirectRequest post = new RedirectRequest();
-        post.paymentPostAuthorization(tranId, orderRedirect);
-
+        new RefundSteps(driver).postAuthorization(URL_MERCH,tranId, orderRedirect);
         orderRedirect = orderRedirect.replace("Order № ", "").trim();
         System.out.println("Order without prefix: " + orderRedirect);
-
         tranPostId = getTranIdByOrderWithRetry(orderRedirect, 5, 2000);
         if (tranPostId == 0) {
             System.err.println("Failed to retrieve TranPostId after retries. Test aborted.");
             return;
         }
         System.out.println("TranPostId: " + tranPostId);
-
         SoftAssert softAssertion = new SoftAssert();
         softAssertion.assertFalse(tranPostId == tranId);
         softAssertion.assertEquals(getValueFromTRAN(tranPostId, "TranCode"), "000", "TranCode");
         softAssertion.assertEquals(getValueFromTRAN(tranPostId, "ECI"), getValueFromTRAN(tranId, "ECI"), "ECI");
         softAssertion.assertAll();
-
         System.out.println("Verified:");
         String[] verifiedResponseFromDB = {"ECI", "TranCode"};
         try {
@@ -95,19 +93,15 @@ public class PreAuthorizationPostRevers extends BaseRedirect {
 
     @Test(dependsOnMethods = "visaPreAuthorizationPost")
     public void visaPreAuthorizationPostRevers() {
-        RedirectRequest revers = new RedirectRequest();
-        revers.doReversal(URL_MERCH, orderRedirect, tranPostId);
-
+        new RefundSteps(driver).doRefund(URL_MERCH, orderRedirect, tranPostId);
         orderRedirect = orderRedirect.replace("Order № ", "").trim();
         System.out.println("Order without prefix: " + orderRedirect);
-
         int tranReversId = getTranIdByOrderWithRetry(orderRedirect, 5, 2000);
         if (tranReversId == 0) {
             System.err.println("Failed to retrieve TranReversId after retries. Test aborted.");
             return;
         }
         System.out.println("TranReversId: " + tranReversId);
-
         SoftAssert softAssertion = new SoftAssert();
         softAssertion.assertFalse(tranReversId == tranId);
         softAssertion.assertEquals(getValueFromTRAN(tranReversId, "ECI"), getValueFromTRAN(tranId, "ECI"), "ECI");
@@ -116,7 +110,6 @@ public class PreAuthorizationPostRevers extends BaseRedirect {
         softAssertion.assertEquals(getValueFromTRAN(tranReversId, "Rrn").length(), 12, "Rrn");
         softAssertion.assertEquals(getValueFromTRAN(tranReversId, "TranCode"), "000", "TranCode");
         softAssertion.assertAll();
-
         System.out.println("Verified:");
         String[] verifiedResponseFromDB = {"ECI", "ApprovalCode", "Rrn", "TranCode", "RevFlag"};
         try {

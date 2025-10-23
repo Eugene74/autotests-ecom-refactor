@@ -1,29 +1,26 @@
 package tests.dashboard.functional.tests.Settings;
 
+import com.ecom.tests.base.BaseUiTest;
 import com.ecom.tests.support.DashboardRequest;
 import com.ecom.tests.support.MoneyTransferRequests;
-import com.ecom.tests.support.RequestSender;
+import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.w3c.dom.Document;
-import tests.BaseRedirect;
-import org.testng.Assert;
 
-
+import static com.ecom.api.type.Attributes.ALLOW_PAYMENT_WITHOUT_3DS;
 import static com.ecom.core.config.CardConfig.cardMCmt;
 import static com.ecom.core.config.CardConfig.cardVISAmtRev;
 import static com.ecom.core.config.EnvData.*;
 import static com.ecom.db.JDBCMethods.getTranIdByOrder;
 import static com.ecom.db.JDBCMethods.setMerchantAtt;
 import static com.ecom.tests.support.DocumentTools.*;
-import static com.ecom.tests.support.DocumentTools.verifiedDataFromDB;
 import static com.ecom.tests.support.PaylinkRequests.payment;
-import static com.ecom.tests.support.RequestSender.sendRequest;
+import static com.ecom.tests.support.RequestSenderRest.sendRequest;
 import static org.testng.Assert.assertEquals;
-import static com.ecom.api.type.Attributes.ALLOW_PAYMENT_WITHOUT_3DS;
 
-public class StopList extends BaseRedirect {
+public class StopList extends BaseUiTest {
     public static String orderId;
     public static String rrn;
     public static String approval_code;
@@ -94,7 +91,7 @@ public class StopList extends BaseRedirect {
     @Test(dependsOnMethods = "putCardToStopList")
     public void moneyTransfeAfterPuttingToStopList(){
         Document requestDoc = MoneyTransferRequests.transferCardToCard(cardMCmt, cardVISAmtRev, merchant_AVAL, terminal_AVAL);
-        Document responseDoc = RequestSender.sendRequest(URL_MT_Tran, requestDoc);
+        Document responseDoc = sendRequest(URL_MT_Tran, requestDoc);
 
         //System.out.println("--TRANSFER--\nRequest:\n" + printRequestMT(requestDoc));
         //System.out.println("Response:\n" + printResponseMT(responseDoc));

@@ -1,10 +1,7 @@
 package tests.com.Endpoint;
 
 import com.ecom.core.config.PropertiesManager;
-import java.io.File;
-import java.util.HashMap;
-import java.util.Properties;
-
+import com.ecom.tests.base.BasePropertiesTest;
 import com.ecom.ui.driver.WebDriverHolder;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
@@ -12,8 +9,12 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.BeforeClass;
 
+import java.io.File;
+import java.util.HashMap;
+import java.util.Properties;
 
 
+@Deprecated
 public class BaseTest extends BasePropertiesTest {
     protected WebDriver driver;
     protected Properties properties;

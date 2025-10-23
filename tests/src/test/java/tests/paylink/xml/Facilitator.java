@@ -2,18 +2,19 @@ package tests.paylink.xml;
 
 import org.junit.Test;
 import org.w3c.dom.Document;
-import tests.BaseTest;
 
 import static com.ecom.core.config.CardConfig.cardMC;
-import static com.ecom.core.config.EnvData.*;
+import static com.ecom.core.config.EnvData.URL;
+import static com.ecom.core.config.EnvData.merchantIDFacil_AVAL;
+import static com.ecom.core.config.EnvData.terminalIDFacil_AVAL;
 import static com.ecom.db.JDBCMethods.getTranIdByOrder;
 import static com.ecom.db.JDBCMethods.getValueFromTRAN;
 import static com.ecom.tests.support.DocumentTools.*;
 import static com.ecom.tests.support.PaylinkRequests.payment;
-import static com.ecom.tests.support.RequestSender.sendRequest;
+import static com.ecom.tests.support.RequestSenderRest.sendRequest;
 import static org.testng.Assert.assertEquals;
 
-public class Facilitator extends BaseTest {
+public class Facilitator {
 
     @Test
     public void mcFacilitatorPay() {

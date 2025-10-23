@@ -1,16 +1,11 @@
 package com.ecom.tests.base;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
-import java.util.Base64;
-import javax.net.ssl.SSLContext;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
+import com.ecom.db.JDBCConnection;
 import org.apache.http.HttpResponse;
+import org.apache.http.client.methods.HttpEntityEnclosingRequestBase;
+import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.methods.HttpPut;
 import org.apache.http.conn.ssl.NoopHostnameVerifier;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -20,10 +15,23 @@ import org.json.JSONObject;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 
+import javax.net.ssl.SSLContext;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URI;
+import java.nio.charset.StandardCharsets;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.Base64;
+
 /**
  * Common HTTP helpers used by API tests.
  */
-public abstract class BaseApiTest extends BaseTestSupport {
+public abstract class BaseApiTest extends BaseTest{ //todo переделать
 
   protected CloseableHttpClient createAllTrustingClient() throws Exception {
     SSLContext sslContext =
@@ -102,4 +110,61 @@ public abstract class BaseApiTest extends BaseTestSupport {
   public String maskMiddle(int input, int maskLength) {
     return maskMiddle(String.valueOf(input), maskLength);
   }
+
+  protected HttpResponse sendGetRequest(String url, String queryParams) throws IOException {
+    CloseableHttpClient client = HttpClients.createDefault();
+    HttpPost post = new HttpPost(url + "?" + queryParams);
+    return client.execute(post);
+  }
+
+  protected HttpResponse sendGetRequest(String url) throws IOException {
+    CloseableHttpClient client = HttpClients.createDefault();
+    HttpGet get = new HttpGet(url);
+    get.setHeader("Content-Type", "application/xml");
+    return client.execute(get);
+  }
+
+  protected HttpResponse sendDeleteRequest(String url, String xmlContent) throws IOException {
+    CloseableHttpClient client = HttpClients.createDefault();
+    HttpDeleteWithBody delete = new HttpDeleteWithBody(url);
+    delete.setHeader("Content-Type", "application/xml");
+    delete.setEntity(new StringEntity(xmlContent));
+    return client.execute(delete);
+  }
+
+  public class HttpDeleteWithBody extends HttpEntityEnclosingRequestBase {
+    public static final String METHOD_NAME = "DELETE";
+
+    public HttpDeleteWithBody() {
+      super();
+    }
+
+    public HttpDeleteWithBody(final URI uri) {
+      super();
+      setURI(uri);
+    }
+
+    public HttpDeleteWithBody(final String uri) {
+      super();
+      setURI(URI.create(uri));
+    }
+
+    @Override
+    public String getMethod() {
+      return METHOD_NAME;
+    }
+  }
+
+  protected Connection getDBConnection() throws SQLException {
+    return JDBCConnection.getDBConnection();
+  }
+
+  protected HttpResponse sendPutRequest(String url, String xmlContent) throws Exception {
+    CloseableHttpClient client = createAllTrustingClient();
+    HttpPut put = new HttpPut(url);
+    put.setHeader("Content-Type", "application/xml");
+    put.setEntity(new StringEntity(xmlContent));
+    return client.execute(put);
+  }
+
 }

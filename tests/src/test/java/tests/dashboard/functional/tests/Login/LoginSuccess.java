@@ -1,16 +1,18 @@
 package tests.dashboard.functional.tests.Login;
 
+import com.codeborne.selenide.WebDriverRunner;
+import com.ecom.tests.base.BaseUiTest;
 import com.ecom.tests.support.DashboardRequest;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import tests.BaseRedirect;
+
+import static com.ecom.api.type.Attributes.MERCHANT_INVOICING_URL;
 import static com.ecom.core.config.EnvData.*;
 import static com.ecom.db.JDBCMethods.setMerchantAtt;
 import static com.ecom.db.JDBCMethods.setPropertyURLs;
-import static com.ecom.api.type.Attributes.MERCHANT_INVOICING_URL;
 
-public class LoginSuccess extends BaseRedirect {
+public class LoginSuccess extends BaseUiTest {
 
 
     @BeforeClass
@@ -48,7 +50,7 @@ public class LoginSuccess extends BaseRedirect {
             if (profile_link.matches(expectedUrlPattern)) {
                 break;
             }
-            profile_link = request.getDriver().getCurrentUrl().toString();
+            profile_link = WebDriverRunner.url();
             try {
                 Thread.sleep(500);
             } catch (InterruptedException e) {

@@ -1,5 +1,6 @@
 package tests.dashboard.functional.tests.Payments;
 
+import com.ecom.tests.base.BaseUiTest;
 import com.ecom.tests.support.DashboardRequest;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -7,8 +8,8 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import org.w3c.dom.Document;
-import tests.BaseRedirect;
 
+import static com.ecom.api.type.Attributes.ALLOW_PAYMENT_WITHOUT_3DS;
 import static com.ecom.core.config.CardConfig.cardVISAmtRev;
 import static com.ecom.core.config.EnvData.URL;
 import static com.ecom.core.config.EnvData.id_AVAL;
@@ -18,14 +19,11 @@ import static com.ecom.db.JDBCMethods.getTranIdByOrder;
 import static com.ecom.db.JDBCMethods.getValueFromTRAN;
 import static com.ecom.db.JDBCMethods.setMerchantAtt;
 import static com.ecom.tests.support.DocumentTools.*;
-import static com.ecom.tests.support.DocumentTools.getElementFromDocument;
-import static com.ecom.tests.support.DocumentTools.verifiedDataFromResponse;
 import static com.ecom.tests.support.PaylinkRequests.payment;
-import static com.ecom.tests.support.RequestSender.sendRequest;
+import static com.ecom.tests.support.RequestSenderRest.sendRequest;
 import static org.testng.Assert.assertEquals;
-import static com.ecom.api.type.Attributes.ALLOW_PAYMENT_WITHOUT_3DS;
 
-public class Transaction extends BaseRedirect {
+public class Transaction extends BaseUiTest {
     public static String orderId;
     public static String rrn;
     public static String approval_code;

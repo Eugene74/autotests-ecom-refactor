@@ -1,6 +1,6 @@
 package com.ecom.tests.support;
 
-import com.ecom.core.util.ResourceUtils;
+import com.ecom.utils.ResourceUtils;
 import com.ecom.api.type.FieldsNFile;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Assert;

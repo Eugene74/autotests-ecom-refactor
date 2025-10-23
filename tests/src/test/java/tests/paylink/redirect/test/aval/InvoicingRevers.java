@@ -1,23 +1,27 @@
 package tests.paylink.redirect.test.aval;
 
 import com.ecom.db.JDBCMethods;
-import com.ecom.tests.support.RedirectRequest;
+import com.ecom.tests.base.BaseUiTest;
+import com.ecom.tests.steps.InvoiceSteps;
+import com.ecom.tests.steps.PaymentSteps;
+import com.ecom.tests.steps.RefundSteps;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-import tests.BaseRedirect;
 
+import static com.ecom.api.type.Attributes.ALLOW_PAYMENT_WITHOUT_3DS;
+import static com.ecom.api.type.Attributes.MERCHANT_INVOICING_URL;
 import static com.ecom.core.config.CardConfig.cardVISA;
 import static com.ecom.core.config.EnvData.URLInvocing;
 import static com.ecom.core.config.EnvData.URL_MERCH;
 import static com.ecom.core.config.EnvData.id_AVAL;
-import static com.ecom.db.JDBCMethods.*;
+import static com.ecom.db.JDBCMethods.getTranIdByOrder;
+import static com.ecom.db.JDBCMethods.getValueFromTRAN;
+import static com.ecom.db.JDBCMethods.setMerchantAtt;
 import static com.ecom.tests.support.DocumentTools.verifiedDataFromDB;
-import static com.ecom.api.type.Attributes.ALLOW_PAYMENT_WITHOUT_3DS;
-import static com.ecom.api.type.Attributes.MERCHANT_INVOICING_URL;
 
-public class InvoicingRevers extends BaseRedirect {
+public class InvoicingRevers extends BaseUiTest {
 
     private static String orderRedirect;
     private static int tranId;
@@ -31,9 +35,8 @@ public class InvoicingRevers extends BaseRedirect {
 
     @Test
     public void invoicePay() {
-        RedirectRequest pay = new RedirectRequest();
-        orderRedirect = pay.paymentInvoicing(URL_MERCH, cardVISA, id_AVAL);
-        pay.usedCVC(cardVISA);
+        orderRedirect = new InvoiceSteps(driver).payInvoice(URL_MERCH, cardVISA, id_AVAL);
+        new PaymentSteps(driver).usedCVC(cardVISA);
         System.out.println("Order: " + orderRedirect);
 
         tranId = getTranIdByOrder(orderRedirect);
@@ -64,18 +67,13 @@ public class InvoicingRevers extends BaseRedirect {
 
     @Test(dependsOnMethods = "invoicePay")
     public void invoiceRevers() {
-        RedirectRequest revers = new RedirectRequest();
-        revers.doReversal(URL_MERCH, orderRedirect, tranId);
-
+        new RefundSteps(driver).doRefund(URL_MERCH, orderRedirect, tranId);
         int tranReversId = getTranIdByOrder(orderRedirect);
-
 // Видалення префікса "Order №" з orderRedirect (додаткове видалення на випадок, якщо префікс з'явиться знову)
         orderRedirect = orderRedirect.replace("Order № ", "").trim();
         System.out.println("Order without prefix: " + orderRedirect);
-
         int tranRefundId = getTranIdByOrder(orderRedirect);
         System.out.println("TranRefundId: " + tranRefundId);
-
         SoftAssert softAssertion = new SoftAssert();
         softAssertion.assertFalse(tranReversId == tranId);
         softAssertion.assertEquals(getValueFromTRAN(tranReversId, "ECI"), getValueFromTRAN(tranId, "ECI"), "ECI");
@@ -84,7 +82,6 @@ public class InvoicingRevers extends BaseRedirect {
         softAssertion.assertEquals(getValueFromTRAN(tranReversId, "Rrn").length(), 12, "Rrn");
         softAssertion.assertEquals(getValueFromTRAN(tranReversId, "TranCode"), "000", "TranCode");
         softAssertion.assertAll();
-
         System.out.println("Verified:");
         String[] verifiedResponseFromDB = {"ECI", "ApprovalCode", "Rrn", "TranCode", "RevFlag"};
         try {

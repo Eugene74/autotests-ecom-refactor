@@ -18,7 +18,7 @@ import com.ecom.api.type.Attributes;
 import java.time.Duration;
 
 
-import com.ecom.core.util.ResourceUtils;
+import com.ecom.utils.ResourceUtils;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;

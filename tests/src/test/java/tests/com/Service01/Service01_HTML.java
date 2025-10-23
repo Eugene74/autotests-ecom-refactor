@@ -1,92 +1,26 @@
 package tests.com.Service01;
 
-import com.ecom.core.config.PropertiesManager;
-import com.ecom.core.util.ResourceUtils;
-import com.ecom.db.JDBCConnection;
-import com.ecom.ui.driver.WebDriverHolder;
-import org.openqa.selenium.*;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
+import com.ecom.tests.base.BaseTestService01;
+import com.ecom.utils.ResourceUtils;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import org.testng.annotations.*;
+import org.testng.annotations.Test;
+
 import java.io.BufferedWriter;
-import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.time.Duration;
-import java.util.Properties;
-import java.util.concurrent.TimeUnit;
 
-public class Service01_HTML extends BaseTest {
+import static com.ecom.core.config.EnvData.URL_TOMEE;
+import static com.ecom.core.config.EnvData.merchantID_aval1;
+import static com.ecom.core.config.EnvData.terminal_AVAL;
 
-    private WebDriver driver;
-    private WebDriverWait wait;
-    private Properties properties;
-
-    @BeforeClass
-    public void setUp() {
-        // Завантажуємо властивості з endpoint.properties
-        properties = PropertiesManager.getInstance().getEnvProperties();
-
-        // Check if chromedriver is in PATH
-        boolean isDriverInPath = false;
-        try {
-            Process process = new ProcessBuilder("chromedriver", "--version").start();
-            int exitCode = process.waitFor();
-            isDriverInPath = (exitCode == 0);
-        } catch (Exception e) {
-            isDriverInPath = false;
-        }
-
-        // Set path only if not found in PATH
-        if (!isDriverInPath) {
-            System.setProperty("webdriver.chrome.driver", "driver/chromedriver.exe");
-        }
-
-        // Створюємо ChromeOptions для налаштування WebDriver
-        ChromeOptions options = new ChromeOptions();
-        if (Boolean.parseBoolean(properties.getProperty("is_headless", "false"))){
-            options.addArguments("--headless");
-            options.addArguments("--window-size=3840,2160"); // Maximum 4K resolution
-        }
-        options.addArguments("--allow-file-access-from-files");
-        options.addArguments("--ignore-certificate-errors");
-        options.addArguments("--allow-insecure-localhost");
-        options.addArguments("--disable-web-security");
-        options.addArguments("--allow-file-access");
-        options.addArguments("--no-sandbox");
-        options.addArguments("--disable-dev-shm-usage");
-
-        // Ініціюємо WebDriver
-        // Ініціалізація WebDriver і налаштування основних параметрів
-        driver = new ChromeDriver(options);
-        WebDriverHolder.setDriver(driver);
-
-// Зміна часу очікування з використанням Duration
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-// Ініціюємо WebDriverWait з використанням Duration
-        wait = new WebDriverWait(driver, Duration.ofSeconds(20));
-// Максимізація вікна
-        if (Boolean.parseBoolean(properties.getProperty("is_headless", "false"))) {
-            driver.manage().window().setSize(new Dimension(3840, 2160));
-        } else {
-            driver.manage().window().maximize();
-        }
-
-    }
-
-    @AfterClass
-    public void tearDown() {
-        if (driver != null) {
-            driver.quit();
-        }
-    }
+public class Service01_HTML extends BaseTestService01 {
 
     @Test
     public void HTML() {
@@ -101,20 +35,14 @@ public class Service01_HTML extends BaseTest {
             //System.out.println("OrderID: " + orderId);
            // System.out.println("ApprovalCode: " + approvalCode);
            // System.out.println("RRN: " + rrn);
-
-            // Отримуємо значення з файлу властивостей
-            String baseUrl = properties.getProperty("URLtomee");
-            String merchantId = properties.getProperty("MerchantID_AVAL1");
-            String terminalId = properties.getProperty("TerminalID_AVAL1");
-
             // Отримуємо шлях до HTML шаблону
             Path templatePath = ResourceUtils.toTempFile("Html/servace01.html");
             String htmlContent = new String(Files.readAllBytes(templatePath), StandardCharsets.UTF_8);
 
             // Замінюємо змінні у HTML контенті
-            htmlContent = htmlContent.replace("${base.url}", baseUrl)
-                    .replace("${MerchantID}", merchantId)
-                    .replace("${TerminalID}", terminalId)
+            htmlContent = htmlContent.replace("${base.url}", URL_TOMEE)
+                    .replace("${MerchantID}", merchantID_aval1)
+                    .replace("${TerminalID}", terminal_AVAL)
                     .replace("${OrderID}", orderId);
 
             // Створюємо тимчасовий файл у тимчасовій директорії операційної системи
@@ -126,10 +54,11 @@ public class Service01_HTML extends BaseTest {
 
             // Відкриваємо сторінку з цим HTML файлом
             String finalUrl = "file:///" + tempFilePath.toAbsolutePath().toString().replace("\\", "/");
-            driver.get(finalUrl);
+            getDriver().get(finalUrl);
 
             // Натискання на кнопку submit
-            WebElement submitButton = wait.until(ExpectedConditions.elementToBeClickable(By.id("submit")));
+            WebElement submitButton = new WebDriverWait(getDriver(), Duration.ofSeconds(20))
+                    .until(ExpectedConditions.elementToBeClickable(By.id("submit")));
             submitButton.click();
 
             // Очікування завантаження сторінки після натискання submit
@@ -137,7 +66,7 @@ public class Service01_HTML extends BaseTest {
             Thread.sleep(2000); // Примусова пауза
 
             // Отримання всього тексту з body
-            String bodyText = driver.findElement(By.tagName("body")).getText();
+            String bodyText = getDriver().findElement(By.tagName("body")).getText();
             System.out.println("" + bodyText);
 
             // Перевірки значень
@@ -152,7 +81,6 @@ public class Service01_HTML extends BaseTest {
                 System.out.println("Currency не співпадає, отримано: " + bodyText);
                 testPassed = false;
             }
-
 //            if (!bodyText.contains("TerminalID=E1000027")) {
 //                System.out.println("TerminalID не співпадає, отримано: " + bodyText);
 //                testPassed = false;
@@ -162,55 +90,30 @@ public class Service01_HTML extends BaseTest {
 //                System.out.println("MerchantID не співпадає, отримано: " + bodyText);
 //                testPassed = false;
 //            }
-
             if (!bodyText.contains("OrderID=" + orderId)) {
                 System.out.println("OrderID не співпадає, отримано: " + bodyText);
                 testPassed = false;
             }
-
             if (!bodyText.contains("ApprovalCode=" + approvalCode)) {
                 System.out.println("ApprovalCode не співпадає, отримано: " + bodyText);
                 testPassed = false;
             }
-
             if (!bodyText.contains("RRN=" + rrn)) {
                 System.out.println("RRN не співпадає, отримано: " + bodyText);
                 testPassed = false;
             }
-
             Assert.assertTrue(testPassed, "Тест не пройдено, перевірка значень не вдалася.");
-
             if (testPassed) {
                 System.out.println("Тест пройдено успішно.");
             }
-
         } catch (Exception e) {
             e.printStackTrace();
             Assert.fail("Тест не пройдено через виняток: " + e.getMessage());
         }
     }
 
-    private String[] getDatabaseValues() {
-        String[] values = new String[3];
-        try (Connection connection = JDBCConnection.getDBConnection();
-             PreparedStatement statement = connection.prepareStatement(
-                     "SELECT RRN, APPROVAL_CODE, ORDER_ID FROM TRAN WHERE TRAN_ID = (SELECT MAX(TRAN_ID) FROM TRAN)"
-             )) {
-            ResultSet resultSet = statement.executeQuery();
-            if (resultSet.next()) {
-                values[0] = resultSet.getString("ORDER_ID"); // ORDER_ID
-                values[1] = resultSet.getString("APPROVAL_CODE"); // APPROVAL_CODE
-                values[2] = resultSet.getString("RRN"); // RRN
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            Assert.fail("Не вдалося виконати запит до бази даних: " + e.getMessage());
-        }
-        return values;
-    }
-
     private void waitForPageLoad() {
-        new WebDriverWait(driver, Duration.ofSeconds(30)).until(
+        new WebDriverWait(getDriver(), Duration.ofSeconds(30)).until(
                 webDriver -> ((JavascriptExecutor) webDriver)
                         .executeScript("return document.readyState")
                         .equals("complete")

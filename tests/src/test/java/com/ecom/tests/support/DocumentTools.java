@@ -481,11 +481,15 @@ public class DocumentTools {
         return requestRevers;
     }
 
-    public static Document fillAmountToRefund(Document requestRevers, Document requestPay, String tag, double n) {
-
-        double amount = new Integer(requestPay.getElementsByTagName(getTagAmount(requestPay)).item(0).getTextContent());
+    public static Document fillAmountToRefund(Document requestRevers,
+                                              Document requestPay,
+                                              String tag,
+                                              double n) {
+        String amountText = requestPay.getElementsByTagName(getTagAmount(requestPay)).item(0).getTextContent();
+        double amount = Double.parseDouble(amountText);
         amount = amount + (amount * n);
-        requestRevers.getElementsByTagName(tag).item(0).setTextContent(String.valueOf(((int) amount)));
+        requestRevers.getElementsByTagName(tag).item(0).setTextContent(String.valueOf((int) amount));
+
         return requestRevers;
     }
 

@@ -42,4 +42,15 @@ public final class TemplateCatalog {
   public static final String AUTH_PATH = "template/html/Authorization.html";
   public static final String AUTH_PATH_INSTALLMENT = "template/html/AuthorizationInstallment.html";
   public static final String VERIFY_PATH = "template/html/AccountVerification.html";
+  /** TestMoneyTransfer */
+  public static final String XML_TEMPLATES_CARD_TO_CARD = "template/xml/mt/cardToCard.xml";
+  public static final String XML_TEMPLATES_CARD_TO_ACCOUNT = "template/xml/mt/cardToAccount.xml";
+  public static final String XML_TEMPLATES_ACCOUNT_TO_CARD = "template/xml/mt/accountToCard.xml";
+  public static final String XML_TEMPLATES_REVERSAL_MT = "template/xml/mt/reversalRequestMT.xml";
+  public static final String XML_TEMPLATES_CARD_ZONE = "mt/cardZone.xml";
+  public static final String XML_TEMPLATES_STATUS = "mt/statusRequest.xml";
+  public static final String XML_CROSS_BORDER = "template/xml/mt/CrossBorder.xml";
+  public static final String XML_FAST_REFUND_APPCODE_RNN = "template/xml/mt/fastRefundApprovalCodeRRN.xml";
+  public static final String XML_FAST_REFUND_TOKEN = "template/xml/mt/fastRefundToken.xml";
+  public static final String XML_FAST_REFUND_CARD = "template/xml/mt/fastRefundCard.xml";
 }

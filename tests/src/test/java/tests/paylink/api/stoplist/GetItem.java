@@ -5,6 +5,7 @@
 package tests.paylink.api.stoplist;
 
 import com.ecom.core.config.ConfigStoplist;
+import com.ecom.tests.base.BaseTestStopList;
 import com.ecom.tests.support.DataDrivenStoplist;
 import com.ecom.tests.support.DocumentTools;
 import com.ecom.tests.support.RequestsStoplist;
@@ -15,7 +16,7 @@ import static io.restassured.RestAssured.given;
 import static com.ecom.tests.support.DocumentTools.getElementFromDocument;
 import static org.testng.Assert.assertEquals;
 
-public class GetItem extends BaseTestStoplist{
+public class GetItem extends BaseTestStopList {
     @Test(dataProvider="getItemPan", dataProviderClass = DataDrivenStoplist.class)
     public void getItemPan(String merchantId, String terminalId, String trackingId, String stopListId) {
         Document requestDoc = RequestsStoplist.getItemPanDocument(merchantId, terminalId, trackingId, stopListId);

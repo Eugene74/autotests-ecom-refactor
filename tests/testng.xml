@@ -173,7 +173,7 @@
     </test>
     <test name="onbording">
         <classes>
-            <class name="tests.com.Onbording.Onboarding"/>
+            <class name="tests.com.Onboarding.Onboarding"/>
         </classes>
     </test>
     <test name="service01">

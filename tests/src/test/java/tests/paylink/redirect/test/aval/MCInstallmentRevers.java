@@ -1,23 +1,24 @@
 package tests.paylink.redirect.test.aval;
 
-import com.ecom.tests.support.RedirectRequest;
+import com.ecom.tests.base.BaseUiTest;
+import com.ecom.tests.steps.PaymentSteps;
+import com.ecom.tests.steps.RefundSteps;
 import com.ecom.ui.util.Waiters;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-import tests.BaseRedirect;
-import com.ecom.ui.paylink.redirect.pages.InstallmentChoice;
 
+import static com.ecom.api.type.Attributes.*;
 import static com.ecom.core.config.CardConfig.cardMCInst;
 import static com.ecom.core.config.EnvData.*;
-import static com.ecom.db.JDBCMethods.*;
+import static com.ecom.db.JDBCMethods.getTranIdByOrder1;
+import static com.ecom.db.JDBCMethods.getValueFromTRAN;
+import static com.ecom.db.JDBCMethods.setMerchantAtt;
 import static com.ecom.tests.support.DocumentTools.verifiedDataFromDB;
-import static com.ecom.api.type.Attributes.*;
-import static com.ecom.api.type.Attributes.ALLOW_INSTALLMENT;
 
 
-public class MCInstallmentRevers extends BaseRedirect {
+public class MCInstallmentRevers extends BaseUiTest {
 
     String orderRedirect = "";
     int tranId = 0;
@@ -39,10 +40,9 @@ public class MCInstallmentRevers extends BaseRedirect {
 
     @Test
     public void installmentPay() {
-        RedirectRequest pay = new RedirectRequest();
-        orderRedirect = pay.paymentAuthorizationInstallment(cardMCInst, 0, merchantID_aval1, terminalID_aval1);
-
-        pay.usedCVC(cardMCInst);
+        orderRedirect = new PaymentSteps(driver)
+                .authorizePaymentInstallment(cardMCInst, 0, merchantID_aval1, terminalID_aval1, URLredirect);
+        new PaymentSteps(driver).usedCVC(cardMCInst);
         System.out.println("Order: " + orderRedirect);
 
         Waiters.sleep(3500); //использовать только на тест среде, задержка для БД
@@ -68,12 +68,11 @@ public class MCInstallmentRevers extends BaseRedirect {
 
     @Test (dependsOnMethods = "installmentPay")
     public void installmentRevers() {
-        RedirectRequest revers = new RedirectRequest();
         // Видалення префікса "Order ID" з orderRedirect
         orderRedirect = orderRedirect.replace("Order ID", "").trim();
         System.out.println("Order without prefix: " + orderRedirect);
 
-        revers.doReversal(URL_MERCH, orderRedirect, tranId);
+        new RefundSteps(driver).doRefund(URL_MERCH, orderRedirect, tranId);
 
         int tranReversId = getTranIdByOrder1(orderRedirect);
 

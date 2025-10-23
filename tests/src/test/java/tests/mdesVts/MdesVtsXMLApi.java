@@ -1,6 +1,6 @@
 package tests.mdesVts;
 
-import com.ecom.core.xml.TemplateCatalog;
+import com.ecom.tests.base.BaseApiTest;
 import com.ecom.tests.support.MdesVtsRequests;
 import org.apache.http.HttpResponse;
 import org.apache.http.util.EntityUtils;
@@ -10,22 +10,23 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import static com.ecom.core.config.CardConfig.cardMdes;
-import static com.ecom.core.config.CardConfig.cardVts;
-import static com.ecom.core.config.EnvData.*;
-import tests.BaseAPITest;
-
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 
-
+import static com.ecom.api.type.Attributes.ALLOW_SUPPORT_TOKEN;
+import static com.ecom.api.type.Attributes.ALLOW_TOKEN_MDES;
+import static com.ecom.api.type.Attributes.ALLOW_TOKEN_VTS;
+import static com.ecom.core.config.CardConfig.cardMdes;
+import static com.ecom.core.config.CardConfig.cardVts;
+import static com.ecom.core.config.EnvData.*;
 import static com.ecom.core.xml.TemplateCatalog.*;
 import static com.ecom.db.JDBCMethods.setMerchantAtt;
-import static org.testng.Assert.*;
-import static com.ecom.api.type.Attributes.*;
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertNotNull;
+import static org.testng.Assert.assertTrue;
 
-public class MdesVtsXMLApi extends BaseAPITest {
+public class MdesVtsXMLApi extends BaseApiTest {
 
     private static final Map<String, String> cardMap = new HashMap<>();
     static {

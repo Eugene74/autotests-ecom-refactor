@@ -9,7 +9,7 @@ import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
-import tests.com.Service01.BaseTest;
+import com.ecom.tests.base.BaseTestService01;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -25,7 +25,7 @@ import java.util.Properties;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNotNull;
 
-public class CrossBorderXML extends BaseTest {
+public class CrossBorderXML extends BaseTestService01 {
 
     private Properties properties;
 

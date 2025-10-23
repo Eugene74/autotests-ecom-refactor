@@ -1,23 +1,28 @@
 package tests.paylink.redirect.test.aval;
 
 import com.ecom.db.JDBCMethods;
-import com.ecom.tests.support.RedirectRequest;
+import com.ecom.tests.base.BaseUiTest;
+import com.ecom.tests.steps.PaymentSteps;
+import com.ecom.tests.steps.RefundSteps;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-import tests.BaseRedirect;
 
+import static com.ecom.api.type.Attributes.ALLOW_PAYMENT_WITHOUT_3DS;
+import static com.ecom.api.type.Attributes.ALLOW_REFUND_ONLINE;
+import static com.ecom.api.type.Attributes.MERCHANT_INVOICING_URL;
 import static com.ecom.core.config.CardConfig.cardMC;
 import static com.ecom.core.config.CardConfig.cardVISA;
 import static com.ecom.core.config.EnvData.*;
-import static com.ecom.db.JDBCMethods.*;
+import static com.ecom.db.JDBCMethods.getTranIdByOrder;
+import static com.ecom.db.JDBCMethods.getValueFromTRAN;
+import static com.ecom.db.JDBCMethods.setMerchantAtt;
 import static com.ecom.tests.support.DocumentTools.verifiedDataFromDB;
 import static com.ecom.tests.support.PaylinkRequests.paylinkCloseDay;
 import static org.testng.Assert.assertFalse;
-import static com.ecom.api.type.Attributes.*;
 
-public class AuthorizationRefundOnLine extends BaseRedirect {
+public class AuthorizationRefundOnLine extends BaseUiTest {
     private static String orderRedirect;
     private static int tranId;
 
@@ -32,9 +37,8 @@ public class AuthorizationRefundOnLine extends BaseRedirect {
 
     @Test
     public void authorizationPay() {
-        RedirectRequest pay = new RedirectRequest();
-        orderRedirect = pay.paymentAuthorization(cardMC, 0, merchant_AVAL, terminal_AVAL);
-        pay.usedCVC(cardVISA);
+        orderRedirect = new PaymentSteps(driver).authorizePayment(cardMC, 0, merchant_AVAL, terminal_AVAL, URLredirect);
+        new PaymentSteps(driver).usedCVC(cardVISA);
         System.out.println("Order: " + orderRedirect);
 
         orderRedirect = orderRedirect.replace("Order № ", "").trim();
@@ -75,8 +79,7 @@ public class AuthorizationRefundOnLine extends BaseRedirect {
 
     @Test(dependsOnMethods = "generateBatch")
     public void authorizationRefundOnLine() {
-        RedirectRequest refund = new RedirectRequest();
-        refund.doReversal(URL_MERCH, orderRedirect, tranId);
+        new RefundSteps(driver).doRefund(URL_MERCH, orderRedirect, tranId);
 
         orderRedirect = orderRedirect.replace("Order № ", "").trim();
         System.out.println("Order without prefix: " + orderRedirect);

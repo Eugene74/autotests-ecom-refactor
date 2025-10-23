@@ -1,13 +1,14 @@
 package tests.paylink.xml;
 
+import com.ecom.api.type.FieldsNFile;
 import org.testng.annotations.Test;
 import org.w3c.dom.Document;
-import tests.BaseTest;
-import com.ecom.api.type.FieldsNFile;
+import tests.context.TransactionContext;
 
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.ecom.api.type.FieldsNFile.*;
 import static com.ecom.core.config.CardConfig.cardMC07;
 import static com.ecom.core.config.CardConfig.cardVISA;
 import static com.ecom.core.config.EnvData.URL;
@@ -17,11 +18,10 @@ import static com.ecom.db.JDBCMethods.getTranIdByOrder;
 import static com.ecom.db.JDBCMethods.getValueFromTRAN;
 import static com.ecom.tests.support.DocumentTools.*;
 import static com.ecom.tests.support.PaylinkRequests.payment;
-import static com.ecom.tests.support.RequestSender.sendRequest;
+import static com.ecom.tests.support.RequestSenderRest.sendRequest;
 import static org.testng.Assert.assertEquals;
-import static com.ecom.api.type.FieldsNFile.*;
 
-public class Payment extends BaseTest {
+public class Payment {
 
     @Test
     public void Payment() {
@@ -76,7 +76,7 @@ public class Payment extends BaseTest {
         checkTransaction.put(FLD_123_1, "M");
         checkTransaction.put(EPI_42_48_FULL, "210");
 
-        tranPaymentFields.add(checkTransaction);
+        TransactionContext.ECOM_TRAN_PAYMENT_FIELDS.add(checkTransaction);
     }
 }
 

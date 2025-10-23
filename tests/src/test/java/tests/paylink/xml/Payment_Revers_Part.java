@@ -1,30 +1,32 @@
 package tests.paylink.xml;
 
+import com.ecom.api.type.FieldsNFile;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.w3c.dom.Document;
-import tests.BaseTest;
-import com.ecom.api.type.FieldsNFile;
+import tests.context.TransactionContext;
 
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.ecom.api.type.Attributes.ALLOW_PARTIAL_REVERSAL;
+import static com.ecom.api.type.FieldsNFile.*;
 import static com.ecom.core.config.CardConfig.cardMC07;
 import static com.ecom.core.config.EnvData.URL;
 import static com.ecom.core.config.EnvData.id_AVAL;
 import static com.ecom.core.config.EnvData.merchant_AVAL;
 import static com.ecom.core.config.EnvData.terminal_AVAL;
-import static com.ecom.db.JDBCMethods.*;
+import static com.ecom.db.JDBCMethods.getTranIdByOrder;
+import static com.ecom.db.JDBCMethods.getValueFromTRAN;
+import static com.ecom.db.JDBCMethods.setMerchantAtt;
 import static com.ecom.tests.support.DocumentTools.*;
 import static com.ecom.tests.support.PaylinkRequests.payment;
 import static com.ecom.tests.support.PaylinkRequests.reversal;
-import static com.ecom.tests.support.RequestSender.sendRequest;
+import static com.ecom.tests.support.RequestSenderRest.sendRequest;
 import static org.testng.Assert.assertEquals;
-import static com.ecom.api.type.Attributes.ALLOW_PARTIAL_REVERSAL;
-import static com.ecom.api.type.FieldsNFile.*;
 
-public class Payment_Revers_Part extends BaseTest {
+public class Payment_Revers_Part {
     private static Document requestDoc;
     private static Document responseDoc;
     private static String approvalCode;
@@ -126,7 +128,7 @@ public class Payment_Revers_Part extends BaseTest {
         checkTransaction.put(FLD_123_1, "M");
         checkTransaction.put(EPI_42_48_FULL, "210");
 
-        tranPaymentFields.add(checkTransaction);
+        TransactionContext.ECOM_TRAN_PAYMENT_FIELDS.add(checkTransaction);
     }
 }
 

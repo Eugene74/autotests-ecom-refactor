@@ -1,6 +1,7 @@
 package tests.mt.p2p.tests.aval.fundingMC;
 
 import com.ecom.core.config.PropertiesManager;
+import com.ecom.tests.base.BaseUiTest;
 import com.ecom.tests.support.MoneyTransferPageUtils;
 import com.ecom.ui.common.BasePage;
 import com.ecom.ui.mt.p2p.pages.MoneyTransferPage;
@@ -12,7 +13,6 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-import tests.BaseRedirect;
 
 import java.util.List;
 import java.util.Properties;
@@ -28,14 +28,13 @@ import static com.ecom.db.JDBCMethods.setMerchantAtt;
 import static com.ecom.tests.support.DocumentTools.verifiedDataMTFromDBFunding;
 import static com.ecom.tests.support.DocumentTools.verifiedDataMTFromDBPayment;
 
-public class P2P_FundingMCPaymenVisa extends BaseRedirect {
+public class P2P_FundingMCPaymenVisa extends BaseUiTest {
 
     private String requestId;
     private String idAVAL1;
     private String idAVAL2;
     private String idAVAL3;
     private String idAVAL4;
-
 
     @BeforeClass
     public void setStatusAttr() {
@@ -52,7 +51,6 @@ public class P2P_FundingMCPaymenVisa extends BaseRedirect {
         System.out.println("ALLOW_CROSS_BORDER: false");
     }
 
-
     @DataProvider(name = "merchantData")
     public Object[][] merchantData() {
         return new Object[][]{
@@ -60,8 +58,6 @@ public class P2P_FundingMCPaymenVisa extends BaseRedirect {
                 {idAVAL4, MoneyTransferPage4.class},
                 {idAVAL1, MoneyTransferPage.class},
                 {idAVAL2, MoneyTransferPage2.class}
-
-
         };
     }
 
@@ -71,20 +67,16 @@ public class P2P_FundingMCPaymenVisa extends BaseRedirect {
         BasePage page = pageClass.getDeclaredConstructor(WebDriver.class).newInstance(getDriver());
         System.out.println("Testing with page: " + page.toString());
 
-        MoneyTransferPageUtils moneyTransfer = new MoneyTransferPageUtils();
+        MoneyTransferPageUtils moneyTransfer = new MoneyTransferPageUtils(driver);
         requestId = moneyTransfer.domesticTransfer(merchantIdInt, cardMCmt, cardVISArec, (Class<? extends MoneyTransferPage>) pageClass);
         String code = getValueFromMTTran(getRrnFromMTTran(requestId, "F"), "Code");
 
-
         // Додатковий код для перевірки транзакції
-        List<String> checkTransfer = new MoneyTransferPageUtils().getContentData();
+        List<String> checkTransfer = new MoneyTransferPageUtils(driver).getContentData();
        System.out.println("requestId: " + requestId);
-
         String requestId = getLastRequestId();
         String rrn_funding = getRrnFromMTTran(requestId, "F");
         String rrn_payment = getRrnFromMTTran(requestId, "P");
-
-
         SoftAssert softAssertion = new SoftAssert();
         softAssertion.assertEquals(getValueFromMTTran(rrn_funding, "ECI"), "05", "F_ECI");
         softAssertion.assertEquals(getValueFromMTTran(rrn_funding, "ApprovalCode").length(), 6, "F_ApprovalCode");
@@ -98,7 +90,6 @@ public class P2P_FundingMCPaymenVisa extends BaseRedirect {
         softAssertion.assertEquals(getValueFromMTTran(rrn_payment, "Code"), "000", "P_AuthCode");
         softAssertion.assertEquals(getValueFromMTTran(rrn_payment, "MCC"), "6538", "P_MCC");
         softAssertion.assertAll();
-
         System.out.println("Verified:");
         String[] verifiedResponseFromDBFunding = {"ECI", "ApprovalCode", "MCC", "Code", "CVResult", "RRN"};
         String[] verifiedResponseFromDBPayment = {"ECI", "ApprovalCode", "MCC", "Code", "RRN"};

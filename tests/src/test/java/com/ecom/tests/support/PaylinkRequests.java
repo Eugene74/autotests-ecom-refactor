@@ -3,12 +3,11 @@ package com.ecom.tests.support;
 import com.codeborne.selenide.WebDriverRunner;
 import com.ecom.ui.paylink.admin.flow.CloseDayPaylinkFlow;
 import org.w3c.dom.Document;
-import tests.BaseTest;
 
 import static com.ecom.core.xml.TemplateCatalog.*;
 import static com.ecom.tests.support.DocumentTools.*;
 
-public class PaylinkRequests extends BaseTest{
+public class PaylinkRequests {
 
     private static final CloseDayPaylinkFlow CLOSE_DAY_FLOW = new CloseDayPaylinkFlow();
 

@@ -1,28 +1,30 @@
 package tests.mt.api.aval;
 
 
-import com.ecom.tests.support.RequestSender;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import org.w3c.dom.Document;
-import tests.mt.BaseTestMoneyTransfer;
 
 import static com.ecom.core.config.CardConfig.cardVISA;
+import static com.ecom.core.config.EnvData.URL_MT_Tran;
+import static com.ecom.core.config.EnvData.URLmtRev;
 import static com.ecom.core.config.EnvData.merchant_AVAL;
 import static com.ecom.core.config.EnvData.terminal_AVAL;
-import static com.ecom.db.JDBCMethods.*;
+import static com.ecom.db.JDBCMethods.getValueFromMTTran;
+import static com.ecom.db.JDBCMethods.getValueFromMTTranFunding;
 import static com.ecom.tests.support.DocumentTools.*;
 import static com.ecom.tests.support.MoneyTransferRequests.reversalOnFunding;
 import static com.ecom.tests.support.MoneyTransferRequests.transferCardToAccountPares;
+import static com.ecom.tests.support.RequestSenderRest.sendRequest;
 
-public class CardToAccountAttempt_Revers extends BaseTestMoneyTransfer {
+public class CardToAccountAttempt_Revers {
     protected Document requestDoc;
     protected Document responseDoc;
 
     @Test
     public void transferFromCardToAccountAttempt() {
         requestDoc = transferCardToAccountPares(cardVISA, merchant_AVAL, terminal_AVAL);
-        responseDoc = RequestSender.sendRequest(URLmt, requestDoc);
+        responseDoc = sendRequest(URL_MT_Tran, requestDoc);
         
         System.out.println("--TRANSFER--\nRequest:\n" + printRequestMT(requestDoc));
         System.out.println("Response:\n" + printResponseMT(responseDoc));
@@ -61,7 +63,7 @@ public class CardToAccountAttempt_Revers extends BaseTestMoneyTransfer {
     @Test (dependsOnMethods = "transferFromCardToAccountAttempt")
     public void reversOnFundingCardToAccountAttempt(){
         Document requestRevDoc = reversalOnFunding(merchant_AVAL, terminal_AVAL, requestDoc, responseDoc);
-        Document responseRevDoc = RequestSender.sendRequest(URLmtRev, requestRevDoc);
+        Document responseRevDoc = sendRequest(URLmtRev, requestRevDoc);
 
         System.out.println("--REVERSAL--\nRequest:\n" + printReversalMT(requestRevDoc, "ReversalRequest"));
         System.out.println("Response:\n" + printReversalMT(responseRevDoc, "ReversalResponse"));

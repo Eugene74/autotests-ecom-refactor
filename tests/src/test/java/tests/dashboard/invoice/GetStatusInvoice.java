@@ -1,6 +1,6 @@
 package tests.dashboard.invoice;
 
-import com.ecom.core.util.ResourceUtils;
+import com.ecom.utils.ResourceUtils;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.testng.annotations.Test;

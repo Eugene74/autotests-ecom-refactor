@@ -1,20 +1,23 @@
 package tests.paylink.redirect.test.aval;
 
-import com.ecom.tests.support.RedirectRequest;
+import com.ecom.tests.base.BaseUiTest;
+import com.ecom.tests.steps.PaymentSteps;
+import com.ecom.tests.steps.RefundSteps;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-import tests.BaseRedirect;
 
-import static com.ecom.core.config.CardConfig.cardVISA;
-import static com.ecom.core.config.EnvData.*;
-import static com.ecom.db.JDBCMethods.*;
-import static com.ecom.tests.support.DocumentTools.verifiedDataFromDB;
 import static com.ecom.api.type.Attributes.ALLOW_PAYMENT_WITHOUT_3DS;
 import static com.ecom.api.type.Attributes.MERCHANT_INVOICING_URL;
+import static com.ecom.core.config.CardConfig.cardVISA;
+import static com.ecom.core.config.EnvData.*;
+import static com.ecom.db.JDBCMethods.getTranIdByOrder;
+import static com.ecom.db.JDBCMethods.getValueFromTRAN;
+import static com.ecom.db.JDBCMethods.setMerchantAtt;
+import static com.ecom.tests.support.DocumentTools.verifiedDataFromDB;
 
-public class FacilitatorAuthRevers extends BaseRedirect {
+public class FacilitatorAuthRevers extends BaseUiTest {
     private static String orderRedirect;
     private static int tranId;
 
@@ -27,9 +30,9 @@ public class FacilitatorAuthRevers extends BaseRedirect {
 
     @Test
     public void authorizationPay() {
-        RedirectRequest pay = new RedirectRequest();
-        orderRedirect = pay.paymentAuthorization(cardVISA, 0, merchantIDFacil_AVAL, terminalIDFacil_AVAL);
-        pay.usedCVC(cardVISA);
+        orderRedirect = new PaymentSteps(driver)
+                .authorizePayment(cardVISA, 0, merchantIDFacil_AVAL, terminalIDFacil_AVAL, URLredirect);
+        new PaymentSteps(driver).usedCVC(cardVISA);
         System.out.println("Order: " + orderRedirect);
 
         orderRedirect = orderRedirect.replace("Order № ", "").trim();
@@ -62,8 +65,7 @@ public class FacilitatorAuthRevers extends BaseRedirect {
 
     @Test(dependsOnMethods = "authorizationPay")
     public void authorizationRevers() {
-        RedirectRequest revers = new RedirectRequest();
-        revers.doReversal(URL_MERCH, orderRedirect, tranId);
+        new RefundSteps(driver).doRefund(URL_MERCH, orderRedirect, tranId);
 
         orderRedirect = orderRedirect.replace("Order № ", "").trim();
         System.out.println("Order without prefix: " + orderRedirect);

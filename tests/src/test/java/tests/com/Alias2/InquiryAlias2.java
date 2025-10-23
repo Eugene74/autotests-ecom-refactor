@@ -1,6 +1,6 @@
 package tests.com.Alias2;
 
-import tests.com.Alias1.BaseTestAlias1;
+import com.ecom.tests.base.BaseTestAlias2;
 import tests.com.Alias1.SharedDataStore;
 import org.apache.http.HttpResponse;
 import org.apache.http.util.EntityUtils;
@@ -16,10 +16,12 @@ import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.ecom.core.config.EnvData.URLAlias2Inquiry;
+import static com.ecom.core.config.XMLAliasResource.XML_INQUIRY_ALIAS2_RESOURCE;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNotNull;
 
-public class InquiryAlias2 extends BaseTestAlias1 {
+public class InquiryAlias2 extends BaseTestAlias2 {
 
     @Test
     public void testInquiryAlias2() throws Exception {

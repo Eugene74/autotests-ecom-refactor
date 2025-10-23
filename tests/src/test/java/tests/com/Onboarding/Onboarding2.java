@@ -1,43 +1,14 @@
-package tests.com.Onbording;
+package tests.com.Onboarding;
 
+import com.ecom.tests.base.BaseTestOnboarding;
 import org.apache.http.HttpResponse;
-import org.apache.http.client.methods.HttpEntityEnclosingRequestBase;
-import org.apache.http.entity.StringEntity;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 import org.testng.annotations.Test;
-
-import java.io.IOException;
-import java.net.URI;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNotNull;
 
 public class Onboarding2 extends BaseTestOnboarding {
-
-    public class HttpGetWithEntity extends HttpEntityEnclosingRequestBase {
-        public static final String METHOD_NAME = "GET";
-
-        @Override
-        public String getMethod() {
-            return METHOD_NAME;
-        }
-
-        public HttpGetWithEntity(final String uri) {
-            super();
-            setURI(URI.create(uri));
-        }
-
-        public HttpGetWithEntity(final URI uri) {
-            super();
-            setURI(uri);
-        }
-
-        public HttpGetWithEntity() {
-            super();
-        }
-    }
 
     @Test
     public void testSendStaticXML() throws Exception {
@@ -58,35 +29,16 @@ public class Onboarding2 extends BaseTestOnboarding {
 
         // Логування XML, що відправляється
         System.out.println("Sending XML: " + xmlContent);
-
         // Додаємо паузу перед відправкою запиту
-        Thread.sleep(5000);
-
+        Thread.sleep(5000); //todo remove later
         HttpResponse response = sendGetRequestWithEntity(baseUrl + "/go/merchants/status/external", xmlContent);
         assertNotNull(response);
         int statusCode = response.getStatusLine().getStatusCode();
-
         System.out.println("Received status code from the server: " + statusCode);
-
         // Перевірка статус-коду HTTP
         assertEquals(statusCode, 200, "Received status code " + statusCode + " from the server, but expected 200");
-
         String responseContent = EntityUtils.toString(response.getEntity(), "UTF-8");
-
         // Логування отриманої відповіді
         System.out.println("Received Response: " + responseContent);
-    }
-
-    protected HttpResponse sendGetRequestWithEntity(String url, String xmlContent) throws IOException {
-        CloseableHttpClient client = HttpClients.createDefault();
-        HttpGetWithEntity get = new HttpGetWithEntity(url);
-        get.setHeader("Content-Type", "application/xml");
-        get.setHeader("Accept", "application/xml");
-
-        // Додаємо XML в тіло запиту
-        StringEntity entity = new StringEntity(xmlContent, "UTF-8");
-        get.setEntity(entity);
-
-        return client.execute(get);
     }
 }

@@ -1,11 +1,7 @@
-package tests.com.Onbording;
+package tests.com.Onboarding;
 
+import com.ecom.tests.base.BaseTestOnboarding;
 import org.apache.http.HttpResponse;
-import org.apache.http.client.methods.HttpEntityEnclosingRequestBase;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.StringEntity;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
@@ -16,13 +12,12 @@ import org.w3c.dom.NodeList;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.net.URI;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Random;
 
+import static com.ecom.core.config.EnvData.merchantID_aval1;
+import static com.ecom.core.config.EnvData.terminalID_aval1;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNotNull;
 import static org.testng.Assert.assertTrue;
@@ -30,29 +25,6 @@ import static org.testng.Assert.assertTrue;
 public class Onboarding extends BaseTestOnboarding {
 
     private static String savedRequestId;
-
-    public class HttpGetWithEntity extends HttpEntityEnclosingRequestBase {
-        public static final String METHOD_NAME = "GET";
-
-        @Override
-        public String getMethod() {
-            return METHOD_NAME;
-        }
-
-        public HttpGetWithEntity(final String uri) {
-            super();
-            setURI(URI.create(uri));
-        }
-
-        public HttpGetWithEntity(final URI uri) {
-            super();
-            setURI(uri);
-        }
-
-        public HttpGetWithEntity() {
-            super();
-        }
-    }
 
     @Test
     public void testOnboardMerchant() throws Exception {
@@ -64,7 +36,7 @@ public class Onboarding extends BaseTestOnboarding {
         String taxNumber = "2034" + randomDigits;
 
         Map<String, String> params = new HashMap<>();
-        params.put("MerchantID", properties.getProperty("MerchantID_AVAL1"));
+        params.put("MerchantID",merchantID_aval1);
         params.put("Name", name);
         params.put("siteUrl", siteUrl);
         params.put("Email", email);
@@ -73,27 +45,19 @@ public class Onboarding extends BaseTestOnboarding {
         for (Map.Entry<String, String> entry : params.entrySet()) {
             xmlContent = xmlContent.replace("${" + entry.getKey() + "}", entry.getValue());
         }
-
         // Логування XML, що відправляється
        // System.out.println("Sending XML: " + xmlContent);
-
         // Додаємо паузу перед відправкою запиту
-        Thread.sleep(5000);
-
+        Thread.sleep(5000); //todo remove later
         HttpResponse response = sendPostRequest(baseUrl + "/go/merchants/service/external", xmlContent);
         assertNotNull(response);
         int statusCode = response.getStatusLine().getStatusCode();
-
         System.out.println("Received status code from the server: " + statusCode);
-
         // Перевірка статус-коду HTTP
         assertEquals(statusCode, 200, "Received status code " + statusCode + " from the server, but expected 200");
-
         String responseContent = EntityUtils.toString(response.getEntity(), "UTF-8");
-
         // Логування отриманої відповіді
         //System.out.println("Received Response: " + responseContent);
-
         // Парсинг та верифікація XML відповіді
         SoftAssert softAssertion = new SoftAssert();
         verifyXmlResponse(responseContent, softAssertion);
@@ -172,8 +136,8 @@ public class Onboarding extends BaseTestOnboarding {
         assertNotNull(savedRequestId, "Saved RequestID is null");
 
         Map<String, String> params = new HashMap<>();
-        params.put("MerchantID", properties.getProperty("MerchantID_AVAL1"));
-        params.put("TerminalID", properties.getProperty("TerminalID_AVAL1"));
+        params.put("MerchantID", merchantID_aval1);
+        params.put("TerminalID", terminalID_aval1);
         params.put("RequestID", savedRequestId);
 
         for (Map.Entry<String, String> entry : params.entrySet()) {
@@ -325,27 +289,5 @@ public class Onboarding extends BaseTestOnboarding {
                 softAssertion.fail("MDES Status is not REQUEST_SENT or ONBOARDED: " + mdesStatus);
             }
         }
-    }
-
-    protected HttpResponse sendGetRequestWithEntity(String url, String xmlContent) throws Exception {
-        CloseableHttpClient client =  createAllTrustingClient();
-        HttpGetWithEntity get = new HttpGetWithEntity(url);
-        get.setHeader("Content-Type", "application/xml");
-        get.setHeader("Accept", "application/xml");
-
-        // Додаємо XML в тіло запиту
-        StringEntity entity = new StringEntity(xmlContent, "UTF-8");
-        get.setEntity(entity);
-
-        return client.execute(get);
-    }
-
-    private String generateRandomDigits(int length) {
-        Random random = new Random();
-        StringBuilder digits = new StringBuilder(length);
-        for (int i = 0; i < length; i++) {
-            digits.append(random.nextInt(10));
-        }
-        return digits.toString();
     }
 }

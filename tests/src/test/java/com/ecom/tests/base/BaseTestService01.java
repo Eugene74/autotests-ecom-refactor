@@ -1,28 +1,25 @@
-package tests.com.Service01;
+package com.ecom.tests.base;
 
-import com.ecom.core.util.ResourceUtils;
+import com.ecom.utils.ResourceUtils;
 import com.ecom.db.JDBCConnection;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.conn.ssl.NoopHostnameVerifier;
-import org.apache.http.entity.StringEntity;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClients;
-import org.apache.http.ssl.SSLContextBuilder;
 import org.testng.annotations.BeforeClass;
 
-import javax.net.ssl.SSLContext;
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.SQLException;
-import java.util.Properties;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.Random;
 
-public class BaseTest {
+import static com.ecom.core.config.CardConfig.cardVISA;
+import static com.ecom.core.config.EnvData.URL_TOMEE;
+import static com.ecom.core.config.EnvData.merchantID_aval1;
+import static com.ecom.core.config.EnvData.terminalID_aval1;
 
-    protected String baseUrl;
-    protected String MerchantID;
-    protected String TerminalID;
+public class BaseTestService01 extends BaseHybridTest {
+
+    protected String baseUrl = URL_TOMEE;
+    protected String MerchantID = merchantID_aval1;
+    protected String TerminalID = terminalID_aval1;
     protected String CardNum;
     protected String ExpYear;
     protected String ExpMonth;
@@ -31,26 +28,14 @@ public class BaseTest {
 
     @BeforeClass
     public void setUp() throws IOException {
-        // Завантаження пропертів
-        Properties properties = new Properties();
-        properties.load(ResourceUtils.stream("config/env.properties"));
-
-        baseUrl = properties.getProperty("URLtomee");
-        MerchantID = properties.getProperty("MerchantID_AVAL1");
-        TerminalID = properties.getProperty("TerminalID_AVAL1");
-
         // Перевірка на наявність всіх необхідних значень
         if (baseUrl == null || MerchantID == null || TerminalID == null) {
             throw new IllegalArgumentException("One of the required properties is null. " +
                     "baseUrl: " + baseUrl + ", MerchantID: " + MerchantID +
                     ", TerminalID: " + TerminalID);
         }
-
         // Завантаження даних картки з окремого файлу
-        Properties cardProperties = new Properties();
-        cardProperties.load(ResourceUtils.stream("config/cards.properties"));
-        String cardDetails = cardProperties.getProperty("cardVISA");
-        String[] cardData = cardDetails.split(";");
+        String[] cardData = cardVISA; //cardDetails.split(";");
         CardNum = cardData[0].trim();
         ExpMonth = cardData[2].trim(); // Місяць
         ExpYear = cardData[1].trim(); // Рік
@@ -75,32 +60,8 @@ public class BaseTest {
         }
     }
 
-
-    public CloseableHttpClient createAllTrustingClient() throws Exception {
-        SSLContext sslContext = SSLContextBuilder.create()
-                .loadTrustMaterial((chain, authType) -> true)
-                .build();
-        return HttpClients.custom()
-                .setSSLContext(sslContext)
-                .setSSLHostnameVerifier(NoopHostnameVerifier.INSTANCE)
-                .build();
-    }
-
-    protected HttpResponse sendPostRequest(String url, String xmlContent) throws Exception {
-        HttpPost post = new HttpPost(url);
-        post.setEntity(new StringEntity(xmlContent));
-        post.setHeader("Content-Type", "application/xml");
-
-        CloseableHttpClient client = createAllTrustingClient();
-        return client.execute(post);
-    }
-
     protected String getResourceContent(String filePath) {
         return ResourceUtils.readAsString(filePath);
-    }
-
-    protected Connection getDBConnection() throws SQLException {
-        return JDBCConnection.getDBConnection();
     }
 
     // Метод для генерації динамічного OrderID
@@ -108,5 +69,24 @@ public class BaseTest {
         Random random = new Random();
         int orderId = random.nextInt(1000000) + 1;
         return "24" + orderId;
+    }
+
+    protected String[] getDatabaseValues() {
+        String[] values = new String[3];
+        try (Connection connection = JDBCConnection.getDBConnection();
+             PreparedStatement statement = connection.prepareStatement(
+                     "SELECT RRN, APPROVAL_CODE, ORDER_ID FROM TRAN WHERE TRAN_ID = (SELECT MAX(TRAN_ID) FROM TRAN)"
+             )) {
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                values[0] = resultSet.getString("ORDER_ID"); // ORDER_ID
+                values[1] = resultSet.getString("APPROVAL_CODE"); // APPROVAL_CODE
+                values[2] = resultSet.getString("RRN"); // RRN
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new IllegalStateException("Не вдалося виконати запит до бази даних: " + e.getMessage());
+        }
+        return values;
     }
 }

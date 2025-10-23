@@ -4,18 +4,22 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.w3c.dom.Document;
-import tests.BaseTest;
 
 import static com.ecom.core.config.CardConfig.cardVISA;
-import static com.ecom.core.config.EnvData.*;
-import static com.ecom.db.JDBCMethods.*;
+import static com.ecom.core.config.EnvData.MOTO_FILTR;
+import static com.ecom.core.config.EnvData.URL;
+import static com.ecom.core.config.EnvData.merchant_AVAL;
+import static com.ecom.core.config.EnvData.terminal_AVAL;
+import static com.ecom.db.JDBCMethods.getTranIdByOrder;
+import static com.ecom.db.JDBCMethods.getValueFromTRAN;
+import static com.ecom.db.JDBCMethods.setMerchantFilter;
 import static com.ecom.tests.support.DocumentTools.*;
 import static com.ecom.tests.support.PaylinkRequests.payment;
 import static com.ecom.tests.support.PaylinkRequests.reversal;
-import static com.ecom.tests.support.RequestSender.sendRequest;
+import static com.ecom.tests.support.RequestSenderRest.sendRequest;
 import static org.testng.Assert.assertEquals;
 
-public class Moto_Revers extends BaseTest {
+public class Moto_Revers {
     private static Document requestDoc;
     private static Document responseDoc;
     private static int tranId;

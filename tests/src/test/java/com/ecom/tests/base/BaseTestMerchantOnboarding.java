@@ -2,13 +2,11 @@
  * @author semyvolos_h
  * @date 7/29/2022 12:03 PM
  */
-package tests.paylink.api.onboarding;
-
-import tests.BaseTest;
+package com.ecom.tests.base;
 
 import static com.ecom.core.config.EnvData.URL_TOMEE;
 
-public class BaseTestOnboarding extends BaseTest {
+public class BaseTestMerchantOnboarding {
 
     /** URLs */
     protected static String urlGetMerchant = URL_TOMEE + "/go/merchants/service";

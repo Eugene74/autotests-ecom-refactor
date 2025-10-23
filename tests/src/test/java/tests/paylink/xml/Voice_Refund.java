@@ -5,18 +5,23 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.w3c.dom.Document;
-import tests.BaseTest;
 
 import static com.ecom.core.config.CardConfig.cardMC07;
 import static com.ecom.core.config.EnvData.*;
-import static com.ecom.db.JDBCMethods.*;
+import static com.ecom.db.JDBCMethods.getTranIdByOrder;
+import static com.ecom.db.JDBCMethods.getValueFromTRAN;
+import static com.ecom.db.JDBCMethods.setMerchantFilter;
 import static com.ecom.tests.support.DocumentTools.*;
-import static com.ecom.tests.support.PaylinkRequests.*;
-import static com.ecom.tests.support.RequestSender.sendRequest;
-import static org.testng.Assert.*;
+import static com.ecom.tests.support.PaylinkRequests.paylinkCloseDayForApi;
+import static com.ecom.tests.support.PaylinkRequests.payment;
+import static com.ecom.tests.support.PaylinkRequests.reversal;
+import static com.ecom.tests.support.RequestSenderRest.sendRequest;
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertFalse;
+import static org.testng.Assert.assertNull;
 
 
-public class Voice_Refund extends BaseTest {
+public class Voice_Refund {
     protected static Document requestDoc;
     protected static Document responseDoc;
     private static int tranId;
